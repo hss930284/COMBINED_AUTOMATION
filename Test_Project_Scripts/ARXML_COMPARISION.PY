@@ -117,7 +117,7 @@ def compare_arxml_files(file1, file2, output_txt):
 
 if __name__ == "__main__":
 
-    default_arxml_file = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_19_03\COMBINED_AUTOMATION\Default_Files\Default_Input_arxml.arxml"
+    default_arxml_file = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_24_03\COMBINED_AUTOMATION\Default_Files\Default_Input_arxml.arxml"
 
 
     import os
@@ -128,7 +128,7 @@ if __name__ == "__main__":
 
     # Define the directory for ARXML files
 
-    Arxml_directory = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_19_03\COMBINED_AUTOMATION\Intermidiate_Outputs\Generated_ARXML"
+    Arxml_directory = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_24_03\COMBINED_AUTOMATION\Intermidiate_Outputs\Generated_ARXML"
 
     # Ensure the directory exists
 
@@ -142,7 +142,7 @@ if __name__ == "__main__":
 
     # Define output text file name using Excel file name
 
-    Arxml_compared_txt_file = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_19_03\COMBINED_AUTOMATION\Comparator_Reports\ARXML_Comparator"
+    Arxml_compared_txt_file = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_24_03\COMBINED_AUTOMATION\Comparator_Reports\ARXML_Comparator"
 
     os.makedirs(Arxml_compared_txt_file, exist_ok=True)  # Ensure output directory exists
 

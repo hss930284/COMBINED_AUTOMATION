@@ -6,7 +6,7 @@ import os
 
 
 # --------------------------------------------------------------------GET LATEST EXCEL FILE  ----------------------------
-Excel_file_folder = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_19_03\COMBINED_AUTOMATION\Input_Excel"
+Excel_file_folder = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_24_03\COMBINED_AUTOMATION\Input_Excel"
 
 file2_list = [os.path.join(Excel_file_folder, f) for f in os.listdir(Excel_file_folder) if f.endswith(".xlsx")]
 if not file2_list:
@@ -33,7 +33,7 @@ Excelfile_name = get_latest_excel_name(Excel_file_folder)
 # --------------------------------------------------------------------GET GENERATED ARXML FILE PATH ----------------------------
 
 print("The latest Excel file name is:", Excelfile_name)
-Arxml_directory = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_19_03\COMBINED_AUTOMATION\Intermidiate_Outputs\Generated_ARXML"
+Arxml_directory = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_24_03\COMBINED_AUTOMATION\Intermidiate_Outputs\Generated_ARXML"
 os.makedirs(Arxml_directory, exist_ok=True)        
 arxml_file_path = os.path.join(Arxml_directory, f"{Excelfile_name}.arxml")
 # --------------------------------------------------------------------GET GENERATED ARXML FILE PATH ----------------------------

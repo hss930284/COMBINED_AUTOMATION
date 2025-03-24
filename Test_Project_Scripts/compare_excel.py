@@ -16,12 +16,12 @@ def get_file_path(prompt):
 
 # Get Excel files from user
 
-file1_path = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_19_03\COMBINED_AUTOMATION\Default_Files\Default_Input_Excel.xlsx"
+file1_path = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_24_03\COMBINED_AUTOMATION\Default_Files\Default_Input_Excel.xlsx"
 
 # file2_path = get_file_path("Select the Updated Excel File")
 
 # Ask user to select file2_path
-file2_folder = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_19_03\COMBINED_AUTOMATION\Input_Excel"
+file2_folder = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_24_03\COMBINED_AUTOMATION\Input_Excel"
 
 
 # Get list of all Excel files in the folder with full paths
@@ -34,7 +34,7 @@ file2_path = max(file2_list, key=os.path.getmtime)
 file2_name = os.path.splitext(os.path.basename(file2_path))[0]
 
 # Define fixed directory where logs should be saved (Update this path as per your requirement)
-log_directory = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_19_03\COMBINED_AUTOMATION\Comparator_Reports\Excel_Comparator"
+log_directory = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_24_03\COMBINED_AUTOMATION\Comparator_Reports\Excel_Comparator"
 os.makedirs(log_directory, exist_ok=True)
 
 # Generate log file paths in the fixed log directory

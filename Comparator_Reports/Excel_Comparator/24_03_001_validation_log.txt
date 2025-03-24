@@ -1,0 +1,88 @@
+Sheet: ports, Cell: G1
+  - Original Value: drpv
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: G2
+  - Original Value: drpa
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: G3
+  - Original Value: drpv
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: G4
+  - Original Value: dra
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: G5
+  - Original Value: drpa
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: E7
+  - Original Value: RSR1
+  - Updated Value: RSR2
+--------------------------------------------------
+Sheet: ports, Cell: F7
+  - Original Value: CS
+  - Updated Value: CS6
+--------------------------------------------------
+Sheet: ports, Cell: G7
+  - Original Value: dra
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: F8
+  - Original Value: CS2
+  - Updated Value: CS7
+--------------------------------------------------
+Sheet: ports, Cell: F9
+  - Original Value: CS3
+  - Updated Value: CS8
+--------------------------------------------------
+Sheet: ports, Cell: F10
+  - Original Value: CS4
+  - Updated Value: CS9
+--------------------------------------------------
+Sheet: ports, Cell: F11
+  - Original Value: CS5
+  - Updated Value: CS10
+--------------------------------------------------
+Sheet: enum_list, Cell: g7
+  - Original Value: RSR1
+  - Updated Value: RSR2
+--------------------------------------------------
+Sheet: enum_list, Cell: i7
+  - Original Value: CS
+  - Updated Value: CS6
+--------------------------------------------------
+Sheet: enum_list, Cell: g8
+  - Original Value: RSR1
+  - Updated Value: RSR2
+--------------------------------------------------
+Sheet: enum_list, Cell: i8
+  - Original Value: CS2
+  - Updated Value: CS7
+--------------------------------------------------
+Sheet: enum_list, Cell: g9
+  - Original Value: RSR1
+  - Updated Value: RSR2
+--------------------------------------------------
+Sheet: enum_list, Cell: i9
+  - Original Value: CS3
+  - Updated Value: CS8
+--------------------------------------------------
+Sheet: enum_list, Cell: g10
+  - Original Value: RSR1
+  - Updated Value: RSR2
+--------------------------------------------------
+Sheet: enum_list, Cell: i10
+  - Original Value: CS4
+  - Updated Value: CS9
+--------------------------------------------------
+Sheet: enum_list, Cell: g11
+  - Original Value: RSR1
+  - Updated Value: RSR2
+--------------------------------------------------
+Sheet: enum_list, Cell: i11
+  - Original Value: CS5
+  - Updated Value: CS10
+--------------------------------------------------

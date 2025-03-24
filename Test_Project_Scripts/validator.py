@@ -99,6 +99,7 @@ def validate_excel(file_path):
             "adt_primitive": ["E", "F", "G"],
             "idt": ["B", "D"]
         }
+        
         column_limits = {
             "swc_info": "M",
             "ib_data": "I",
@@ -107,13 +108,10 @@ def validate_excel(file_path):
             "adt_composite": "F",
             "idt": "E"
         }
+    
         
         # ✅ Load sheets (Maintaining original way of reading sheets)
-        swc_info = wb["swc_info"] if "swc_info" in wb.sheetnames else None
-        ports = wb["ports"] if "ports" in wb.sheetnames else None
-        ib_data = wb["ib_data"] if "ib_data" in wb.sheetnames else None
-        adt_primitive = wb["adt_primitive"] if "adt_primitive" in wb.sheetnames else None
-        idt = wb["idt"] if "idt" in wb.sheetnames else None
+        sheets = {name: wb[name] if name in wb.sheetnames else None for name in empty_check_sheets}
         
         # ✅ Function to get merged cell mappings
         def get_merged_cells(sheet):
@@ -132,23 +130,13 @@ def validate_excel(file_path):
         
         # ✅ General non-empty validation (Integrated with "ports" special rule)
         for sheet_name, exception_columns in empty_check_sheets.items():
-            sheet = None
-            if sheet_name == "swc_info":
-                sheet = swc_info
-            elif sheet_name == "ports":
-                sheet = ports
-            elif sheet_name == "ib_data":
-                sheet = ib_data
-            elif sheet_name == "adt_primitive":
-                sheet = adt_primitive
-            elif sheet_name == "idt":
-                sheet = idt
+            sheet = sheets.get(sheet_name)
             
             if sheet:
                 merged_ranges = get_merged_cells(sheet)
                 
                 for row_idx, row in enumerate(sheet.iter_rows(min_row=2), start=2):
-                    column_d_value = row[3].value if len(row) > 3 else None  # Column D (4th column)
+                    column_d_value = row[3].value.strip() if len(row) > 3 and row[3].value else None  # Column D (4th column)
                     column_g_value = row[6].value if len(row) > 6 else None  # Column G (7th column)
                     cell_g_ref = f"G{row_idx}"
         
@@ -156,12 +144,17 @@ def validate_excel(file_path):
                         column_letter = get_column_letter(col_idx + 1)
                         cell_ref = f"{column_letter}{row_idx}"
         
-                        # Skip merged cells (except the first one)
+                        # ✅ Skip columns beyond the allowed limit
+                        max_col_letter = column_limits.get(sheet_name)
+                        if max_col_letter and column_letter > max_col_letter:
+                            continue  
+        
+                        # ✅ Skip merged cells (except the first one)
                         if any(cell_ref in merged_cells for merged_cells in merged_ranges.values()):
                             errors["Info"].append(f"[{sheet_name}] Merged cell {cell_ref} is expected to be empty")
                             continue  
-
-                        # Skip exception columns
+        
+                        # ✅ Skip exception columns
                         if column_letter in exception_columns or (column_letter == "G" and sheet_name == "ports"):
                             continue  
         
@@ -173,7 +166,11 @@ def validate_excel(file_path):
                     if sheet_name == "ports" and column_d_value == "ParameterInterface" and column_g_value not in [None, ""]:
                         errors["Critical"].append(f"[ports] Column G must be empty when Column D is 'ParameterInterface' at {cell_g_ref}")
  
-
+        swc_info = wb["swc_info"] if "swc_info" in wb.sheetnames else None
+        ports = wb["ports"] if "ports" in wb.sheetnames else None
+        ib_data = wb["ib_data"] if "ib_data" in wb.sheetnames else None
+        adt_primitive = wb["adt_primitive"] if "adt_primitive" in wb.sheetnames else None
+        idt = wb["idt"] if "idt" in wb.sheetnames else None
         # 🔹 2️⃣ Get ports mapping
         def get_ports_mapping():
             if not ports:
