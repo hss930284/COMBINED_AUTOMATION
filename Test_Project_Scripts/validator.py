@@ -136,10 +136,20 @@ def validate_excel(file_path):
                 merged_ranges = get_merged_cells(sheet)
                 
                 for row_idx, row in enumerate(sheet.iter_rows(min_row=2), start=2):
-                    column_d_value = row[3].value.strip() if len(row) > 3 and row[3].value else None  # Column D (4th column)
-                    column_g_value = row[6].value if len(row) > 6 else None  # Column G (7th column)
-                    cell_g_ref = f"G{row_idx}"
-        
+                    column_d_value = None
+                    column_g_value = None
+                    cell_g_ref = 0
+                    if sheet_name == "ports":
+                        for first_cell, merged_cells in merged_ranges.items():
+                            if f"D{row_idx}" in merged_cells:  
+                                column_d_value = sheet[first_cell].value
+                                break
+                        if column_d_value is None:  
+                            column_d_value = row[3].value if len(row) > 3 else None  
+                            
+                        column_g_value = row[6].value if len(row) > 6 else None  # Column G (7th column)
+                        cell_g_ref = f"G{row_idx}"
+                        print(f"Row {row_idx} - Col D: {column_d_value}, Col G: {column_g_value}")
                     for col_idx, cell in enumerate(row):
                         column_letter = get_column_letter(col_idx + 1)
                         cell_ref = f"{column_letter}{row_idx}"
@@ -161,10 +171,15 @@ def validate_excel(file_path):
                         # 🔴 Check for missing values
                         if cell.value in [None, ""]:
                             errors["Critical"].append(f"[{sheet_name}] Missing value at {cell_ref}")
-        
+
+
+                    # print(f"Checking row {row_idx} → D: {column_d_value}, G: {column_g_value}, Merged: {cell_g_ref in merged_ranges}, {sheet}")
                     # 🔴 Integrated Rule: If Column D = "ParameterInterface", then Column G must be empty (in "ports" sheet)
                     if sheet_name == "ports" and column_d_value == "ParameterInterface" and column_g_value not in [None, ""]:
+                        print(f"Logging error: [ports] Column G must be empty at {cell_g_ref}")  # Debugging
                         errors["Critical"].append(f"[ports] Column G must be empty when Column D is 'ParameterInterface' at {cell_g_ref}")
+
+                        
  
         swc_info = wb["swc_info"] if "swc_info" in wb.sheetnames else None
         ports = wb["ports"] if "ports" in wb.sheetnames else None
