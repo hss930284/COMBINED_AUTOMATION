@@ -1,0 +1,54 @@
+1.
+array in adt_composite sheet
+ 
+Nomenclature >> done for c and d coulmn  old rule >> in 	"adt_composite" column "C" and  column "D", , except for numbers in D column
+ 
+											New Rule >> in 	"adt_composite" column "C" and  column "D", , except for numbers in D column if corresponding B value is ARRAY or ARRAY_FIXED or ARRAY_VARIABLE
+														handle combinely for IDT as well, i.e. modify the section in validator.py from line no. 269
+ 
+mapped Impl data type coulmn i.e. coulmn F should have the value from actual impl data type from enum_list sheet (L3 to L21)
+	or B column value from adt_primitive sheet
+	or custom idt from idt sheet which must be primitive type (name should come from C column and its corresponding type i.e. B column value should be primitive)
+if B column value is ARRAY then the value of corresponding E column value should be either FIXED or VARIABLE
+ 
+2.
+ 
+record in adt_composite sheet
+ 
+Nomenclature >> done for c and d coulmn  old rule >> in 	"adt_composite" column "C" and  column "D", , except for numbers in D column
+ 
+									New Rule(covered above) >> in 	"adt_composite" column "C" and  column "D", , except for numbers in D column if corresponding B value is ARRAY  or ARRAY_FIXED or ARRAY_VARIABLE
+ 
+														handle combinely for IDT as well, i.e. modify the section in validator.py from line no. 269
+mapped Impl data type coulmn i.e. coulmn F should be dependent on corresponding E column value which can be
+    APDT ( F column value should be from B column value of adt_primitive sheet)
+ 
+    or ARDT ( F column value should be from C column value of adt_composite sheet other than current which has corresponding B column value is Record )
+ 
+    or AADT (F column value should be from C column value of adt_composite sheet ich has corresponding B column value is Array)
+ 
+    or IDT (F column value should be either from actual impl data type which are from enum_list sheet from L3 to L21 or custom idt from idt sheet which must other than current Record name (name should come from C column))
+ 
+ 
+if B column value is Record then the value of corresponding E column value should be from this {APDT, ARDT, AADT, IDT}
+
+
+update naming convention rule
+in G column of ports sheet : G column value must be Numerical value if corresponding D column value is TriggerInterface
+
+
+runnable access rule
+	"ports": G column
+	G column value should be {dra, drpa, drpv) when corresponding D column value either SenderReceiverInterface or NvDataInterface and B column value ReceiverPort
+	G column value should be {dsp , dwa) when corresponding D column value either SenderReceiverInterface or NvDataInterface and B column value SenderPort
+	G column value must be empty when corresponding D column value ParameterInterface
+
+Next rule >> merge rule
+merge is ALLOWABLE to following column only
+ 
+"swc_info": B,C,D,E,F,G (for all columns : must be merged)
+"ib_data":
+"ports": B,C,D,E, F (for F column only : if correspondiing D column valus is one of {ModeSwitchInterface, TriggerInterface, ClientServerInterface}
+"adt_primitive": B,C,D,E,H,I,J,K,L,M (for all columns : only if coresponding E column value is except identical)
+"adt_composite": B,C(if Record)
+"idt": B,C(if Record)

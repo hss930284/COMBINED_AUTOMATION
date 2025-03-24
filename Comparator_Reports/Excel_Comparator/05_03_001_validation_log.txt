@@ -1,0 +1,216 @@
+Sheet: ib_data, Cell: D2
+  - Original Value: uint16
+  - Updated Value: uint8
+--------------------------------------------------
+Sheet: ib_data, Cell: F8
+  - Original Value: Rnbl_MdMgmt
+  - Updated Value: asd
+--------------------------------------------------
+Sheet: ports, Cell: G23
+  - Original Value: ek
+  - Updated Value: 1
+--------------------------------------------------
+Sheet: ports, Cell: G24
+  - Original Value: don
+  - Updated Value: 2
+--------------------------------------------------
+Sheet: ports, Cell: G25
+  - Original Value: tin
+  - Updated Value: 3
+--------------------------------------------------
+Sheet: ports, Cell: G26
+  - Original Value: char
+  - Updated Value: 4
+--------------------------------------------------
+Sheet: ports, Cell: H26
+  - Original Value: ADTS_CrshSt
+  - Updated Value: uint8
+--------------------------------------------------
+Sheet: ports, Cell: I26
+  - Original Value: Rnbl_MdMgmt
+  - Updated Value: xyz
+--------------------------------------------------
+Sheet: adt_composite, Cell: C1
+  - Original Value: struct1
+  - Updated Value: struct2
+--------------------------------------------------
+Sheet: adt_composite, Cell: F1
+  - Original Value: 1.0
+  - Updated Value: 1
+--------------------------------------------------
+Sheet: adt_composite, Cell: G1
+  - Original Value: 
+  - Updated Value: uint16
+--------------------------------------------------
+Sheet: adt_composite, Cell: B2
+  - Original Value: ARDT
+  - Updated Value: APDT
+--------------------------------------------------
+Sheet: adt_composite, Cell: C2
+  - Original Value: nan
+  - Updated Value: struct3
+--------------------------------------------------
+Sheet: adt_composite, Cell: D2
+  - Original Value: nan
+  - Updated Value: RECORD
+--------------------------------------------------
+Sheet: adt_composite, Cell: E2
+  - Original Value: uint8
+  - Updated Value: boolean
+--------------------------------------------------
+Sheet: adt_composite, Cell: F2
+  - Original Value: nan
+  - Updated Value: 2
+--------------------------------------------------
+Sheet: adt_composite, Cell: G2
+  - Original Value: 
+  - Updated Value: ADTS_CrshSt
+--------------------------------------------------
+Sheet: adt_composite, Cell: B3
+  - Original Value: AADT
+  - Updated Value: APDT
+--------------------------------------------------
+Sheet: adt_composite, Cell: C3
+  - Original Value: nan
+  - Updated Value: struct4
+--------------------------------------------------
+Sheet: adt_composite, Cell: D3
+  - Original Value: nan
+  - Updated Value: RECORD
+--------------------------------------------------
+Sheet: adt_composite, Cell: E3
+  - Original Value: uint8
+  - Updated Value: boolean
+--------------------------------------------------
+Sheet: adt_composite, Cell: F3
+  - Original Value: nan
+  - Updated Value: 3
+--------------------------------------------------
+Sheet: adt_composite, Cell: G3
+  - Original Value: 
+  - Updated Value: ADTS_ActnOnErToMM
+--------------------------------------------------
+Sheet: adt_composite, Cell: B4
+  - Original Value: IDT
+  - Updated Value: APDT
+--------------------------------------------------
+Sheet: adt_composite, Cell: C4
+  - Original Value: nan
+  - Updated Value: struct5
+--------------------------------------------------
+Sheet: adt_composite, Cell: D4
+  - Original Value: nan
+  - Updated Value: RECORD
+--------------------------------------------------
+Sheet: adt_composite, Cell: F4
+  - Original Value: nan
+  - Updated Value: 4
+--------------------------------------------------
+Sheet: adt_composite, Cell: G4
+  - Original Value: 
+  - Updated Value: ADTS_ActnOnErToMM
+--------------------------------------------------
+Sheet: adt_composite, Cell: A5
+  - Original Value: 15
+  - Updated Value: element5
+--------------------------------------------------
+Sheet: adt_composite, Cell: B5
+  - Original Value: FIXED
+  - Updated Value: APDT
+--------------------------------------------------
+Sheet: adt_composite, Cell: C5
+  - Original Value: array1
+  - Updated Value: struct6
+--------------------------------------------------
+Sheet: adt_composite, Cell: D5
+  - Original Value: ARRAY
+  - Updated Value: RECORD
+--------------------------------------------------
+Sheet: adt_composite, Cell: F5
+  - Original Value: 2.0
+  - Updated Value: 5
+--------------------------------------------------
+Sheet: adt_composite, Cell: G5
+  - Original Value: 
+  - Updated Value: ADTS_ActnOnErToMM
+--------------------------------------------------
+Sheet: adt_composite, Cell: A6
+  - Original Value: 15
+  - Updated Value: element6
+--------------------------------------------------
+Sheet: adt_composite, Cell: B6
+  - Original Value: VARIABLE
+  - Updated Value: APDT
+--------------------------------------------------
+Sheet: adt_composite, Cell: C6
+  - Original Value: array2
+  - Updated Value: struct7
+--------------------------------------------------
+Sheet: adt_composite, Cell: D6
+  - Original Value: ARRAY
+  - Updated Value: RECORD
+--------------------------------------------------
+Sheet: adt_composite, Cell: E6
+  - Original Value: uint8
+  - Updated Value: ADTS_ActnOnErToMM
+--------------------------------------------------
+Sheet: adt_composite, Cell: F6
+  - Original Value: 2.0
+  - Updated Value: 6
+--------------------------------------------------
+Sheet: adt_composite, Cell: G6
+  - Original Value: 
+  - Updated Value: sint16_least
+--------------------------------------------------
+Sheet: idt, Cell: A1
+  - Original Value: 1.0
+  - Updated Value: 1
+--------------------------------------------------
+Sheet: idt, Cell: A2
+  - Original Value: nan
+  - Updated Value: 2
+--------------------------------------------------
+Sheet: idt, Cell: B2
+  - Original Value: nan
+  - Updated Value: RECORD
+--------------------------------------------------
+Sheet: idt, Cell: C2
+  - Original Value: nan
+  - Updated Value: struct2
+--------------------------------------------------
+Sheet: idt, Cell: A3
+  - Original Value: nan
+  - Updated Value: 3
+--------------------------------------------------
+Sheet: idt, Cell: B3
+  - Original Value: nan
+  - Updated Value: RECORD
+--------------------------------------------------
+Sheet: idt, Cell: C3
+  - Original Value: nan
+  - Updated Value: struct3
+--------------------------------------------------
+Sheet: idt, Cell: A4
+  - Original Value: nan
+  - Updated Value: 4
+--------------------------------------------------
+Sheet: idt, Cell: B4
+  - Original Value: nan
+  - Updated Value: RECORD
+--------------------------------------------------
+Sheet: idt, Cell: C4
+  - Original Value: nan
+  - Updated Value: struct4
+--------------------------------------------------
+Sheet: idt, Cell: A5
+  - Original Value: 2.0
+  - Updated Value: 5
+--------------------------------------------------
+Sheet: idt, Cell: A6
+  - Original Value: 3.0
+  - Updated Value: 6
+--------------------------------------------------
+Sheet: idt, Cell: A7
+  - Original Value: 4.0
+  - Updated Value: 7
+--------------------------------------------------
