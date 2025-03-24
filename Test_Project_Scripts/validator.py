@@ -1,3 +1,4 @@
+#24/03/25 - 10:52 AM
 import openpyxl
 
 import re
@@ -90,7 +91,6 @@ def validate_excel(file_path):
                     * If column B contains the value 'PRIMITIVE', then corresponding column D value must be empty. Check column B also for None values.
 
         """
- 
         # ✅ Define sheets and exception columns 
         empty_check_sheets = {
             "swc_info": ["D", "I", "M"],
@@ -109,7 +109,7 @@ def validate_excel(file_path):
             "idt": "E"
         }
     
-        
+    
         # ✅ Load sheets (Maintaining original way of reading sheets)
         sheets = {name: wb[name] if name in wb.sheetnames else None for name in empty_check_sheets}
         
@@ -417,18 +417,28 @@ def validate_excel(file_path):
                         errors["Info"].append(f"[{sheet_name}] Merged cell {cell_ref} is expected to have the same value")
                         continue  # Skip checking duplicates for merged empty cells
                     # Special Handling for Column D in `adt_composite` & `idt`
+                    num_value = None
                     if col == "D" and sheet_name in ["adt_composite", "idt"]:
-                        if isinstance(value, (int, float)):  # If numerical, duplication is OK (log as Info)
-                            if value in seen:
-                                errors["Info"].append(f"[{sheet_name}] Duplicate numerical value at {cell_ref}: {value}")
-                        else:  # If alphanumeric, duplication is NOT OK (log as Critical Error)
+                    # Convert value to numeric if possible
+                        try:
+                            num_value = float(value)  # Convert text to number (if applicable)
+                            is_numeric = True
+                        except ValueError:
+                            num_value = value
+                            is_numeric = False
+                    
+                        if is_numeric:  # If it's a number (even if stored as text), log as Info
+                            if num_value in seen:
+                                errors["Info"].append(f"[{sheet_name}] Duplicate numerical value at {cell_ref}: {num_value}")
+                        else:  # If alphanumeric, log as Critical Error
                             if value in seen:
                                 errors["Critical"].append(f"[{sheet_name}] Duplicate non-numeric value at {cell_ref}: {value}")
                     else:
                         # General duplicate check for all other columns (log as Critical Error)
                         if value in seen:
                             errors["Critical"].append(f"[{sheet_name}] Duplicate value at {cell_ref}: {value}")
-                    seen.add(value)  # Add value to seen set
+                    
+                    seen.add(num_value)  # Store numeric value instead of text representation  # Add value to seen set
 
 
 

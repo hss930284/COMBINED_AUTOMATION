@@ -34,17 +34,33 @@ Sheet: ports, Cell: F8
   - Original Value: CS2
   - Updated Value: CS7
 --------------------------------------------------
+Sheet: ports, Cell: G8
+  - Original Value: drpa
+  - Updated Value: nan
+--------------------------------------------------
 Sheet: ports, Cell: F9
   - Original Value: CS3
   - Updated Value: CS8
+--------------------------------------------------
+Sheet: ports, Cell: G9
+  - Original Value: drpv
+  - Updated Value: nan
 --------------------------------------------------
 Sheet: ports, Cell: F10
   - Original Value: CS4
   - Updated Value: CS9
 --------------------------------------------------
+Sheet: ports, Cell: G10
+  - Original Value: dra
+  - Updated Value: nan
+--------------------------------------------------
 Sheet: ports, Cell: F11
   - Original Value: CS5
   - Updated Value: CS10
+--------------------------------------------------
+Sheet: ports, Cell: G11
+  - Original Value: drpa
+  - Updated Value: nan
 --------------------------------------------------
 Sheet: enum_list, Cell: g7
   - Original Value: RSR1
