@@ -1,3 +1,15 @@
+Sheet: swc_info, Cell: M1
+  - Original Value: Trigger_R_Port
+  - Updated Value: Not_Available
+--------------------------------------------------
+Sheet: swc_info, Cell: M2
+  - Original Value: Please delete cell value because of BGD Event
+  - Updated Value: Not_Available
+--------------------------------------------------
+Sheet: swc_info, Cell: M5
+  - Original Value: CD_CrshSt_R1
+  - Updated Value: Not_Available
+--------------------------------------------------
 Sheet: ports, Cell: G1
   - Original Value: drpv
   - Updated Value: nan
@@ -60,6 +72,14 @@ Sheet: ports, Cell: F11
 --------------------------------------------------
 Sheet: ports, Cell: G11
   - Original Value: drpa
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: adt_primitive, Cell: G1
+  - Original Value: abc
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: adt_primitive, Cell: G2
+  - Original Value: abc
   - Updated Value: nan
 --------------------------------------------------
 Sheet: enum_list, Cell: g7

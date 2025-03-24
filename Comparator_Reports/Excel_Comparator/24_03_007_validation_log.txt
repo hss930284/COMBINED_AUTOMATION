@@ -2,13 +2,25 @@ Sheet: swc_info, Cell: A1
   - Original Value: 1.0
   - Updated Value: 1
 --------------------------------------------------
+Sheet: swc_info, Cell: B1
+  - Original Value: ApplicationSwComponentType
+  - Updated Value: ServiceSwComponentType
+--------------------------------------------------
+Sheet: swc_info, Cell: L1
+  - Original Value: DataReceivedEvent
+  - Updated Value: OsTaskExecutionEvent
+--------------------------------------------------
 Sheet: swc_info, Cell: M1
   - Original Value: Trigger_R_Port
-  - Updated Value: Not_Available
+  - Updated Value: nan
 --------------------------------------------------
 Sheet: swc_info, Cell: A2
   - Original Value: 2.0
   - Updated Value: 2
+--------------------------------------------------
+Sheet: swc_info, Cell: L2
+  - Original Value: DataReceivedEvent
+  - Updated Value: BackgroundEvent
 --------------------------------------------------
 Sheet: swc_info, Cell: M2
   - Original Value: Please delete cell value because of BGD Event
@@ -16,11 +28,19 @@ Sheet: swc_info, Cell: M2
 --------------------------------------------------
 Sheet: swc_info, Cell: A3
   - Original Value: nan
-  - Updated Value: 3
+  - Updated Value: 5
 --------------------------------------------------
 Sheet: swc_info, Cell: H3
   - Original Value: qwe
-  - Updated Value: qwe1
+  - Updated Value: qwe2
+--------------------------------------------------
+Sheet: swc_info, Cell: I3
+  - Original Value: nan
+  - Updated Value: MdMgmt_Init2
+--------------------------------------------------
+Sheet: swc_info, Cell: J3
+  - Original Value: nan
+  - Updated Value: True
 --------------------------------------------------
 Sheet: swc_info, Cell: L3
   - Original Value: nan
@@ -32,15 +52,19 @@ Sheet: swc_info, Cell: M3
 --------------------------------------------------
 Sheet: swc_info, Cell: A4
   - Original Value: 3.0
-  - Updated Value: 4
+  - Updated Value: 3
 --------------------------------------------------
 Sheet: swc_info, Cell: A5
   - Original Value: 4.0
-  - Updated Value: 5
+  - Updated Value: 4
+--------------------------------------------------
+Sheet: swc_info, Cell: L5
+  - Original Value: DataReceivedEvent
+  - Updated Value: ExternalTriggerOccurredEvent
 --------------------------------------------------
 Sheet: swc_info, Cell: M5
   - Original Value: CD_CrshSt_R1
-  - Updated Value: Not_Available
+  - Updated Value: Trigger_R_Port
 --------------------------------------------------
 Sheet: swc_info, Cell: A6
   - Original Value: nan
@@ -146,6 +170,14 @@ Sheet: swc_info, Cell: M7
   - Original Value: nan
   - Updated Value: 
 --------------------------------------------------
+Sheet: ib_data, Cell: D1
+  - Original Value: uint32
+  - Updated Value: ADTS_APCRCDWkUp
+--------------------------------------------------
+Sheet: ib_data, Cell: D5
+  - Original Value: uint32_least
+  - Updated Value: ADTS_APCRCDWkUp
+--------------------------------------------------
 Sheet: ports, Cell: G1
   - Original Value: drpv
   - Updated Value: nan
@@ -158,6 +190,10 @@ Sheet: ports, Cell: G3
   - Original Value: drpv
   - Updated Value: nan
 --------------------------------------------------
+Sheet: ports, Cell: I3
+  - Original Value: new_rnbl
+  - Updated Value: Rnbl_MdMgmt
+--------------------------------------------------
 Sheet: ports, Cell: G4
   - Original Value: dra
   - Updated Value: nan
@@ -168,7 +204,7 @@ Sheet: ports, Cell: G5
 --------------------------------------------------
 Sheet: ports, Cell: E7
   - Original Value: RSR1
-  - Updated Value: RSR2
+  - Updated Value: RNd1
 --------------------------------------------------
 Sheet: ports, Cell: F7
   - Original Value: CS
@@ -210,6 +246,14 @@ Sheet: ports, Cell: G11
   - Original Value: drpa
   - Updated Value: nan
 --------------------------------------------------
+Sheet: ports, Cell: C12
+  - Original Value: CD_CrshSt_R5
+  - Updated Value: CD_CrshSt_R3
+--------------------------------------------------
+Sheet: ports, Cell: C13
+  - Original Value: CD_CrshSt_R8
+  - Updated Value: MSI_R_Port
+--------------------------------------------------
 Sheet: adt_primitive, Cell: G1
   - Original Value: abc
   - Updated Value: nan
@@ -220,15 +264,27 @@ Sheet: adt_primitive, Cell: G2
 --------------------------------------------------
 Sheet: adt_composite, Cell: E5
   - Original Value: APDT
-  - Updated Value: VARIABLE
+  - Updated Value: FIXED
+--------------------------------------------------
+Sheet: enum_list, Cell: ^1
+  - Original Value: CD_CrshSt_R8
+  - Updated Value: MSI_R_Port
+--------------------------------------------------
+Sheet: enum_list, Cell: Y2
+  - Original Value: CD_CrshSt_R5
+  - Updated Value: CD_CrshSt_R3
+--------------------------------------------------
+Sheet: enum_list, Cell: Z2
+  - Original Value: CD_CrshSt_R5
+  - Updated Value: CD_CrshSt_R3
 --------------------------------------------------
 Sheet: enum_list, Cell: T3
   - Original Value: qwe
-  - Updated Value: qwe1
+  - Updated Value: qwe2
 --------------------------------------------------
 Sheet: enum_list, Cell: g7
   - Original Value: RSR1
-  - Updated Value: RSR2
+  - Updated Value: RNd1
 --------------------------------------------------
 Sheet: enum_list, Cell: i7
   - Original Value: CS
@@ -236,7 +292,7 @@ Sheet: enum_list, Cell: i7
 --------------------------------------------------
 Sheet: enum_list, Cell: g8
   - Original Value: RSR1
-  - Updated Value: RSR2
+  - Updated Value: RNd1
 --------------------------------------------------
 Sheet: enum_list, Cell: i8
   - Original Value: CS2
@@ -244,7 +300,7 @@ Sheet: enum_list, Cell: i8
 --------------------------------------------------
 Sheet: enum_list, Cell: g9
   - Original Value: RSR1
-  - Updated Value: RSR2
+  - Updated Value: RNd1
 --------------------------------------------------
 Sheet: enum_list, Cell: i9
   - Original Value: CS3
@@ -252,7 +308,7 @@ Sheet: enum_list, Cell: i9
 --------------------------------------------------
 Sheet: enum_list, Cell: g10
   - Original Value: RSR1
-  - Updated Value: RSR2
+  - Updated Value: RNd1
 --------------------------------------------------
 Sheet: enum_list, Cell: i10
   - Original Value: CS4
@@ -260,9 +316,45 @@ Sheet: enum_list, Cell: i10
 --------------------------------------------------
 Sheet: enum_list, Cell: g11
   - Original Value: RSR1
-  - Updated Value: RSR2
+  - Updated Value: RNd1
 --------------------------------------------------
 Sheet: enum_list, Cell: i11
   - Original Value: CS5
   - Updated Value: CS10
+--------------------------------------------------
+Sheet: enum_list, Cell: h12
+  - Original Value: CD_CrshSt_R5
+  - Updated Value: CD_CrshSt_R3
+--------------------------------------------------
+Sheet: enum_list, Cell: h13
+  - Original Value: CD_CrshSt_R8
+  - Updated Value: MSI_R_Port
+--------------------------------------------------
+Sheet: enum_list, Cell: h14
+  - Original Value: CD_CrshSt_R8
+  - Updated Value: MSI_R_Port
+--------------------------------------------------
+Sheet: enum_list, Cell: h15
+  - Original Value: CD_CrshSt_R8
+  - Updated Value: MSI_R_Port
+--------------------------------------------------
+Sheet: enum_list, Cell: h16
+  - Original Value: CD_CrshSt_R8
+  - Updated Value: MSI_R_Port
+--------------------------------------------------
+Sheet: enum_list, Cell: h17
+  - Original Value: CD_CrshSt_R8
+  - Updated Value: MSI_R_Port
+--------------------------------------------------
+Sheet: enum_list, Cell: _23
+  - Original Value: CD_CrshSt_R5
+  - Updated Value: CD_CrshSt_R3
+--------------------------------------------------
+Sheet: enum_list, Cell: _26
+  - Original Value: CD_CrshSt_R5
+  - Updated Value: CD_CrshSt_R3
+--------------------------------------------------
+Sheet: enum_list, Cell: _34
+  - Original Value: CD_CrshSt_R8
+  - Updated Value: MSI_R_Port
 --------------------------------------------------

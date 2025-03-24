@@ -1,4 +1,4 @@
-#24/03/25 - 10:52 AM
+#24/03/25 - 12:05 PM
 import openpyxl
 
 import re
@@ -795,10 +795,6 @@ def validate_excel(file_path):
                         errors["Critical"].append(
                             f"[ports] Column G must be one of {{dsp, dwa}} when Column D is '{column_d_value}' and Column B is 'SenderPort' at G{row_idx}: {column_g_value}"
                         )
-                # if column_d_value == "ParameterInterface" and column_g_value:
-                #     errors["Critical"].append(
-                #         f"[ports] Column G must be empty when Column D is 'ParameterInterface' at G{row_idx}: {column_g_value}"
-                #     )
         
             # Step 3: Print errors
             for error in errors["Critical"]:
