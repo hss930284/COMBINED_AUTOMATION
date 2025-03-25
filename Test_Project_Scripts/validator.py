@@ -1,4 +1,4 @@
-#24/03/25 - 13:42 PM
+#25/03/25 - 11:28 AM
 import openpyxl
 
 import re
@@ -502,105 +502,91 @@ def validate_excel(file_path):
                     errors["Critical"].append(f"[{sheet_name}] Invalid reference at {cell_ref}: {value} (Not in {', '.join(f'{s}.{c}' for s, c in ref_sheets)} or enum_list)")
 
         # Rule - 5
-        # column_enum_mapping = {
-        #     "swc_info": {
-        #         "B": ["ApplicationSwComponentType","SensorActuatorSwComponentType","ComplexDeviceDriverSwComponentType","ParameterSwComponentType","NvBlockSwComponentType","ServiceSwComponentType",
-        #               "EcuAbstractionSwComponentType","ServiceProxySwComponentType","CompositionSwComponentType"],
-        #         "F": ["canBeTerminated", "canBeTerminatedAndRestarted", "NO-SUPPORT"],
-        #         "G": ["true", "false"],
-        #         "J": ["false", "true"],
-        #         "L": ["AsynchronousServerCallReturnsEvent","BackgroundEvent","DataReceivedEvent","DataReceiveErrorEvent","DataSendCompletedEvent","DataWriteCompletedEvent","ExternalTriggerOccurredEvent",
-        #               "InitEvent","InternalTriggerOccurredEvent","ModeSwitchedAckEvent","OperationInvokedEvent","OsTaskExecutionEvent","SwcModeManagerErrorEvent","SwcModeSwitchEvent","TimingEvent","TransformerHardErrorEvent"]
-        #     },
-        #     "ib_data": {
-        #         "B": ["SharedParameter", "PerInstanceParameter", "ImplicitInterRunnableVariables",
-        #             "ExplicitInterRunnableVariable", "PerInstanceMemory", "ArTypedPerInstanceMemory",
-        #             "StaticMemory", "ConstantMemory"],
-        #         "D": ["boolean", "ConstVoidPtr", "float32", "float64", "sint16", "sint16_least", "sint32",
-        #             "sint32_least", "sint64", "sint8", "sint8_least", "uint16", "uint16_least", "uint32",
-        #             "uint32_least", "uint64", "uint8", "uint8_least", "VoidPtr"],
-        #         "G": ["NOT-ACCESSIBLE", "READ", "READ-WRITE"],
-        #         "H": ["CONST", "FIXED", "MEASUREMENT-POINT", "QUEUED", "STANDARD"],
-        #         "I": ["boolean", "ConstVoidPtr", "float32", "float64", "sint16", "sint16_least", "sint32",
-        #             "sint32_least", "sint64", "sint8", "sint8_least", "uint16", "uint16_least", "uint32",
-        #             "uint32_least", "uint64", "uint8", "uint8_least", "VoidPtr"]
-        #     },
-        #     "ports": {
-        #         "B": ["ReceiverPort", "SenderPort"],
-        #         "D": ["SenderReceiverInterface", "ParameterInterface", "ClientServerInterface",
-        #             "NvDataInterface", "ModeSwitchInterface", "TriggerInterface"]
-        #     },
-        #     "adt_primitive": {
-        #         "C": ["BOOLEAN", "Value"],
-        #         "E": ["IDENTICAL", "TEXTTABLE", "LINEAR", "SCALE_LINEAR", "SCALE_LINEAR_AND_TEXTTABLE",
-        #             "RAT_FUNC", "SCALE_RAT_FUNC", "SCALE_RATIONAL_AND_TEXTTABLE", "TAB_NOINTP",
-        #             "BITFIELD_TEXTTABLE"],
-        #         "H": ["Ampr", "AmprPerSec", "AmprSec", "Bar", "BarPerSec", "Bel", "Bit", "BitPerSec",
-        #             "Byte", "BytPerSec", "Cd", "CentiMtr", "CentiMtrSqd", "Coulomb", "Day", "DeciBel",
-        #             "Deg", "DegCgrd", "DegPerSec", "Frd", "Gr", "GrPerLtr", "GrPerMol", "GrPerSec",
-        #             "HectoPa", "HectoPaPerSec", "HectoPaPerVolt", "HectoPaSecPerMtrCubd", "Henry",
-        #             "HenryPerMtr", "Hr", "Hz", "Jou", "JouPerKelvin", "JouPerKiloGr", "JouPerKiloGrPerKelvin",
-        #             "JouPerMol", "JouPerMolPerKelvin", "Kat", "KelvinAbslt", "KelvinPerSec", "KelvinRel",
-        #             "KiloBitPerSec", "KiloGr", "KiloGrPerHr", "KiloGrPerMtrCubd", "KiloGrPerSec", "KiloGrSqrMtr",
-        #             "KiloHz", "KiloJou", "KiloMtr", "KiloMtrPerHr", "KiloMtrPerHrPerSec", "KiloNwt",
-        #             "KiloNwtMtrPerSec", "KiloOhm", "KiloVolt", "KiloWatt", "KiloWattHr", "KiloWattHrPer100KiloMtr",
-        #             "Ltr", "LtrPer100KiloMtr", "LtrPerHr", "LtrPerKiloMtr", "MegaBitPerSec", "MegaHz", "MegaJou",
-        #             "MegaOhm", "MegaPa", "MegaWatt", "MicroAmpr", "MicroFrd", "MicroGr", "MicroJou", "MicroLtr",
-        #             "MicroLtrPerSec", "MicroMtr", "MicroSec", "MicroTesla", "MilliAmpr", "MilliAmprPerSec",
-        #             "MilliBar", "MilliFrd", "MilliGr", "MilliGrPerSec", "MilliJou", "MilliLtr", "MilliMtr",
-        #             "MilliMtrCubd", "MilliMtrCubdPerSec", "MilliOhm", "MilliSec", "MilliTesla", "MilliVolt",
-        #             "MilliVoltPerSec", "MilliWatt", "Mins", "Ml", "MlPerHr", "Mol", "MolPerLtr", "MolPerLtrPerSec",
-        #             "MolPerMtrCubd", "MolPerSec", "Mtr", "MtrCubd", "MtrCubdPerHr", "MtrCubdPerHrPerSec", "MtrCubdPerKiloGr",
-        #             "MtrPerSec", "MtrPerSecCubd", "MtrPerSecSqd", "MtrSqd", "MtrSqdPerSec", "NanoFrd", "NanoSec", "NoUnit",
-        #             "Nwt", "NwtMtr", "NwtMtrPerRpm", "NwtMtrPerRpmPerSec", "NwtMtrPerSec", "NwtMtrSec", "NwtMtrSqrSec",
-        #             "NwtPerMtr", "NwtSecPerMtr", "Ohm", "Pa", "PaPerMtrCubdPerSec", "PaPerSec", "PaSec", "Perc",
-        #             "PercPerMilliSec", "PercPerSec", "PerMille", "PerMin", "PerMtr", "PerSec", "PerSecSqd", "PicoFrd",
-        #             "PicoSec", "Ppm", "Rad", "RadPerSec", "RadPerSecSqd", "Rpm", "RpmPerSec", "S", "Sec", "SPerMtr",
-        #             "SPerMtrPerSec", "Tesla", "Tonne", "Volt", "VoltPerMilliSec", "VoltPerMtr", "VoltPerSec", "Watt",
-        #             "WattPerKelvinPerMtrSqd", "WattPerMtrPerKelvin", "WattPerSec", "WattSec", "Wb", "Yr"],
-        #         "J" : ["physConstrs", "internalConstrs"],
-        #         "M" : ["boolean", "ConstVoidPtr", "float32", "float64", "sint16", "sint16_least", "sint32",
-        #             "sint32_least", "sint64", "sint8", "sint8_least", "uint16", "uint16_least", "uint32",
-        #             "uint32_least", "uint64", "uint8", "uint8_least", "VoidPtr"],
-        #     },
-        #     "adt_composite" : {
-        #         "B" : ["RECORD", "ARRAY"],
-        #         "E" : ["APDT", "ARDT", "AADT", "IDT", "FIXED", "VARIABLE"],
-        #         "G" : ["boolean", "ConstVoidPtr", "float32", "float64", "sint16", "sint16_least", "sint32",
-        #         "sint32_least", "sint64", "sint8", "sint8_least", "uint16", "uint16_least", "uint32",
-        #         "uint32_least", "uint64", "uint8", "uint8_least", "VoidPtr"],
-        #     },
-        #     "idt" : {
-        #         "B" : ["ARRAY_FIXED", "ARRAY_VARIABLE", "PRIMITIVE", "RECORD"],
-        #         "E" : ["boolean", "ConstVoidPtr", "float32", "float64", "sint16", "sint16_least", "sint32",
-        #         "sint32_least", "sint64", "sint8", "sint8_least", "uint16", "uint16_least", "uint32",
-        #         "uint32_least", "uint64", "uint8", "uint8_least", "VoidPtr"],
-        #     }
-        # }
+        column_enum_mapping = {
+            "swc_info": {
+                "B": ["ApplicationSwComponentType","SensorActuatorSwComponentType","ComplexDeviceDriverSwComponentType","ParameterSwComponentType","NvBlockSwComponentType","ServiceSwComponentType",
+                      "EcuAbstractionSwComponentType","ServiceProxySwComponentType","CompositionSwComponentType"],
+                "F": ["CAN-BE-TERMINATED", "CAN-BE-TERMINATED-AND-RESTARTED", "NO-SUPPORT"],
+                "G": ["true", "false"],
+                "J": ["false", "true"],
+                "L": ["AsynchronousServerCallReturnsEvent","BackgroundEvent","DataReceivedEvent","DataReceiveErrorEvent","DataSendCompletedEvent","DataWriteCompletedEvent","ExternalTriggerOccurredEvent",
+                      "InitEvent","InternalTriggerOccurredEvent","ModeSwitchedAckEvent","OperationInvokedEvent","OsTaskExecutionEvent","SwcModeManagerErrorEvent","SwcModeSwitchEvent","TimingEvent","TransformerHardErrorEvent"]
+            },
+            "ib_data": {
+                "B": ["SharedParameter", "PerInstanceParameter", "ImplicitInterRunnableVariables",
+                    "ExplicitInterRunnableVariable", "PerInstanceMemory", "ArTypedPerInstanceMemory",
+                    "StaticMemory", "ConstantMemory"],
+                "G": ["NOT-ACCESSIBLE", "READ", "READ-WRITE"],
+                "H": ["CONST", "FIXED", "MEASUREMENT-POINT", "QUEUED", "STANDARD"],
 
-        # for sheet_name in wb.sheetnames:
-        #     if sheet_name in column_enum_mapping:
-        #         sheet = wb[sheet_name]
-        #         print(f"\n🔍 Checking Sheet: {sheet_name}")
+            },
+            "ports": {
+                "B": ["ReceiverPort", "SenderPort"],
+                "D": ["SenderReceiverInterface", "ParameterInterface", "ClientServerInterface",
+                    "NvDataInterface", "ModeSwitchInterface", "TriggerInterface"]
+            },
+            "adt_primitive": {
+                "C": ["BOOLEAN", "Value"],
+                "E": ["IDENTICAL", "TEXTTABLE", "LINEAR", "SCALE_LINEAR", "SCALE_LINEAR_AND_TEXTTABLE",
+                    "RAT_FUNC", "SCALE_RAT_FUNC", "SCALE_RATIONAL_AND_TEXTTABLE", "TAB_NOINTP",
+                    "BITFIELD_TEXTTABLE"],
+                "H": ["Ampr", "AmprPerSec", "AmprSec", "Bar", "BarPerSec", "Bel", "Bit", "BitPerSec",
+                    "Byte", "BytPerSec", "Cd", "CentiMtr", "CentiMtrSqd", "Coulomb", "Day", "DeciBel",
+                    "Deg", "DegCgrd", "DegPerSec", "Frd", "Gr", "GrPerLtr", "GrPerMol", "GrPerSec",
+                    "HectoPa", "HectoPaPerSec", "HectoPaPerVolt", "HectoPaSecPerMtrCubd", "Henry",
+                    "HenryPerMtr", "Hr", "Hz", "Jou", "JouPerKelvin", "JouPerKiloGr", "JouPerKiloGrPerKelvin",
+                    "JouPerMol", "JouPerMolPerKelvin", "Kat", "KelvinAbslt", "KelvinPerSec", "KelvinRel",
+                    "KiloBitPerSec", "KiloGr", "KiloGrPerHr", "KiloGrPerMtrCubd", "KiloGrPerSec", "KiloGrSqrMtr",
+                    "KiloHz", "KiloJou", "KiloMtr", "KiloMtrPerHr", "KiloMtrPerHrPerSec", "KiloNwt",
+                    "KiloNwtMtrPerSec", "KiloOhm", "KiloVolt", "KiloWatt", "KiloWattHr", "KiloWattHrPer100KiloMtr",
+                    "Ltr", "LtrPer100KiloMtr", "LtrPerHr", "LtrPerKiloMtr", "MegaBitPerSec", "MegaHz", "MegaJou",
+                    "MegaOhm", "MegaPa", "MegaWatt", "MicroAmpr", "MicroFrd", "MicroGr", "MicroJou", "MicroLtr",
+                    "MicroLtrPerSec", "MicroMtr", "MicroSec", "MicroTesla", "MilliAmpr", "MilliAmprPerSec",
+                    "MilliBar", "MilliFrd", "MilliGr", "MilliGrPerSec", "MilliJou", "MilliLtr", "MilliMtr",
+                    "MilliMtrCubd", "MilliMtrCubdPerSec", "MilliOhm", "MilliSec", "MilliTesla", "MilliVolt",
+                    "MilliVoltPerSec", "MilliWatt", "Mins", "Ml", "MlPerHr", "Mol", "MolPerLtr", "MolPerLtrPerSec",
+                    "MolPerMtrCubd", "MolPerSec", "Mtr", "MtrCubd", "MtrCubdPerHr", "MtrCubdPerHrPerSec", "MtrCubdPerKiloGr",
+                    "MtrPerSec", "MtrPerSecCubd", "MtrPerSecSqd", "MtrSqd", "MtrSqdPerSec", "NanoFrd", "NanoSec", "NoUnit",
+                    "Nwt", "NwtMtr", "NwtMtrPerRpm", "NwtMtrPerRpmPerSec", "NwtMtrPerSec", "NwtMtrSec", "NwtMtrSqrSec",
+                    "NwtPerMtr", "NwtSecPerMtr", "Ohm", "Pa", "PaPerMtrCubdPerSec", "PaPerSec", "PaSec", "Perc",
+                    "PercPerMilliSec", "PercPerSec", "PerMille", "PerMin", "PerMtr", "PerSec", "PerSecSqd", "PicoFrd",
+                    "PicoSec", "Ppm", "Rad", "RadPerSec", "RadPerSecSqd", "Rpm", "RpmPerSec", "S", "Sec", "SPerMtr",
+                    "SPerMtrPerSec", "Tesla", "Tonne", "Volt", "VoltPerMilliSec", "VoltPerMtr", "VoltPerSec", "Watt",
+                    "WattPerKelvinPerMtrSqd", "WattPerMtrPerKelvin", "WattPerSec", "WattSec", "Wb", "Yr"],
+                "J" : ["physConstrs", "internalConstrs"],
+            },
+            "adt_composite" : {
+                "B" : ["RECORD", "ARRAY"],
+                "E" : ["APDT", "ARDT", "AADT", "FIXED", "VARIABLE"],
+            },
+            "idt" : {
+                "B" : ["ARRAY_FIXED", "ARRAY_VARIABLE", "PRIMITIVE", "RECORD"],
+            }
+        }
+
+        for sheet_name in wb.sheetnames:
+            if sheet_name in column_enum_mapping:
+                sheet = wb[sheet_name]
+                print(f"\n🔍 Checking Sheet: {sheet_name}")
                 
-        #         # Debug: Read and print the first row (column headers)
-        #         headers = [cell.value for cell in next(sheet.iter_rows(min_row=1, max_row=1))]
-        #         print(f"📌 Column Headers: {headers}")
+                # Debug: Read and print the first row (column headers)
+                headers = [cell.value for cell in next(sheet.iter_rows(min_row=1, max_row=1))]
+                print(f"📌 Column Headers: {headers}")
     
-        #         for col_letter, allowed_values in column_enum_mapping[sheet_name].items():
-        #             col_index = ord(col_letter) - ord('A') + 1  # Convert column letter to 1-based index
+                for col_letter, allowed_values in column_enum_mapping[sheet_name].items():
+                    col_index = ord(col_letter) - ord('A') + 1  # Convert column letter to 1-based index
     
-        #             print(f"🛠 Checking Column {col_letter} (Index: {col_index})")  # Debug info
+                    print(f"🛠 Checking Column {col_letter} (Index: {col_index})")  # Debug info
     
-        #             for row_idx, row in enumerate(sheet.iter_rows(min_row=2, min_col=col_index, max_col=col_index, values_only=True), start=2):
-        #                 cell_value = row[0]  # Extracting value from the tuple
+                    for row_idx, row in enumerate(sheet.iter_rows(min_row=2, min_col=col_index, max_col=col_index, values_only=True), start=2):
+                        cell_value = row[0]  # Extracting value from the tuple
                         
-        #                 print(f"Row {row_idx}, Col {col_letter}: {cell_value}")  # Debug print
-        #                 if cell_value is not None and cell_value not in allowed_values:
-        #                     errors["Critical"].append(
-        #                         f"Error in {sheet_name}, Cell {col_letter}{row_idx}: '{cell_value}' is invalid.\n"
-        #                         f"  ➝ Allowed values: {', '.join(allowed_values)}"
-        #                     )
+                        print(f"Row {row_idx}, Col {col_letter}: {cell_value}")  # Debug print
+                        if cell_value is not None and cell_value not in allowed_values:
+                            errors["Critical"].append(
+                                f"Error in {sheet_name}, Cell {col_letter}{row_idx}: '{cell_value}' is invalid.\n"
+                                f"  ➝ Allowed values: {', '.join(allowed_values)}"
+                            )
 
         """
             rule no  6 : Number of values allowed limit is one
