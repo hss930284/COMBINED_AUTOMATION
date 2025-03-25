@@ -1,0 +1,416 @@
+Sheet: swc_info, Cell: B1
+  - Original Value: Trigger_R_Port
+  - Updated Value: Not_Available
+--------------------------------------------------
+Sheet: swc_info, Cell: D1
+  - Original Value: Trigg1
+  - Updated Value: 
+--------------------------------------------------
+Sheet: swc_info, Cell: E1
+  - Original Value: ExternalTriggerOccurredEvent
+  - Updated Value: DataReceivedEvent
+--------------------------------------------------
+Sheet: swc_info, Cell: B2
+  - Original Value: CD_CrshSt_R
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: swc_info, Cell: D2
+  - Original Value: CS
+  - Updated Value: 
+--------------------------------------------------
+Sheet: swc_info, Cell: F2
+  - Original Value: hello
+  - Updated Value: qwe
+--------------------------------------------------
+Sheet: swc_info, Cell: D3
+  - Original Value: CHAdeMOS
+  - Updated Value: 
+--------------------------------------------------
+Sheet: swc_info, Cell: F3
+  - Original Value: qwe
+  - Updated Value: qwe1
+--------------------------------------------------
+Sheet: swc_info, Cell: G3
+  - Original Value: MdMgmt_Init12
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: swc_info, Cell: L3
+  - Original Value: False
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: swc_info, Cell: D4
+  - Original Value: abc1
+  - Updated Value: 
+--------------------------------------------------
+Sheet: swc_info, Cell: B5
+  - Original Value: nan
+  - Updated Value: Not_Available
+--------------------------------------------------
+Sheet: swc_info, Cell: D5
+  - Original Value: abc2
+  - Updated Value: 
+--------------------------------------------------
+Sheet: swc_info, Cell: E5
+  - Original Value: BackgroundEvent
+  - Updated Value: DataReceivedEvent
+--------------------------------------------------
+Sheet: ib_data, Cell: D1
+  - Original Value: ADTS_APCRCDWkUp
+  - Updated Value: ADTS_ActnOnErToMM
+--------------------------------------------------
+Sheet: ib_data, Cell: I1
+  - Original Value: sint32
+  - Updated Value: array1
+--------------------------------------------------
+Sheet: ib_data, Cell: D5
+  - Original Value: ADTS_APCRCDWkUp
+  - Updated Value: ADTS_ActnOnErToMM
+--------------------------------------------------
+Sheet: ports, Cell: D1
+  - Original Value: SenderReceiverInterface
+  - Updated Value: ParameterInterface
+--------------------------------------------------
+Sheet: ports, Cell: G1
+  - Original Value: drpv
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J1
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: G2
+  - Original Value: drpa
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J2
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: G3
+  - Original Value: drpv
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: I3
+  - Original Value: Rnbl_MdMgmt
+  - Updated Value: new_rnbl
+--------------------------------------------------
+Sheet: ports, Cell: J3
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: G4
+  - Original Value: dra
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J4
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: G5
+  - Original Value: drpa
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J5
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J6
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: D7
+  - Original Value: SenderReceiverInterface
+  - Updated Value: ParameterInterface
+--------------------------------------------------
+Sheet: ports, Cell: E7
+  - Original Value: RSR12
+  - Updated Value: RSR2
+--------------------------------------------------
+Sheet: ports, Cell: G7
+  - Original Value: dra
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J7
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: G8
+  - Original Value: drpa
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J8
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: G9
+  - Original Value: drpa
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J9
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: G10
+  - Original Value: drpv
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J10
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: G11
+  - Original Value: drpv
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J11
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J12
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J13
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J14
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J15
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J16
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J17
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J18
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J19
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J20
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J21
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J22
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J23
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J24
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J25
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: ports, Cell: J26
+  - Original Value: 123
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: adt_primitive, Cell: D2
+  - Original Value: CM_APCRCDWkUp2
+  - Updated Value: CM_APCRCDWkUp
+--------------------------------------------------
+Sheet: adt_composite, Cell: G2
+  - Original Value: sint32
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: adt_composite, Cell: G3
+  - Original Value: sint32
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: adt_composite, Cell: G4
+  - Original Value: sint32
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: adt_composite, Cell: E5
+  - Original Value: FIXED
+  - Updated Value: VARIABLE
+--------------------------------------------------
+Sheet: adt_composite, Cell: G8
+  - Original Value: sint32
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: idt, Cell: D6
+  - Original Value: 157
+  - Updated Value: 156
+--------------------------------------------------
+Sheet: enum_list, Cell: W1
+  - Original Value: CD_CrshSt_R
+  - Updated Value: Not_Available
+--------------------------------------------------
+Sheet: enum_list, Cell: X1
+  - Original Value: CD_CrshSt_R
+  - Updated Value: Not_Available
+--------------------------------------------------
+Sheet: enum_list, Cell: b1
+  - Original Value: ReceiverPort_Options
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: enum_list, Cell: T2
+  - Original Value: hello
+  - Updated Value: qwe
+--------------------------------------------------
+Sheet: enum_list, Cell: W2
+  - Original Value: CD_CrshSt_R2
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: enum_list, Cell: X2
+  - Original Value: CD_CrshSt_R2
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: enum_list, Cell: b2
+  - Original Value: ReceiverPort_Options
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: enum_list, Cell: e2
+  - Original Value: CM_APCRCDWkUp2
+  - Updated Value: CM_APCRCDWkUp
+--------------------------------------------------
+Sheet: enum_list, Cell: T3
+  - Original Value: qwe
+  - Updated Value: qwe1
+--------------------------------------------------
+Sheet: enum_list, Cell: b3
+  - Original Value: ReceiverPort_Options
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: enum_list, Cell: b4
+  - Original Value: ReceiverPort_Options
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: enum_list, Cell: b5
+  - Original Value: ReceiverPort_Options
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: enum_list, Cell: b7
+  - Original Value: ReceiverPort_Options
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: enum_list, Cell: g7
+  - Original Value: RSR12
+  - Updated Value: RSR2
+--------------------------------------------------
+Sheet: enum_list, Cell: b8
+  - Original Value: ReceiverPort_Options
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: enum_list, Cell: g8
+  - Original Value: RSR12
+  - Updated Value: RSR2
+--------------------------------------------------
+Sheet: enum_list, Cell: b9
+  - Original Value: ReceiverPort_Options
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: enum_list, Cell: g9
+  - Original Value: RSR12
+  - Updated Value: RSR2
+--------------------------------------------------
+Sheet: enum_list, Cell: b10
+  - Original Value: ReceiverPort_Options
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: enum_list, Cell: g10
+  - Original Value: RSR12
+  - Updated Value: RSR2
+--------------------------------------------------
+Sheet: enum_list, Cell: b11
+  - Original Value: ReceiverPort_Options
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: enum_list, Cell: g11
+  - Original Value: RSR12
+  - Updated Value: RSR2
+--------------------------------------------------
+Sheet: enum_list, Cell: _18
+  - Original Value: CD_CrshSt_R
+  - Updated Value: Not_Available
+--------------------------------------------------
+Sheet: enum_list, Cell: _19
+  - Original Value: CD_CrshSt_R2
+  - Updated Value: ***DataReceiveErrorEvent***
+--------------------------------------------------
+Sheet: enum_list, Cell: _20
+  - Original Value: ***DataReceiveErrorEvent***
+  - Updated Value: Not_Available
+--------------------------------------------------
+Sheet: enum_list, Cell: _21
+  - Original Value: CD_CrshSt_R
+  - Updated Value: ***DataSendCompletedEvent***
+--------------------------------------------------
+Sheet: enum_list, Cell: _22
+  - Original Value: CD_CrshSt_R2
+  - Updated Value: CD_CrshSt_R1
+--------------------------------------------------
+Sheet: enum_list, Cell: _23
+  - Original Value: ***DataSendCompletedEvent***
+  - Updated Value: CD_CrshSt_R5
+--------------------------------------------------
+Sheet: enum_list, Cell: _24
+  - Original Value: CD_CrshSt_R1
+  - Updated Value: ***DataWriteCompletedEvent***
+--------------------------------------------------
+Sheet: enum_list, Cell: _25
+  - Original Value: CD_CrshSt_R5
+  - Updated Value: CD_CrshSt_R1
+--------------------------------------------------
+Sheet: enum_list, Cell: _26
+  - Original Value: ***DataWriteCompletedEvent***
+  - Updated Value: CD_CrshSt_R5
+--------------------------------------------------
+Sheet: enum_list, Cell: _27
+  - Original Value: CD_CrshSt_R1
+  - Updated Value: ***ExternalTriggerOccurredEvent***
+--------------------------------------------------
+Sheet: enum_list, Cell: _28
+  - Original Value: CD_CrshSt_R5
+  - Updated Value: Trigger_R_Port
+--------------------------------------------------
+Sheet: enum_list, Cell: _29
+  - Original Value: ***ExternalTriggerOccurredEvent***
+  - Updated Value: ***ModeSwitchedAckEvent***
+--------------------------------------------------
+Sheet: enum_list, Cell: _30
+  - Original Value: Trigger_R_Port
+  - Updated Value: Not_Available
+--------------------------------------------------
+Sheet: enum_list, Cell: _31
+  - Original Value: ***ModeSwitchedAckEvent***
+  - Updated Value: ***OperationInvokedEvent***
+--------------------------------------------------
+Sheet: enum_list, Cell: _33
+  - Original Value: ***OperationInvokedEvent***
+  - Updated Value: ***SwcModeSwitchEvent***
+--------------------------------------------------
+Sheet: enum_list, Cell: _34
+  - Original Value: Not_Available
+  - Updated Value: CD_CrshSt_R8
+--------------------------------------------------
+Sheet: enum_list, Cell: _35
+  - Original Value: ***SwcModeSwitchEvent***
+  - Updated Value: nan
+--------------------------------------------------
+Sheet: enum_list, Cell: _36
+  - Original Value: CD_CrshSt_R8
+  - Updated Value: nan
+--------------------------------------------------

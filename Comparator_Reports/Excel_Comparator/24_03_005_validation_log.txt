@@ -1,0 +1,28 @@
+Sheet: ib_data, Cell: G2
+  - Original Value: READ-WRITE
+  - Updated Value: READ
+--------------------------------------------------
+Sheet: ib_data, Cell: G3
+  - Original Value: READ-WRITE
+  - Updated Value: READ
+--------------------------------------------------
+Sheet: ib_data, Cell: G4
+  - Original Value: READ-WRITE
+  - Updated Value: READ
+--------------------------------------------------
+Sheet: ib_data, Cell: G5
+  - Original Value: READ-WRITE
+  - Updated Value: READ
+--------------------------------------------------
+Sheet: ports, Cell: H2
+  - Original Value: ADTS_APCRCDWkUp1
+  - Updated Value: float64
+--------------------------------------------------
+Sheet: ports, Cell: H7
+  - Original Value: ADTS_APCRCDWkUp1
+  - Updated Value: struct2
+--------------------------------------------------
+Sheet: ports, Cell: H10
+  - Original Value: ADTS_APCRCDWkUp1
+  - Updated Value: primitive1
+--------------------------------------------------

@@ -1,24 +1,12 @@
+# Harshit 24/03/2025 17 : 04 PM
+# Sushant 24/03/2025 01 : 00 PM
+
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #               # ####################### ++++++++++++ ---------- __________ SECTION :  import required Initial Modules and definitions __________ ----------  ++++++++++++  ####################### #               #
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
-
-import importlib # Import the importlib module for dynamic module loading
-import warnings # Import the warnings module for managing warning messages
-import pandas as pd # type: ignore # Import the pandas library for data manipulation and analysis
-import openpyxl # type: ignore
-import Pkg_struct # Import the Pkg_struct module for package structure definitions
-import arelements_def as arelements_def # Import the arelements_def module for AUTOSAR element definitions
-import config
-import os
-
-
-warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl") # Suppress specific warnings from the openpyxl module
-
-# Reload the arelements_def and Pkg_struct module for dynamic updates
-importlib.reload(arelements_def)
-importlib.reload(Pkg_struct)
-
-from arelements_def import root # Import the root variable from the arelements_def module
+from ast import Pass
+from arelements_def_402 import root
+ # Import the root variable from the arelements_def module
 
 # here, root is dynamic as per the arelements_def module version and it will get selected by user as per AUTOSAR schema version
 # for example root for AUTOSAR 4_0_2 schema version, 
@@ -29,13 +17,29 @@ from arelements_def import root # Import the root variable from the arelements_d
 #                          "xsi:schemaLocation": "http://autosar.org/schema/r4.0 AUTOSAR_4-0-2.xsd"
 #                      })
 
+
 from collections import defaultdict
+from pkg_struct_402 import ARXMLStructure # Import the ARXMLStructure class from the Pkg_struct module
+from excel_utils import ExcelReader
+from data_type_utils import DataProcessor  # Import the DataProcessor class
+from itertools import groupby
 
-from Pkg_struct import ARXMLStructure # Import the ARXMLStructure class from the Pkg_struct module
-
-import rng # Import the rng module for random number generation
-
+import validator  # Import validation module
 import xml.etree.ElementTree as ET # Import the ElementTree class from the xml.etree module
+
+import importlib # Import the importlib module for dynamic module loading
+import warnings # Import the warnings module for managing warning messages
+import pkg_struct_402 as Pkg_struct # Import the Pkg_struct module for package structure definitions
+import arelements_def_402 as arelements_def # Import the arelements_def module for AUTOSAR element definitions
+import config
+import os # Import the os module for file system operations
+
+
+warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl") # Suppress specific warnings from the openpyxl module
+
+# Reload the arelements_def and Pkg_struct module for dynamic updates
+importlib.reload(arelements_def)
+importlib.reload(Pkg_struct)
 
 arxml_structure = ARXMLStructure() # Create an instance of the ARXMLStructure class
 
@@ -45,10 +49,7 @@ arxml_structure.create_default_pkg_struct(root) # Create the default package str
 #               # ####################### ++++++++++++ ---------- __________ SECTION :  Excel Related Functions __________ ----------  ++++++++++++ ####################### #               #
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
-from excel_utils import ExcelReader
-from data_type_utils import DataProcessor  # Import the DataProcessor class
 
-from itertools import groupby
 
 # Initialize the ExcelReader
 excel_reader = ExcelReader()
@@ -57,7 +58,7 @@ excel_reader = ExcelReader()
 excel_reader.get_file_path_from_user()
 
 
-import validator  # Import validation module
+
 
 # Validate the Excel file before proceeding
 
@@ -274,10 +275,18 @@ def my_application_function():
         
         arelements_def.DataTypeMappingSet(DataTypemappingSets_folder_elements,CurrentSWC_shortname)
 
-        for a,b in zip(adtp,idtp):
+        # Zipping and removing duplicates while maintaining order
+        zipped_data = list(zip(adtp,idtp))
+        unique_data = list(dict.fromkeys(zipped_data))  # Remove duplicates
+
+        for a,b in unique_data:
             arelements_def.data_type_map(a,b)
 
-        for a,b in zip(adtc,idtc):
+        # Zipping and removing duplicates while maintaining order
+        zipped_data1 = list(zip(adtc,idtc))
+        unique_data1 = list(dict.fromkeys(zipped_data1))  # Remove duplicates
+
+        for a,b in unique_data1:
             arelements_def.data_type_map(a,b)
 
     createDTMS()
@@ -309,18 +318,21 @@ def my_application_function():
 
     #createRTEEvents()
 
-    rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo = excel_reader.read_columns(swc_info, 'H', 'M')
+    rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo = excel_reader.read_columns(swc_info, 'H', 'N')
 
+    print(rnblname)
 
     arelements_def.RTE_Event()
 
     processed_types = set()
 
-    for a,b,c,d,e,f in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo):
+    for a,b,c,d,e,f,g in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo):
 
         if a in processed_types:
             continue
-        processed_types.add(a) 
+        processed_types.add(a)  
+ 
+        # print(f"Processing: {a}, Category: {a}")
 
         # Check the type of RTE event and call the corresponding function
         if e == 'AsynchronousServerCallReturnsEvent':
@@ -334,37 +346,104 @@ def my_application_function():
             arelements_def.BackgroundEvent(d, a, currentfolder, CurrentSWC_shortname)
         elif e == 'TimingEvent':
             # Handle timing event with additional information
-            arelements_def.TimingEvent(d, a, currentfolder, CurrentSWC_shortname, f) #g is periodictime
+            arelements_def.TimingEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'DataReceiveErrorEvent':
             # Handle data receive error event with additional information
-            arelements_def.DataReceiveErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, DE
+            #If_name
+            #rport, If_name, DE
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.DataReceiveErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g )
+            
         elif e == 'DataSendCompletedEvent':
             # Handle data send completed event with additional information
-            arelements_def.DataSendCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, DE
+            arelements_def.DataSendCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, DE
+            
         elif e == 'DataWriteCompletedEvent':
             # Handle data write completed event with additional information
-            arelements_def.DataWriteCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, DE
+            arelements_def.DataWriteCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, DE
+            
         elif e == 'ExternalTriggerOccurredEvent':
             # Handle external trigger occurred event with additional information
-            arelements_def.ExternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, trigger
+            
+            #rport, If_name, trigger
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.ExternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g )
+            
+            
         elif e == 'InternalTriggerOccurredEvent':
             # Handle internal trigger occurred event with additional information
             arelements_def.InternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'ModeSwitchedAckEvent':
             # Handle mode switched acknowledgment event with additional information
-            arelements_def.ModeSwitchedAckEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, modegroup
+            arelements_def.ModeSwitchedAckEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, modegroup
+            
         elif e == 'OperationInvokedEvent':
             # Handle operation invoked event with additional information
-            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, If_name, operation
+            
+            #pport, If_name, operation
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g ) 
+            
+            
         elif e == 'SwcModeManagerErrorEvent':
             # Handle software component mode manager error event with additional information
             arelements_def.SwcModeManagerErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'DataReceivedEvent':
             # Handle data received event with additional information
-            arelements_def.DataReceivedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, DE
+            
+            
+            #rport, If_name, DE
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.DataReceivedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g ) 
+            
         elif e == 'SwcModeSwitchEvent':
             # Handle software component mode switch event with additional information
-            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, modegroup, mode
+            
+            #rport, If_name, modegroup, mode
+            
+            #If_name and modegroup should be analyse
+            portname, it, ifname, modegroup = excel_reader.read_columns(ports, 'C', 'F')
+            zipped_data = list(zip(portname,ifname,modegroup))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for a, b,c in unique_data:
+                if a == f:
+                    ifname = b
+                    modegroup = c
+                    break
+            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, modegroup, g ) 
+            
+            
         elif e == 'TransformerHardErrorEvent':
             # Handle transformer hard error event with additional information
             arelements_def.TransformerHardErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f)
@@ -417,8 +496,9 @@ def my_application_function():
     arelements_def.create_Runnable()
 
     processed_types = set()
+    print(processed_types)
 
-    for a,b,c,d,e in zip(rnblname, rs, cic, rteeventname, rteeventtype):
+    for a,b,c,d,e,f,g in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo):
 
         if b is None or (isinstance(b, str) and not b.strip()):
             b = a
@@ -428,13 +508,23 @@ def my_application_function():
         if a in processed_types:
             continue
         processed_types.add(a) 
+        print(processed_types)
 
         # Check the type of RTE event and call the corresponding function
 
         if e == 'AsynchronousServerCallReturnsEvent':
             # Handle asynchronous server call return event
 
-            arelements_def.Runnable_ASCRE(a,currentfolder, CurrentSWC_shortname) #rport, If_name, operation
+            portname, it, ifname, modegroup = excel_reader.read_columns(ports, 'C', 'F')
+            zipped_data = list(zip(portname,ifname,modegroup))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for a, b,c in unique_data:
+                if a == f:
+                    ifname = b
+                    modegroup = c
+                    break
+
+            arelements_def.Runnable_ASCRE(a,currentfolder, CurrentSWC_shortname,f,ifname,g) #rport, If_name, operation
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -572,8 +662,15 @@ def my_application_function():
 
         elif e == 'DataSendCompletedEvent':
             # Handle data send completed event with additional information
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
 
-            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, DE,
+            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, DE,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -600,8 +697,15 @@ def my_application_function():
 
         elif e == 'DataWriteCompletedEvent':
             # Handle data write completed event with additional information
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
 
-            arelements_def.Runnable_DWCE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, DE,
+            arelements_def.Runnable_DWCE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, DE
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -685,7 +789,15 @@ def my_application_function():
         elif e == 'ModeSwitchedAckEvent':
             # Handle mode switched acknowledgment event with additional information
 
-            arelements_def.Runnable_MSAE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, modegroup,
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+
+            arelements_def.Runnable_MSAE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, modegroup
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -953,7 +1065,7 @@ def my_complex_device_driver_function():
 
     rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo = excel_reader.read_columns(swc_info, 'H', 'M')
 
-
+    # print(rnblname)
 
     arelements_def.RTE_Event()
 
@@ -979,37 +1091,104 @@ def my_complex_device_driver_function():
             arelements_def.BackgroundEvent(d, a, currentfolder, CurrentSWC_shortname)
         elif e == 'TimingEvent':
             # Handle timing event with additional information
-            arelements_def.TimingEvent(d, a, currentfolder, CurrentSWC_shortname, f) #g is periodictime
+            arelements_def.TimingEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'DataReceiveErrorEvent':
             # Handle data receive error event with additional information
-            arelements_def.DataReceiveErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, DE
+            #If_name
+            #rport, If_name, DE
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.DataReceiveErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g )
+            
         elif e == 'DataSendCompletedEvent':
             # Handle data send completed event with additional information
-            arelements_def.DataSendCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, DE
-        elif e == 'DataWriteCompletedEvent':
+            arelements_def.DataSendCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, DE
+            
+        elif e == 'DataWriteCompletedEvent':f, 
             # Handle data write completed event with additional information
-            arelements_def.DataWriteCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, DE
+            arelements_def.DataWriteCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, DE
+            
         elif e == 'ExternalTriggerOccurredEvent':
             # Handle external trigger occurred event with additional information
-            arelements_def.ExternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, trigger
+            
+            #rport, If_name, trigger
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.ExternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g )
+            
+            
         elif e == 'InternalTriggerOccurredEvent':
             # Handle internal trigger occurred event with additional information
             arelements_def.InternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'ModeSwitchedAckEvent':
             # Handle mode switched acknowledgment event with additional information
-            arelements_def.ModeSwitchedAckEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, modegroup
+            arelements_def.ModeSwitchedAckEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, modegroup
+            
         elif e == 'OperationInvokedEvent':
             # Handle operation invoked event with additional information
-            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, If_name, operation
+            
+            #pport, If_name, operation
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g  ) 
+            
+            
         elif e == 'SwcModeManagerErrorEvent':
             # Handle software component mode manager error event with additional information
             arelements_def.SwcModeManagerErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'DataReceivedEvent':
             # Handle data received event with additional information
-            arelements_def.DataReceivedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, DE
+            
+            
+            #rport, If_name, DE
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.DataReceivedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g ) 
+            
         elif e == 'SwcModeSwitchEvent':
             # Handle software component mode switch event with additional information
-            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, modegroup, mode
+            
+            #rport, If_name, modegroup, mode
+            
+            #If_name and modegroup should be analyse
+            portname, it, ifname, modegroup = excel_reader.read_columns(ports, 'C', 'F')
+            zipped_data = list(zip(portname,ifname,modegroup))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for a, b,c in unique_data:
+                if a == f:
+                    ifname = b
+                    modegroup = c
+                    break
+            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, modegroup, g) 
+            
+            
         elif e == 'TransformerHardErrorEvent':
             # Handle transformer hard error event with additional information
             arelements_def.TransformerHardErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f)
@@ -1218,7 +1397,7 @@ def my_complex_device_driver_function():
         elif e == 'DataSendCompletedEvent':
             # Handle data send completed event with additional information
 
-            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, DE,
+            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname, f,ifname,g)#pport, If_name, DE,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -1598,7 +1777,7 @@ def my_ecu_abstraction_function():
 
     rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo = excel_reader.read_columns(swc_info, 'H', 'M')
 
-
+    # print(rnblname)
 
     arelements_def.RTE_Event()
 
@@ -1624,37 +1803,104 @@ def my_ecu_abstraction_function():
             arelements_def.BackgroundEvent(d, a, currentfolder, CurrentSWC_shortname)
         elif e == 'TimingEvent':
             # Handle timing event with additional information
-            arelements_def.TimingEvent(d, a, currentfolder, CurrentSWC_shortname, f) #g is periodictime
+            arelements_def.TimingEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'DataReceiveErrorEvent':
             # Handle data receive error event with additional information
-            arelements_def.DataReceiveErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, DE
+            #If_name
+            #rport, If_name, DE
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.DataReceiveErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g )
+            
         elif e == 'DataSendCompletedEvent':
             # Handle data send completed event with additional information
-            arelements_def.DataSendCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, DE
+            arelements_def.DataSendCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, DE
+            
         elif e == 'DataWriteCompletedEvent':
             # Handle data write completed event with additional information
-            arelements_def.DataWriteCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, DE
+            arelements_def.DataWriteCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, DE
+            
         elif e == 'ExternalTriggerOccurredEvent':
             # Handle external trigger occurred event with additional information
-            arelements_def.ExternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, trigger
+            
+            #rport, If_name, trigger
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.ExternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g )
+            
+            
         elif e == 'InternalTriggerOccurredEvent':
             # Handle internal trigger occurred event with additional information
             arelements_def.InternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'ModeSwitchedAckEvent':
             # Handle mode switched acknowledgment event with additional information
-            arelements_def.ModeSwitchedAckEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, modegroup
+            arelements_def.ModeSwitchedAckEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, modegroup
+            
         elif e == 'OperationInvokedEvent':
             # Handle operation invoked event with additional information
-            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, If_name, operation
+            
+            #pport, If_name, operation
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g  ) 
+            
+            
         elif e == 'SwcModeManagerErrorEvent':
             # Handle software component mode manager error event with additional information
             arelements_def.SwcModeManagerErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'DataReceivedEvent':
             # Handle data received event with additional information
-            arelements_def.DataReceivedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, DE
+            
+            
+            #rport, If_name, DE
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.DataReceivedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g ) 
+            
         elif e == 'SwcModeSwitchEvent':
             # Handle software component mode switch event with additional information
-            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, modegroup, mode
+            
+            #rport, If_name, modegroup, mode
+            
+            #If_name and modegroup should be analyse
+            portname, it, ifname, modegroup = excel_reader.read_columns(ports, 'C', 'F')
+            zipped_data = list(zip(portname,ifname,modegroup))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for a, b,c in unique_data:
+                if a == f:
+                    ifname = b
+                    modegroup = c
+                    break
+            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, modegroup, g ) 
+            
+            
         elif e == 'TransformerHardErrorEvent':
             # Handle transformer hard error event with additional information
             arelements_def.TransformerHardErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f)
@@ -1863,7 +2109,7 @@ def my_ecu_abstraction_function():
         elif e == 'DataSendCompletedEvent':
             # Handle data send completed event with additional information
 
-            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, DE,
+            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, DE,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -2249,7 +2495,7 @@ def my_sensor_actuator_function():
 
     rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo = excel_reader.read_columns(swc_info, 'H', 'M')
 
-
+    # print(rnblname)
 
     arelements_def.RTE_Event()
 
@@ -2275,37 +2521,104 @@ def my_sensor_actuator_function():
             arelements_def.BackgroundEvent(d, a, currentfolder, CurrentSWC_shortname)
         elif e == 'TimingEvent':
             # Handle timing event with additional information
-            arelements_def.TimingEvent(d, a, currentfolder, CurrentSWC_shortname, f) #g is periodictime
+            arelements_def.TimingEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'DataReceiveErrorEvent':
             # Handle data receive error event with additional information
-            arelements_def.DataReceiveErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, DE
+            #If_name
+            #rport, If_name, DE
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.DataReceiveErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g )
+            
         elif e == 'DataSendCompletedEvent':
             # Handle data send completed event with additional information
-            arelements_def.DataSendCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, DE
+            arelements_def.DataSendCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, DE
+            
         elif e == 'DataWriteCompletedEvent':
             # Handle data write completed event with additional information
-            arelements_def.DataWriteCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, DE
+            arelements_def.DataWriteCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, DE
+            
         elif e == 'ExternalTriggerOccurredEvent':
             # Handle external trigger occurred event with additional information
-            arelements_def.ExternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, trigger
+            
+            #rport, If_name, trigger
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.ExternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g )
+            
+            
         elif e == 'InternalTriggerOccurredEvent':
             # Handle internal trigger occurred event with additional information
             arelements_def.InternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'ModeSwitchedAckEvent':
             # Handle mode switched acknowledgment event with additional information
-            arelements_def.ModeSwitchedAckEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, modegroup
+            arelements_def.ModeSwitchedAckEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, modegroup
+            
         elif e == 'OperationInvokedEvent':
             # Handle operation invoked event with additional information
-            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, If_name, operation
+            
+            #pport, If_name, operation
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g  ) 
+            
+            
         elif e == 'SwcModeManagerErrorEvent':
             # Handle software component mode manager error event with additional information
             arelements_def.SwcModeManagerErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'DataReceivedEvent':
             # Handle data received event with additional information
-            arelements_def.DataReceivedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, DE
+            
+            
+            #rport, If_name, DE
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.DataReceivedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g ) 
+            
         elif e == 'SwcModeSwitchEvent':
             # Handle software component mode switch event with additional information
-            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, modegroup, mode
+            
+            #rport, If_name, modegroup, mode
+            
+            #If_name and modegroup should be analyse
+            portname, it, ifname, modegroup = excel_reader.read_columns(ports, 'C', 'F')
+            zipped_data = list(zip(portname,ifname,modegroup))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for a, b,c in unique_data:
+                if a == f:
+                    ifname = b
+                    modegroup = c
+                    break
+            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, modegroup, g) 
+            
+            
         elif e == 'TransformerHardErrorEvent':
             # Handle transformer hard error event with additional information
             arelements_def.TransformerHardErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f)
@@ -2514,7 +2827,7 @@ def my_sensor_actuator_function():
         elif e == 'DataSendCompletedEvent':
             # Handle data send completed event with additional information
 
-            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, DE,
+            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, DE,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -2894,7 +3207,7 @@ def my_service_proxy_function():
 
     rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo = excel_reader.read_columns(swc_info, 'H', 'M')
 
-
+    # print(rnblname)
 
     arelements_def.RTE_Event()
 
@@ -2920,37 +3233,104 @@ def my_service_proxy_function():
             arelements_def.BackgroundEvent(d, a, currentfolder, CurrentSWC_shortname)
         elif e == 'TimingEvent':
             # Handle timing event with additional information
-            arelements_def.TimingEvent(d, a, currentfolder, CurrentSWC_shortname, f) #g is periodictime
+            arelements_def.TimingEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'DataReceiveErrorEvent':
             # Handle data receive error event with additional information
-            arelements_def.DataReceiveErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, DE
+            #If_name
+            #rport, If_name, DE
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.DataReceiveErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g )
+            
         elif e == 'DataSendCompletedEvent':
             # Handle data send completed event with additional information
-            arelements_def.DataSendCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, DE
+            arelements_def.DataSendCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, DE
+            
         elif e == 'DataWriteCompletedEvent':
             # Handle data write completed event with additional information
-            arelements_def.DataWriteCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, DE
+            arelements_def.DataWriteCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, DE
+            
         elif e == 'ExternalTriggerOccurredEvent':
             # Handle external trigger occurred event with additional information
-            arelements_def.ExternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, trigger
+            
+            #rport, If_name, trigger
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.ExternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g )
+            
+            
         elif e == 'InternalTriggerOccurredEvent':
             # Handle internal trigger occurred event with additional information
             arelements_def.InternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'ModeSwitchedAckEvent':
             # Handle mode switched acknowledgment event with additional information
-            arelements_def.ModeSwitchedAckEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, modegroup
+            arelements_def.ModeSwitchedAckEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, modegroup
+            
         elif e == 'OperationInvokedEvent':
             # Handle operation invoked event with additional information
-            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, If_name, operation
+            
+            #pport, If_name, operation
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g  ) 
+            
+            
         elif e == 'SwcModeManagerErrorEvent':
             # Handle software component mode manager error event with additional information
             arelements_def.SwcModeManagerErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'DataReceivedEvent':
             # Handle data received event with additional information
-            arelements_def.DataReceivedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, DE
+            
+            
+            #rport, If_name, DE
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.DataReceivedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g ) 
+            
         elif e == 'SwcModeSwitchEvent':
             # Handle software component mode switch event with additional information
-            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, modegroup, mode
+            
+            #rport, If_name, modegroup, mode
+            
+            #If_name and modegroup should be analyse
+            portname, it, ifname, modegroup = excel_reader.read_columns(ports, 'C', 'F')
+            zipped_data = list(zip(portname,ifname,modegroup))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for a, b,c in unique_data:
+                if a == f:
+                    ifname = b
+                    modegroup = c
+                    break
+            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, modegroup, g) 
+            
+            
         elif e == 'TransformerHardErrorEvent':
             # Handle transformer hard error event with additional information
             arelements_def.TransformerHardErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f)
@@ -3159,7 +3539,7 @@ def my_service_proxy_function():
         elif e == 'DataSendCompletedEvent':
             # Handle data send completed event with additional information
 
-            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, DE,
+            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, DE,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -3539,7 +3919,7 @@ def my_service_function():
 
     rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo = excel_reader.read_columns(swc_info, 'H', 'M')
 
-
+    # print(rnblname)
 
     arelements_def.RTE_Event()
 
@@ -3565,37 +3945,104 @@ def my_service_function():
             arelements_def.BackgroundEvent(d, a, currentfolder, CurrentSWC_shortname)
         elif e == 'TimingEvent':
             # Handle timing event with additional information
-            arelements_def.TimingEvent(d, a, currentfolder, CurrentSWC_shortname, f) #g is periodictime
+            arelements_def.TimingEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'DataReceiveErrorEvent':
             # Handle data receive error event with additional information
-            arelements_def.DataReceiveErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, DE
+            #If_name
+            #rport, If_name, DE
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.DataReceiveErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g )
+            
         elif e == 'DataSendCompletedEvent':
             # Handle data send completed event with additional information
-            arelements_def.DataSendCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, DE
+            arelements_def.DataSendCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, DE
+            
         elif e == 'DataWriteCompletedEvent':
             # Handle data write completed event with additional information
-            arelements_def.DataWriteCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, DE
+            arelements_def.DataWriteCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, DE
+            
         elif e == 'ExternalTriggerOccurredEvent':
             # Handle external trigger occurred event with additional information
-            arelements_def.ExternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, trigger
+            
+            #rport, If_name, trigger
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.ExternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g )
+            
+            
         elif e == 'InternalTriggerOccurredEvent':
             # Handle internal trigger occurred event with additional information
             arelements_def.InternalTriggerOccurredEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'ModeSwitchedAckEvent':
             # Handle mode switched acknowledgment event with additional information
-            arelements_def.ModeSwitchedAckEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, modegroup
+            arelements_def.ModeSwitchedAckEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
+            #pport, modegroup
+            
         elif e == 'OperationInvokedEvent':
             # Handle operation invoked event with additional information
-            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #pport, If_name, operation
+            
+            #pport, If_name, operation
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g  ) 
+            
+            
         elif e == 'SwcModeManagerErrorEvent':
             # Handle software component mode manager error event with additional information
             arelements_def.SwcModeManagerErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f)
         elif e == 'DataReceivedEvent':
             # Handle data received event with additional information
-            arelements_def.DataReceivedEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, DE
+            
+            
+            #rport, If_name, DE
+            #If_name should be analyse
+            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
+            zipped_data = list(zip(portname,ifname))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for y, z in unique_data:
+                if y == f:
+                    ifname = z
+                    break
+            arelements_def.DataReceivedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g ) 
+            
         elif e == 'SwcModeSwitchEvent':
             # Handle software component mode switch event with additional information
-            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f) #rport, If_name, modegroup, mode
+            
+            #rport, If_name, modegroup, mode
+            
+            #If_name and modegroup should be analyse
+            portname, it, ifname, modegroup = excel_reader.read_columns(ports, 'C', 'F')
+            zipped_data = list(zip(portname,ifname,modegroup))
+            unique_data = list(dict.fromkeys(zipped_data))
+            for x, y, z in unique_data:
+                if x == f:
+                    ifname = y
+                    modegroup = z
+                    break
+            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, modegroup, g) 
+            
+            
         elif e == 'TransformerHardErrorEvent':
             # Handle transformer hard error event with additional information
             arelements_def.TransformerHardErrorEvent(d, a, currentfolder, CurrentSWC_shortname, f)
@@ -3804,7 +4251,7 @@ def my_service_function():
         elif e == 'DataSendCompletedEvent':
             # Handle data send completed event with additional information
 
-            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, DE,
+            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, DE,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -4131,50 +4578,68 @@ def my_service_function():
 # ib_data f column , ports i columns
 
 def rnblaccess(Currentrnbl):
+
+    print("\n[DEBUG] Starting rnblaccess function")
+    print(f"[DEBUG] Processing for Current Rnbl: {Currentrnbl}")
+    print(f"[DEBUG] Current folder: {currentfolder}, Current SWC shortname: {CurrentSWC_shortname}")
     
     # Read argument_col (Column G) from Excel
     argument_col = excel_reader.read_columns(ports, 'G', 'G') or []
+    
+    # Debugging: Print raw argument data
+    print(f"[DEBUG] Raw Argument Column Data: {argument_col}")
     
     # Flatten the list to remove any nested lists
     def flatten(lst):
         return [item for sublist in lst for item in sublist] if any(isinstance(i, list) for i in lst) else lst
     
     argument_col = flatten(argument_col)
+    
+    # Debugging: Print after flattening
+    print(f"[DEBUG] Flattened Argument Column: {argument_col}")
 
     #interface check
 
     inf_col = excel_reader.read_columns(ports, 'D', 'D') or []  # Ensure argument_col is at least an empty list    
 
+    # Debugging: Print raw argument data
+    print(f"[DEBUG] Raw Interface Column Data: {inf_col}")
 
     inf_col = flatten(inf_col)
     
+    # Debugging: Print after flattening
+    print(f"[DEBUG] Flattened Interface Column: {inf_col}")
 
     #accessing runnable check : ports
 
     ports_Acc_Rnbl = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure argument_col is at least an empty list    
 
+    # Debugging: Print raw argument data
+    print(f"[DEBUG] Raw accessing runnable from ports sheet Data: {ports_Acc_Rnbl}")
 
     ports_Acc_Rnbl = flatten(ports_Acc_Rnbl)
     
+    # Debugging: Print after flattening
+    print(f"[DEBUG] Flattened accessing runnable from ports Column: {ports_Acc_Rnbl}")
 
     # Call main function if any predefined argument exists
 
     for a,b in zip(argument_col,  ports_Acc_Rnbl):
 
         if 'dra' in a and b == Currentrnbl :
-
+            print("[DEBUG] Found 'dra', calling arelements_def.dra()")
             arelements_def.dra()
         elif 'drpa' in a and b == Currentrnbl:
-
+            print("[DEBUG] Found 'drpa', calling arelements_def.drpa()")
             arelements_def.drpa()
         elif 'drpv' in a and b == Currentrnbl:
-            
+            print("[DEBUG] Found 'drpv', calling arelements_def.drpv()")
             arelements_def.drpv()
         elif 'dsp' in a and b == Currentrnbl:
-            
+            print("[DEBUG] Found 'dsp', calling arelements_def.dsp()")
             arelements_def.dsp()
         elif 'dwa' in a and b == Currentrnbl:
-            
+            print("[DEBUG] Found 'dwa', calling arelements_def.dwa()")
             arelements_def.dwa()
         else :
             pass
@@ -4182,20 +4647,27 @@ def rnblaccess(Currentrnbl):
     global pa_already_triggered
 
     pa_already_triggered = None
+    
+    global called_msp
+    if 'called_msp' not in globals():
+         called_msp = False 
 
-    for a,b in zip(inf_col,  ports_Acc_Rnbl):
-
+    for a,b in zip(inf_col,  ports_Acc_Rnbl):    
+        print(f"saurabh singanjude{a}: {b} : {Currentrnbl} : {inf_col}")    
         if 'ModeSwitchInterface' in a and b == Currentrnbl:
-            
-            arelements_def.msp()        
-             
+            if not called_msp:
+                print("[DEBUG] Calling arelements_def.msp()")
+                arelements_def.msp()
+                called_msp = True        
+                print("[DEBUG] After calling msp, called_msp =", called_msp)  
+               
         elif 'ParameterInterface' in a and b == Currentrnbl :
-           
+            print("[DEBUG] Found one of the 'ParameterInterface' 'ConstantMemory', 'PerInstanceParameter', 'SharedParameter', calling arelements_def.pa()")
             arelements_def.pa()
             pa_already_triggered = 1
 
         elif 'ClientServerInterface' in a and b == Currentrnbl:
-           
+            print("[DEBUG] Found 'ClientServerInterface', calling arelements_def.sscp()")
             arelements_def.sscp()
 
     IBVariableType, IBVariableName, ApplicationDataTypeName, Initvalue, AccessingRunnable = excel_reader.read_columns(ib_data, 'B', 'F')
@@ -4210,40 +4682,50 @@ def rnblaccess(Currentrnbl):
 
     for irvt,br in zip(IBVariableType, AccessingRunnable):
         if irvt in ['ImplicitInterRunnableVariables', 'ExplicitInterRunnableVariable'] and br == Currentrnbl :#still read or write bifurcation is pending
-            
+            print("[DEBUG] Found 'ImplicitInterRunnableVariables', calling arelements_def.IRVRA()")        
             arelements_def.IRVRA()
             break
 
     for a,b,c,d,e in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable):
         
         if a == 'ConstantMemory' and e == Currentrnbl:
-            
+            print(f"[DEBUG] Calling arelements_def.CMCPA_ConstantMemory({currentfolder}, {CurrentSWC_shortname}, {b})")       
             arelements_def.CMCPA_ConstantMemory(currentfolder, CurrentSWC_shortname,b)
             
         elif a == 'PerInstanceParameter'and e == Currentrnbl:
-            
+            print(f"[DEBUG] Calling arelements_def.PICPVA_PerInstanceParameter({currentfolder}, {CurrentSWC_shortname}, {b})")           
             arelements_def.PICPVA_PerInstanceParameter(currentfolder, CurrentSWC_shortname,b)
 
         elif a == 'SharedParameter'and e == Currentrnbl:
-            
+            print(f"[DEBUG] Calling arelements_def.SCPVA_SharedParameter({currentfolder}, {CurrentSWC_shortname}, {b})")            
             arelements_def.SCPVA_SharedParameter(currentfolder, CurrentSWC_shortname,b) #ideally we need port parameter here and then shared parameter
             
         elif a == 'ExplicitInterRunnableVariable' and e == Currentrnbl:
-            
+            print(f"[DEBUG] Calling arelements_def.IRVRA_ExplicitInterRunnableVariable({b}, {currentfolder}, {CurrentSWC_shortname})")                       
             arelements_def.IRVRA_ExplicitInterRunnableVariable(b, currentfolder, CurrentSWC_shortname )
             
         elif a == 'ImplicitInterRunnableVariables'and e == Currentrnbl:
-            
+            print(f"[DEBUG] Calling arelements_def.IRVRA_ImplicitInterRunnableVariable({b}, {currentfolder}, {CurrentSWC_shortname})")           
             arelements_def.IRVRA_ImplicitInterRunnableVariable(b, currentfolder, CurrentSWC_shortname)
 
         else :
-            print(f"Invalid {a} for IRV access")
+            print(f"[DEBUG] Invalid {a} for IRV access")
     
     # Fetch filtered data from read_write_access() for ReceiverPort and SenderPort
     receiver_port_data = read_write_access("ReceiverPort", Currentrnbl)
     
     sender_port_data = read_write_access("SenderPort", Currentrnbl)
     
+    # Debugging: Print filtered data
+    print(f"\n[DEBUG] Filtered Data from read_write_access (ReceiverPort, {Currentrnbl}):")
+    
+    for row in receiver_port_data:
+        print(row)
+    
+    print(f"\n[DEBUG] Filtered Data from read_write_access (SenderPort, {Currentrnbl}):")
+    
+    for row in sender_port_data:
+        print(row)
     
     # Iterate over filtered data for ReceiverPort
     for _, port_name, interface_type, interface_name, data_element, argument in receiver_port_data:
@@ -4251,41 +4733,41 @@ def rnblaccess(Currentrnbl):
         if interface_type == "SenderReceiverInterface" :
            
             if argument == "dra":
-                
+                print(f"[DEBUG] Calling arelements_def.DRA_RPort_SR_DataElement({currentfolder}, {CurrentSWC_shortname}, {port_name}, {interface_name}, {data_element})")
                 arelements_def.DRA_RPort_SR_DataElement(currentfolder, CurrentSWC_shortname, port_name, interface_name, data_element)
             elif argument == "drpa":
-                
+                print(f"[DEBUG] Calling arelements_def.DRPA_RPort_SR_DataElement({currentfolder}, {CurrentSWC_shortname}, {port_name}, {interface_name}, {data_element})")
                 arelements_def.DRPA_RPort_SR_DataElement(currentfolder, CurrentSWC_shortname, port_name, interface_name, data_element)
             elif argument == "drpv":
-                
+                print(f"[DEBUG] Calling arelements_def.DRPV_RPort_SR_DataElement({currentfolder}, {CurrentSWC_shortname}, {port_name}, {interface_name}, {data_element})")
                 arelements_def.DRPV_RPort_SR_DataElement(currentfolder, CurrentSWC_shortname, port_name, interface_name, data_element)
             else :
-                print(f" Invalid {interface_type} for data access dra, drpa and drpv")
+                print(f"[DEBUG] Invalid {interface_type} for data access dra, drpa and drpv")
         
         elif interface_type == "NvDataInterface":
            
             if argument == "dra":
-                
+                print(f"[DEBUG] Calling arelements_def.DRA_RPort_nvd_NvData({currentfolder}, {CurrentSWC_shortname}, {port_name}, {interface_name}, {data_element})")
                 arelements_def.DRA_RPort_nvd_NvData(currentfolder, CurrentSWC_shortname, port_name, interface_name, data_element)
             elif argument == "drpa":
-                
+                print(f"[DEBUG] Calling arelements_def.DRPA_RPort_nvd_NvData({currentfolder}, {CurrentSWC_shortname}, {port_name}, {interface_name}, {data_element})")
                 arelements_def.DRPA_RPort_nvd_NvData(currentfolder, CurrentSWC_shortname, port_name, interface_name, data_element)
             elif argument == "drpv":
-                
+                print(f"[DEBUG] Calling arelements_def.DRPV_RPort_nvd_NvData({currentfolder}, {CurrentSWC_shortname}, {port_name}, {interface_name}, {data_element})")
                 arelements_def.DRPV_RPort_nvd_NvData(currentfolder, CurrentSWC_shortname, port_name, interface_name, data_element)
             else :
-                print(f" Invalid {interface_type} for data access dra, drpa and drpv")
+                print(f"[DEBUG] Invalid {interface_type} for data access dra, drpa and drpv")
 
         elif interface_type == "ParameterInterface":
-            
+            print(f"[DEBUG] Calling arelements_def.CPA_RPort_prm_Parameter({currentfolder}, {CurrentSWC_shortname}, {port_name}, {interface_name}, {data_element})")
             arelements_def.CPA_RPort_prm_Parameter(currentfolder, CurrentSWC_shortname, port_name, interface_name, data_element)
         
         elif interface_type == "ClientServerInterface":
-            
+            print(f"[DEBUG] Calling arelements_def.SSCP_RPort_CS_Operation({currentfolder}, {CurrentSWC_shortname}, {port_name}, {interface_name}, {data_element})")
             arelements_def.SSCP_RPort_CS_Operation(currentfolder, CurrentSWC_shortname, port_name, interface_name, data_element)
         
         else :
-            print(f" Invalid {interface_type} and port type for data access")
+            print(f"[DEBUG] Invalid {interface_type} and port type for data access")
 
     # Iterate over filtered data for SenderPort
     for _, port_name, interface_type, interface_name, data_element, argument in sender_port_data:
@@ -4293,31 +4775,31 @@ def rnblaccess(Currentrnbl):
         if interface_type == "SenderReceiverInterface" :
 
             if argument == "dsp":
-                
+                print(f"[DEBUG] Calling arelements_def.DSP_RPort_SR_DataElement({currentfolder}, {CurrentSWC_shortname}, {port_name}, {interface_name}, {data_element})")
                 arelements_def.DSP_PPort_SR_DataElement(currentfolder, CurrentSWC_shortname, port_name, interface_name, data_element)
             elif argument == "dwa":
-                
+                print(f"[DEBUG] Calling arelements_def.DWA_RPort_SR_DataElement({currentfolder}, {CurrentSWC_shortname}, {port_name}, {interface_name}, {data_element})")
                 arelements_def.DWA_PPort_SR_DataElement(currentfolder, CurrentSWC_shortname, port_name, interface_name, data_element)
             else :
-                print(f" Invalid {interface_type} for data access dsp,dwa")       
+                print(f"[DEBUG] Invalid {interface_type} for data access dsp,dwa")       
         
         elif interface_type == "NvDataInterface":
 
             if argument == "dsp":
-                
+                print(f"[DEBUG] Calling arelements_def.DSP_RPort_SR_DataElement({currentfolder}, {CurrentSWC_shortname}, {port_name}, {interface_name}, {data_element})")
                 arelements_def.DSP_PPort_SR_DataElement(currentfolder, CurrentSWC_shortname, port_name, interface_name, data_element)
             elif argument == "dwa":
-                
+                print(f"[DEBUG] Calling arelements_def.DWA_RPort_SR_DataElement({currentfolder}, {CurrentSWC_shortname}, {port_name}, {interface_name}, {data_element})")
                 arelements_def.DWA_PPort_SR_DataElement(currentfolder, CurrentSWC_shortname, port_name, interface_name, data_element)
             else :
-                print(f" Invalid {interface_type} for data access dsp,dwa")       
+                print(f"[DEBUG] Invalid {interface_type} for data access dsp,dwa")       
         
         elif interface_type == "ModeSwitchInterface":
-            
+            print(f"[DEBUG] Calling arelements_def.MSP_PPort_msi_ModeGroup({currentfolder}, {CurrentSWC_shortname}, {port_name}, {interface_name}, {data_element})")
             arelements_def.MSP_PPort_msi_ModeGroup(currentfolder, CurrentSWC_shortname, port_name, interface_name, data_element)
         
         else :
-            print(f" Invalid {interface_type} and port type for data access")
+            print(f"[DEBUG] Invalid {interface_type} and port type for data access")
 
 def rnblaccess_WrittenIRV (Currentrnbl):
 
@@ -4329,22 +4811,30 @@ def rnblaccess_WrittenIRV (Currentrnbl):
 
         for a,b,c,d,e in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable):
             if a == 'ExplicitInterRunnableVariable' and e == Currentrnbl:
-                
+                print(f"[DEBUG] Calling arelements_def.IRVWA_ExplicitInterRunnableVariable({b}, {currentfolder}, {CurrentSWC_shortname})")               
                 arelements_def.IRVWA_ExplicitInterRunnableVariable(b, currentfolder, CurrentSWC_shortname )
                 
             elif a == 'ImplicitInterRunnableVariables'and e == Currentrnbl:
-                
+                print(f"[DEBUG] Calling arelements_def.IRVWA_ImplicitInterRunnableVariable({b}, {currentfolder}, {CurrentSWC_shortname})")                
                 arelements_def.IRVWA_ImplicitInterRunnableVariable(b, currentfolder, CurrentSWC_shortname)
 
             else :
-                print(f" Invalid {a} for IRV access")
+                print(f"[DEBUG] Invalid {a} for IRV access")
 
 def read_write_access(port_type_filter, Currentrnbl):
-
+   print("\n[DEBUG] Starting read_write_access function")
+   print(f"[DEBUG] Filtering for Port Type: {port_type_filter}, Current Rnbl: {Currentrnbl}")
    # Read required columns from Excel
    port_type_col, port_name_col, interface_type_col, interface_name_col, data_element_col, argument_col, _, accessing_rnbl_col = excel_reader.read_columns(ports, 'B', 'I')
-
-
+   # Debugging: Print raw data from Excel
+   print("[DEBUG] Raw Data Read from Excel:")
+   print(f"  Port Type Col: {port_type_col}")
+   print(f"  Port Name Col: {port_name_col}")
+   print(f"  Interface Type Col: {interface_type_col}")
+   print(f"  Interface Name Col: {interface_name_col}")
+   print(f"  Data Element Col: {data_element_col}")
+   print(f"  Argument Col: {argument_col}")
+   print(f"  Accessing Rnbl Col: {accessing_rnbl_col}")
    # Ensure all columns are lists and flatten them if necessary
    def flatten(lst):
        return [item for sublist in lst for item in sublist] if any(isinstance(i, list) for i in lst) else lst
@@ -4365,10 +4855,18 @@ def read_write_access(port_type_filter, Currentrnbl):
    data_element_col = flatten(data_element_col or [])  
    argument_col = flatten(argument_col or [])  
    accessing_rnbl_col = fill_merged_cells(flatten(accessing_rnbl_col or []))
-
+   # Debugging: Print cleaned-up data
+   print("\n[DEBUG] After Flattening & Merged Cell Handling:")
+   print(f"  Port Type Col: {port_type_col}")
+   print(f"  Port Name Col: {port_name_col}")
+   print(f"  Interface Type Col: {interface_type_col}")
+   print(f"  Interface Name Col: {interface_name_col}")
+   print(f"  Data Element Col: {data_element_col}")
+   print(f"  Argument Col: {argument_col}")
+   print(f"  Accessing Rnbl Col: {accessing_rnbl_col}")
    # Ensure mandatory fields are not empty
    if not all(port_name_col) or not all(interface_name_col) or not all(data_element_col) or not all(argument_col):
-
+       print("[ERROR] Mandatory fields cannot be empty!")
        raise ValueError("Mandatory fields (port_name_col, interface_name_col, data_element_col, argument_col) cannot be empty.")
    # Filter rows where accessing_rnbl_col matches Currentrnbl
    filtered_data = []
@@ -4377,12 +4875,16 @@ def read_write_access(port_type_filter, Currentrnbl):
            data_element_col, argument_col, accessing_rnbl_col):
        if rnbl == Currentrnbl:
            filtered_data.append((ptype, pname, itype, iname, delem, arg))
-
-   
+   # Debugging: Print filtered data
+   print(f"\n[DEBUG] Filtered Data (Matching Currentrnbl={Currentrnbl}):")
+   for row in filtered_data:
+       print(row)
    # Further filter by port type
    final_filtered_data = [row for row in filtered_data if row[0] == port_type_filter]
-
-
+   # Debugging: Print final filtered data
+   print(f"\n[DEBUG] Final Filtered Data (Matching Port Type: {port_type_filter}):")
+   for row in final_filtered_data:
+       print(row)
    return final_filtered_data
 
 
@@ -4399,57 +4901,70 @@ def Createports():
     # Read the port types and names from the specified columns in the ports data
     PortType, PortName, IfType, IfName = excel_reader.read_columns(ports, 'B', 'E')
     
+    Prev_PortName = []
+
     # Iterate over the port names and their corresponding types
     for port_name, port_type, if_type, if_name in zip(PortName, PortType, IfType, IfName):
         # Check if the port type is 'ReceiverPort'
-        if port_type == 'ReceiverPort':
-            # Add a new Receiver Port Prototype to the current SWC with the given port name
+        if port_name in Prev_PortName :
 
-            if if_type == 'SenderReceiverInterface':
-                arelements_def.RPort_SR(port_name,if_name)
+                print(f"\n[DEBUG] duplicate {port_name}")
 
-            elif if_type == 'ClientServerInterface':
-                arelements_def.RPort_CS(port_name,if_name)
+                Pass
 
-            elif if_type == 'ModeSwitchInterface':
-                arelements_def.RPort_msi(port_name,if_name)
+        else :
 
-            elif if_type == 'NvDataInterface':
-                arelements_def.RPort_nvd(port_name,if_name)
+            Prev_PortName.append(port_name)
 
-            elif if_type == 'ParameterInterface':
-                arelements_def.RPort_prm(port_name,if_name)
-            
-            elif if_type == 'TriggerInterface':
-                arelements_def.RPort_trigger(port_name,if_name)
+            print(f"\n[DEBUG] {Prev_PortName}")
+
+            if port_type == 'ReceiverPort':
+                # Add a new Receiver Port Prototype to the current SWC with the given port name
+                if if_type == 'SenderReceiverInterface':
+                    arelements_def.RPort_SR(port_name,if_name)
+
+                elif if_type == 'ClientServerInterface':
+                    arelements_def.RPort_CS(port_name,if_name)
+
+                elif if_type == 'ModeSwitchInterface':
+                    arelements_def.RPort_msi(port_name,if_name)
+
+                elif if_type == 'NvDataInterface':
+                    arelements_def.RPort_nvd(port_name,if_name)
+
+                elif if_type == 'ParameterInterface':
+                    arelements_def.RPort_prm(port_name,if_name)
+                
+                elif if_type == 'TriggerInterface':
+                    arelements_def.RPort_trigger(port_name,if_name)
+
+                else:
+                    # Print a message if the port type is unknown
+                    print(f"Unknown interface type: {if_type} for interface {if_name}")
+
+
+            # Check if the port type is 'SenderPort'
+            elif port_type == 'SenderPort':
+                # Add a new Sender Port Prototype to the current SWC with the given port name
+                if if_type == 'SenderReceiverInterface':
+                    arelements_def.PPort_SR(port_name,if_name)
+
+                elif if_type == 'ClientServerInterface':
+                    arelements_def.PPort_CS(port_name,if_name)
+
+                elif if_type == 'ModeSwitchInterface':
+                    arelements_def.PPort_msi(port_name,if_name)
+
+                elif if_type == 'NvDataInterface':
+                    arelements_def.PPort_nvd(port_name,if_name)
+
+                else:
+                    # Print a message if the port type is unknown
+                    print(f"Unknown interface type: {if_type} for interface {if_name}")
 
             else:
                 # Print a message if the port type is unknown
-                print(f"Unknown interface type: {if_type} for interface {if_name}")
-
-
-        # Check if the port type is 'SenderPort'
-        elif port_type == 'SenderPort':
-            # Add a new Sender Port Prototype to the current SWC with the given port name
-            if if_type == 'SenderReceiverInterface':
-                arelements_def.PPort_SR(port_name,if_name)
-
-            elif if_type == 'ClientServerInterface':
-                arelements_def.PPort_CS(port_name,if_name)
-
-            elif if_type == 'ModeSwitchInterface':
-                arelements_def.PPort_msi(port_name,if_name)
-
-            elif if_type == 'NvDataInterface':
-                arelements_def.PPort_nvd(port_name,if_name)
-
-            else:
-                # Print a message if the port type is unknown
-                print(f"Unknown interface type: {if_type} for interface {if_name}")
-
-        else:
-            # Print a message if the port type is unknown
-            print(f"Unknown port type: {port_type} for port {port_name}")
+                print(f"Unknown port type: {port_type} for port {port_name}")
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #               # ####################### =============== %%%%%%%%% ++++++++++++ ---------- __________ SECTION :  interfaces __________ ----------  ++++++++++++ %%%%%%%%% =============== ####################### #               #
@@ -4887,7 +5402,13 @@ def createcompumethod():
    CompuMethodName, CompuMethodCategory, CompuScaleOROffset, EnumStatesORLSB, Unit = excel_reader.read_columns(
        adt_primitive, 'D', 'H'
    )
-
+   # Debug: Print raw data from Excel
+   print("\nDEBUG: Raw data from Excel")
+   print(f"CompuMethodName: {CompuMethodName}")
+   print(f"CompuMethodCategory: {CompuMethodCategory}")
+   print(f"CompuScaleOROffset: {CompuScaleOROffset}")
+   print(f"EnumStatesORLSB: {EnumStatesORLSB}")
+   print(f"Unit: {Unit}")
    # Dictionary to store collected data
    compu_methods = {}
    current_compu_method_name = None
@@ -4905,7 +5426,7 @@ def createcompumethod():
                    "compu_scale": compu_scale if compu_scale else [],
                    "enum_states": enum_states if enum_states else [],
                }
-               
+               print(f"DEBUG: Saved data for {current_compu_method_name} -> Scale: {compu_scale}, Enum: {enum_states}")
            # **Reset lists and assign new method details**
            current_compu_method_name = name
            current_compu_method_category = category
@@ -4925,14 +5446,15 @@ def createcompumethod():
            "compu_scale": compu_scale if compu_scale else [],
            "enum_states": enum_states if enum_states else [],
        }
-      
+       print(f"DEBUG: Final Save for {current_compu_method_name} -> Scale: {compu_scale}, Enum: {enum_states}")
+   print("\nDEBUG: Completed CompuMethod collection, now processing...")
    # **Process all collected methods using if-else**
    for method_name, details in compu_methods.items():
        category = details["category"]
        compu_scale = details["compu_scale"]
        enum_states = details["enum_states"]
        unit = details["unit"]
-       
+       print(f"\nDEBUG: Processing CompuMethod: {method_name}, Category: {category}, Scale: {compu_scale}, Enum: {enum_states}, Unit: {unit}")
        if category == "IDENTICAL":
            handle_identical(method_name, compu_scale, enum_states, unit)
        elif category == "TEXTTABLE":
@@ -4955,7 +5477,7 @@ def createcompumethod():
            handle_bitfield_texttable(method_name, compu_scale, enum_states, unit)
        else:
            print(f"Warning: Invalid CompuMethod category '{category}' for method '{method_name}'")
-
+   print("\nDEBUG: CompuMethod processing completed.")
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -4966,12 +5488,16 @@ def createDC():
     # Read columns from the adt_primitive data source
     DataConstraintName, DataConstraintType, Min, Max = excel_reader.read_columns(adt_primitive, 'I', 'L')
     
+    # Zipping and removing duplicates while maintaining order
+    zipped_data = list(zip(DataConstraintName, DataConstraintType, Min, Max))
+    unique_data = list(dict.fromkeys(zipped_data))  # Remove duplicates
+    
     # Get the Data Constraints package from the shared elements
     DataConstr_folder_elements = arxml_structure.get_variable('DataConstr_folder_elements')
     
     # Iterate through the data constraints
-    for a, b, c, d in zip(DataConstraintName, DataConstraintType, Min, Max):
-        constrLevel = 0  # Initialize constraint level
+    for a, b, c, d in unique_data:
+
         lowerLimit = c   # Set lower limit from the read data
         upperLimit = d   # Set upper limit from the read data
         
@@ -5025,66 +5551,67 @@ def createprimitive():
 
 def createcomposite():
    """Creates composite data types (Record & Array) from Excel data."""
- 
+   print("Reading Excel columns...")
    Composite_category, ARDT_ShortName, ARDT_element_shortname, ARDT_element_type, data_type = excel_reader.read_columns( adt_composite, 'B', 'F' )
-
+   print(f"Read {len(Composite_category)} rows from Excel.")
    previous_category = None
    previous_shortname = None
    record_elements = []
    for idx, (a, b, c, d, e) in enumerate(zip( Composite_category, ARDT_ShortName, ARDT_element_shortname, ARDT_element_type, data_type )):
-
+       print(f"\nProcessing Row {idx + 1}:")
+       print(f"Category: {a}, ShortName: {b}, ElementShortName: {c}, Type: {d}, DataType: {e}")
        # Handling RECORD (STRUCTURE)
        if a == 'RECORD':  
-
+           print("Detected RECORD category.")
            if previous_category == 'RECORD' and previous_shortname and previous_shortname != b:
-
+               print(f"Creating ApplicationRecordDataType for {previous_shortname}")
                Record_folder_elements = arxml_structure.get_variable('Record_folder_elements')
                arelements_def.ApplicationRecordDataType(Record_folder_elements, previous_shortname)
-
+               print(f"Record elements before unpacking: {record_elements}")  # Debugging print
                for elem in record_elements:
                    if len(elem) == 3:
                        elem_c, elem_d, elem_e = elem
-                       
+                       print(f"Adding Record Element: {elem_c}, Type: {elem_d}, DataType: {elem_e}")
                        arelements_def.ApplicationRecordDataType_elements(elem_c, elem_d, elem_e)
                    else:
                        print(f"Skipping malformed record element: {elem}")  # If something is incorrect
                record_elements = []  
-               
+               print("Cleared record elements for new RECORD.")
            previous_category = a
            previous_shortname = b
            record_elements.append((c, d, e))
-           
+           print(f"Collected RECORD element: {c}, Type: {d}, DataType: {e}")
        # Handling ARRAY
        elif a == 'ARRAY':  
-           
+           print("Detected ARRAY category.")
            Array_folder_elements = arxml_structure.get_variable('Array_folder_elements')
            if (b, c, d, e) not in record_elements:
                if d == 'VARIABLE':
-  
+                   print(f"Creating ApplicationArrayDataType_Variable for {b}")
                    arelements_def.ApplicationArrayDataType_Variable(Array_folder_elements, b, e, c)
                elif d == 'FIXED':
-                 
+                   print(f"Creating ApplicationArrayDataType_Fixed for {b}")
                    arelements_def.ApplicationArrayDataType_Fixed(Array_folder_elements, b, e, c)
                else:
                    print(f"Invalid array category '{d}' for '{b}'. Expected 'VARIABLE' or 'FIXED'.")
                record_elements.append((b, c, d, e))
-               
+               print(f"Marked ARRAY row as processed: {b}, {c}, {d}, {e}")
            else:
                print("Skipping duplicate ARRAY row.")
    # Finalizing the last RECORD
    if previous_category == 'RECORD' and previous_shortname:
-
+       print(f"Finalizing last RECORD: {previous_shortname}")
        Record_folder_elements = arxml_structure.get_variable('Record_folder_elements')
        arelements_def.ApplicationRecordDataType(Record_folder_elements, previous_shortname)
-
+       print(f"Record elements before unpacking: {record_elements}")  # Debugging print
        for elem in record_elements:
            if len(elem) == 3:
                elem_c, elem_d, elem_e = elem
-               
+               print(f"Adding final Record Element: {elem_c}, Type: {elem_d}, DataType: {elem_e}")
                arelements_def.ApplicationRecordDataType_elements(elem_c, elem_d, elem_e)
            else:
                print(f"Skipping malformed record element: {elem}")
-
+   print("Processing completed.")
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -5094,10 +5621,10 @@ def createcomposite():
 def createcustomIDT():
    # Get the Data Constraints package from shared elements
    ImplementationDataTypes_folder_elements = arxml_structure.get_variable('ImplementationDataTypes_folder_elements')
-
+   print("[DEBUG] Retrieved ImplementationDataTypes_folder_elements")
    # Read columns: type, shortname, arraysize/idtelementshortname, IDT
    IDT_type, IDT_shortname, IRDT_element_shortname, data_type = excel_reader.read_columns(idt, 'B', 'E')
-
+   print(f"[DEBUG] Read {len(IDT_type)} IDT entries from Excel")
    record_shortname = None
    record_elements = []
    for i in range(len(IDT_type)):
@@ -5105,69 +5632,69 @@ def createcustomIDT():
        idt_shortname = IDT_shortname[i]
        idt_element_shortname = IRDT_element_shortname[i]
        idt_data_type = data_type[i]
-       
+       print(f"[DEBUG] Processing index {i}: Type={idt_type}, Shortname={idt_shortname}, Element={idt_element_shortname}, DataType={idt_data_type}")
        if idt_type == 'ARRAY_FIXED':
            # Process any pending RECORD before handling ARRAY_FIXED
            if record_shortname:
-               
+               print(f"[DEBUG] Processing collected RECORD: {record_shortname} with {len(record_elements)} elements")
                arelements_def.ImplementationDataType_Structure(ImplementationDataTypes_folder_elements, record_shortname)
                for element_shortname, element_data_type in record_elements:
-                   
+                   print(f"[DEBUG] Adding RECORD element: {element_shortname}, {element_data_type}")
                    arelements_def.ImplementationDataType_Record_elements(element_shortname, element_data_type)
                record_shortname = None
                record_elements.clear()
-           
+           print(f"[DEBUG] Creating ARRAY_FIXED: {idt_shortname}, {idt_element_shortname}, {idt_data_type}")
            arelements_def.ImplementationDataType_ArrayFixed(ImplementationDataTypes_folder_elements,
                                                              idt_shortname, idt_element_shortname, idt_data_type)
        elif idt_type == 'ARRAY_VARIABLE':
            # Process any pending RECORD before handling ARRAY_VARIABLE
            if record_shortname:
-               
+               print(f"[DEBUG] Processing collected RECORD: {record_shortname} with {len(record_elements)} elements")
                arelements_def.ImplementationDataType_Structure(ImplementationDataTypes_folder_elements, record_shortname)
                for element_shortname, element_data_type in record_elements:
-                   
+                   print(f"[DEBUG] Adding RECORD element: {element_shortname}, {element_data_type}")
                    arelements_def.ImplementationDataType_Record_elements(element_shortname, element_data_type)
                record_shortname = None
                record_elements.clear()
-           
+           print(f"[DEBUG] Creating ARRAY_VARIABLE: {idt_shortname}, {idt_element_shortname}, {idt_data_type}")
            arelements_def.ImplementationDataType_ArrayVariable(ImplementationDataTypes_folder_elements,
                                                                 idt_shortname, idt_element_shortname, idt_data_type)
        elif idt_type == 'PRIMITIVE':
            # Process any pending RECORD before handling PRIMITIVE
            if record_shortname:
-               
+               print(f"[DEBUG] Processing collected RECORD: {record_shortname} with {len(record_elements)} elements")
                arelements_def.ImplementationDataType_Structure(ImplementationDataTypes_folder_elements, record_shortname)
                for element_shortname, element_data_type in record_elements:
-                   
+                   print(f"[DEBUG] Adding RECORD element: {element_shortname}, {element_data_type}")
                    arelements_def.ImplementationDataType_Record_elements(element_shortname, element_data_type)
                record_shortname = None
                record_elements.clear()
-           
+           print(f"[DEBUG] Creating PRIMITIVE: {idt_shortname}, {idt_data_type}")
            arelements_def.ImplementationDataType(ImplementationDataTypes_folder_elements,
                                                  idt_shortname, idt_data_type)
        elif idt_type == 'RECORD':
            if record_shortname and idt_shortname != record_shortname:
                # If a new RECORD structure starts, process the previous one
-               
+               print(f"[DEBUG] Processing collected RECORD: {record_shortname} with {len(record_elements)} elements")
                arelements_def.ImplementationDataType_Structure(ImplementationDataTypes_folder_elements, record_shortname)
                for element_shortname, element_data_type in record_elements:
-                   
+                   print(f"[DEBUG] Adding RECORD element: {element_shortname}, {element_data_type}")
                    arelements_def.ImplementationDataType_Record_elements(element_shortname, element_data_type)
                record_elements.clear()
            record_shortname = idt_shortname
            record_elements.append((idt_element_shortname, idt_data_type))
-           
+           print(f"[DEBUG] Collecting RECORD elements for {record_shortname}: {idt_element_shortname}, {idt_data_type}")
        else:
            print(f"[ERROR] Unknown IDT_type: {idt_type}")
            raise ValueError(f"Unknown IDT_type: {idt_type}")
    # Process any remaining RECORD at the end of the loop
    if record_shortname and record_elements:
-     
+       print(f"[DEBUG] Final Processing for RECORD: {record_shortname} with {len(record_elements)} elements")
        arelements_def.ImplementationDataType_Structure(ImplementationDataTypes_folder_elements, record_shortname)
        for element_shortname, element_data_type in record_elements:
-           
+           print(f"[DEBUG] Adding RECORD element: {element_shortname}, {element_data_type}")
            arelements_def.ImplementationDataType_Record_elements(element_shortname, element_data_type)
-
+   print("[DEBUG] Finished processing all IDT entries")
 
 
 
@@ -5200,12 +5727,11 @@ def Main():
 
         # Add indentation
         indent(root2)
-        
-        
+
         from excel_utils import Excelfile_name
         
         print("The latest Excel file name is:", Excelfile_name)
-        Arxml_directory = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_24_03\COMBINED_AUTOMATION\Intermidiate_Outputs\Generated_ARXMLL"
+        Arxml_directory = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_24_03\COMBINED_AUTOMATION\Intermidiate_Outputs\Generated_ARXML"
        
         os.makedirs(Arxml_directory, exist_ok=True)
         

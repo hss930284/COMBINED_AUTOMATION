@@ -1,0 +1,20 @@
+Sheet: swc_info, Cell: B1
+  - Original Value: ApplicationSwComponentType
+  - Updated Value: ComplexDeviceDriverSwComponentType
+--------------------------------------------------
+Sheet: swc_info, Cell: C1
+  - Original Value: Asw_swc
+  - Updated Value: EA_swc
+--------------------------------------------------
+Sheet: swc_info, Cell: E1
+  - Original Value: IB_Asw_swc
+  - Updated Value: IB_EA_swc
+--------------------------------------------------
+Sheet: ib_data, Cell: G2
+  - Original Value: READ-WRITE
+  - Updated Value: READ
+--------------------------------------------------
+Sheet: ib_data, Cell: H2
+  - Original Value: STANDARD
+  - Updated Value: QUEUED
+--------------------------------------------------

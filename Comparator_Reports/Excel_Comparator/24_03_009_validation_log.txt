@@ -1,0 +1,32 @@
+Sheet: swc_info, Cell: B1
+  - Original Value: ApplicationSwComponentType
+  - Updated Value: EcuAbstractionSwComponentType
+--------------------------------------------------
+Sheet: swc_info, Cell: C1
+  - Original Value: Asw_swc
+  - Updated Value: EA_swc
+--------------------------------------------------
+Sheet: swc_info, Cell: E1
+  - Original Value: IB_Asw_swc
+  - Updated Value: IB_EA_swc
+--------------------------------------------------
+Sheet: swc_info, Cell: L3
+  - Original Value: DataSendCompletedEvent
+  - Updated Value: TimingEvent
+--------------------------------------------------
+Sheet: swc_info, Cell: M3
+  - Original Value: CD_CrshSt_R1
+  - Updated Value: 0.45345
+--------------------------------------------------
+Sheet: swc_info, Cell: N3
+  - Original Value: CHAdeMOS
+  - Updated Value: abc3
+--------------------------------------------------
+Sheet: ib_data, Cell: G2
+  - Original Value: READ-WRITE
+  - Updated Value: READ
+--------------------------------------------------
+Sheet: ib_data, Cell: H2
+  - Original Value: STANDARD
+  - Updated Value: QUEUED
+--------------------------------------------------

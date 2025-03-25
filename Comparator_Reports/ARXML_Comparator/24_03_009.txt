@@ -1,0 +1,1108 @@
+Line 3038 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3062 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3079 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3095 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3111 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3127 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3142 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3158 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3173 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3189 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3205 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3220 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3236 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3251 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3267 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3282 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3298 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3314 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3329 (Old File): <TYPE-EMITTER>Platform_Types.h</TYPE-EMITTER>
+Line 3344 (Old File): <BSW-ENTRY-KIND>ABSTRACT</BSW-ENTRY-KIND>
+Line 3360 (Old File): <DIRECTION>IN</DIRECTION>
+Line 3382 (Old File): <DIRECTION>IN</DIRECTION>
+Line 3394 (Old File): <DIRECTION>OUT</DIRECTION>
+Line 3415 (Old File): <DIRECTION>OUT</DIRECTION>
+Line 3680 (Old File): <TYPE-EMITTER>Std_Types.h</TYPE-EMITTER>
+Line 3697 (Old File): <TYPE-EMITTER>Std_Types.h</TYPE-EMITTER>
+Line 3714 (Old File): <TYPE-EMITTER>Std_Types.h</TYPE-EMITTER>
+Line 3731 (Old File): <TYPE-EMITTER>Std_Types.h</TYPE-EMITTER>
+Line 3748 (Old File): <TYPE-EMITTER>Std_Types.h</TYPE-EMITTER>
+Line 3777 (Old File): <TYPE-EMITTER>Std_Types.h</TYPE-EMITTER>
+Line 3793 (Old File): <TYPE-EMITTER>Std_Types.h</TYPE-EMITTER>
+Line 3807 (Old File): <TYPE-EMITTER>Std_Types.h</TYPE-EMITTER>
+Line 3872 (Old File): <TYPE-EMITTER>Std_Types.h</TYPE-EMITTER>
+Line 3921 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/uint8</TYPE-TREF>
+Line 3888 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUpdas</TYPE-TREF>
+-------------------------
+Line 3932 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/uint8</TYPE-TREF>
+Line 3899 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUpdas</TYPE-TREF>
+-------------------------
+Line 3943 (Old File): <SHORT-NAME>uint16</SHORT-NAME>
+Line 3910 (New File): <SHORT-NAME>ADTS_APCRCDWkUp</SHORT-NAME>
+-------------------------
+Line 3951 (Old File): <UNIT-REF DEST="UNIT">/AUTOSAR/AUTOSAR_PhysicalUnits/Units/MtrSqd</UNIT-REF>
+Line 3918 (New File): <UNIT-REF DEST="UNIT">/AUTOSAR/AUTOSAR_PhysicalUnits/Units/NoUnit</UNIT-REF>
+-------------------------
+Line 3957 (Old File): <SHORT-NAME>ADTS_CHAdeMOStat</SHORT-NAME>
+Line 3924 (New File): <SHORT-NAME>ADTS_APCRCDWkUpdas</SHORT-NAME>
+-------------------------
+Line 3963 (Old File): <COMPU-METHOD-REF DEST="COMPU-METHOD">/SharedElements/CompuMethods/CM_APCRCDWkUpqw</COMPU-METHOD-REF>
+Line 3930 (New File): <COMPU-METHOD-REF DEST="COMPU-METHOD">/SharedElements/CompuMethods/CM_APCRCDWkUp2</COMPU-METHOD-REF>
+-------------------------
+Line 3971 (Old File): <SHORT-NAME>ADTS_CrshSt</SHORT-NAME>
+Line 3938 (New File): <SHORT-NAME>ADTS_APCRCDWkUp1</SHORT-NAME>
+-------------------------
+Line 4009 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/uint8</TYPE-TREF>
+Line 3976 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUpdas</TYPE-TREF>
+-------------------------
+Line 4013 (Old File): <TYPE-TREF DEST="APPLICATION-RECORD-DATA-TYPE">/SharedElements/ApplicationDataTypes/Record/uint8</TYPE-TREF>
+Line 3980 (New File): <TYPE-TREF DEST="APPLICATION-RECORD-DATA-TYPE">/SharedElements/ApplicationDataTypes/Record/struct2</TYPE-TREF>
+-------------------------
+Line 4017 (Old File): <TYPE-TREF DEST="APPLICATION-ARRAY-DATA-TYPE">/SharedElements/ApplicationDataTypes/Array/uint8</TYPE-TREF>
+Line 3984 (New File): <TYPE-TREF DEST="APPLICATION-ARRAY-DATA-TYPE">/SharedElements/ApplicationDataTypes/Array/array1</TYPE-TREF>
+-------------------------
+Line 4021 (Old File): <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/uint8</TYPE-TREF>
+Line 3988 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUpdas</TYPE-TREF>
+-------------------------
+Line 3989 (New File): </APPLICATION-RECORD-ELEMENT>
+-------------------------
+Line 3990 (New File): </ELEMENTS>
+-------------------------
+Line 3991 (New File): </APPLICATION-RECORD-DATA-TYPE>
+-------------------------
+Line 3992 (New File): <APPLICATION-RECORD-DATA-TYPE >
+-------------------------
+Line 3993 (New File): <SHORT-NAME>struct2</SHORT-NAME>
+-------------------------
+Line 3994 (New File): <CATEGORY>STRUCTURE</CATEGORY>
+-------------------------
+Line 3995 (New File): <ELEMENTS>
+-------------------------
+Line 3996 (New File): <APPLICATION-RECORD-ELEMENT >
+-------------------------
+Line 3997 (New File): <SHORT-NAME>el</SHORT-NAME>
+-------------------------
+Line 3998 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUpdas</TYPE-TREF>
+-------------------------
+Line 3999 (New File): </APPLICATION-RECORD-ELEMENT>
+-------------------------
+Line 4000 (New File): <APPLICATION-RECORD-ELEMENT >
+-------------------------
+Line 4001 (New File): <SHORT-NAME>element20</SHORT-NAME>
+-------------------------
+Line 4002 (New File): <TYPE-TREF DEST="APPLICATION-RECORD-DATA-TYPE">/SharedElements/ApplicationDataTypes/Record/struct1</TYPE-TREF>
+-------------------------
+Line 4035 (Old File): <UNIT-REF DEST="UNIT">/AUTOSAR/AUTOSAR_PhysicalUnits/Units/MtrSqd</UNIT-REF>
+Line 4016 (New File): <UNIT-REF DEST="UNIT">/AUTOSAR/AUTOSAR_PhysicalUnits/Units/NoUnit</UNIT-REF>
+-------------------------
+Line 4038 (Old File): <SHORT-NAME>CM_APCRCDWkUpqw</SHORT-NAME>
+Line 4019 (New File): <SHORT-NAME>CM_APCRCDWkUp2</SHORT-NAME>
+-------------------------
+Line 4052 (Old File): <VT>APCRCD_WakeUp</VT>
+Line 4033 (New File): <VT>abcd</VT>
+-------------------------
+Line 4059 (Old File): <VT>APCRCD_NoWakeUp</VT>
+Line 4040 (New File): <VT>abcd1</VT>
+-------------------------
+Line 4092 (Old File): <VT>ActnOnErToMM_Warning</VT>
+Line 4073 (New File): <VT>ActnOnErToMM_NoError1</VT>
+-------------------------
+Line 4099 (Old File): <VT>ActnOnErToMM_MCBRecoverableStandby</VT>
+Line 4080 (New File): <VT>ActnOnErToMM_NoError2</VT>
+-------------------------
+Line 4120 (Old File): <VT>ActnOnErToMM_OBCRecoverableError</VT>
+Line 4101 (New File): <VT>ActnOnErToMM_OBCNotReady1</VT>
+-------------------------
+Line 4172 (Old File): <SHORT-NAME>DC_APCRCDWkUp</SHORT-NAME>
+Line 4173 (Old File): <DATA-CONSTR-RULES>
+Line 4174 (Old File): <DATA-CONSTR-RULE>
+Line 4175 (Old File): <PHYS-CONSTRS>
+Line 4176 (Old File): <LOWER-LIMIT>0</LOWER-LIMIT>
+Line 4177 (Old File): <UPPER-LIMIT>1</UPPER-LIMIT>
+Line 4178 (Old File): </PHYS-CONSTRS>
+Line 4179 (Old File): </DATA-CONSTR-RULE>
+Line 4180 (Old File): </DATA-CONSTR-RULES>
+Line 4181 (Old File): </DATA-CONSTR>
+Line 4182 (Old File): <DATA-CONSTR >
+Line 4183 (Old File): <SHORT-NAME>DC_APCRCDWkUp</SHORT-NAME>
+Line 4184 (Old File): <DATA-CONSTR-RULES>
+Line 4185 (Old File): <DATA-CONSTR-RULE>
+Line 4186 (Old File): <PHYS-CONSTRS>
+Line 4187 (Old File): <LOWER-LIMIT>0</LOWER-LIMIT>
+Line 4188 (Old File): <UPPER-LIMIT>1</UPPER-LIMIT>
+Line 4189 (Old File): </PHYS-CONSTRS>
+Line 4190 (Old File): </DATA-CONSTR-RULE>
+Line 4191 (Old File): </DATA-CONSTR-RULES>
+Line 4192 (Old File): </DATA-CONSTR>
+Line 4193 (Old File): <DATA-CONSTR >
+Line 4194 (Old File): <SHORT-NAME>DC_ActnOnErToMM</SHORT-NAME>
+Line 4195 (Old File): <DATA-CONSTR-RULES>
+Line 4196 (Old File): <DATA-CONSTR-RULE>
+Line 4197 (Old File): <PHYS-CONSTRS>
+Line 4198 (Old File): <LOWER-LIMIT>0</LOWER-LIMIT>
+Line 4199 (Old File): <UPPER-LIMIT>7</UPPER-LIMIT>
+Line 4200 (Old File): </PHYS-CONSTRS>
+Line 4201 (Old File): </DATA-CONSTR-RULE>
+Line 4202 (Old File): </DATA-CONSTR-RULES>
+Line 4203 (Old File): </DATA-CONSTR>
+Line 4204 (Old File): <DATA-CONSTR >
+Line 4205 (Old File): <SHORT-NAME>DC_ActnOnErToMM</SHORT-NAME>
+Line 4206 (Old File): <DATA-CONSTR-RULES>
+Line 4207 (Old File): <DATA-CONSTR-RULE>
+Line 4208 (Old File): <PHYS-CONSTRS>
+Line 4209 (Old File): <LOWER-LIMIT>0</LOWER-LIMIT>
+Line 4210 (Old File): <UPPER-LIMIT>7</UPPER-LIMIT>
+Line 4211 (Old File): </PHYS-CONSTRS>
+Line 4212 (Old File): </DATA-CONSTR-RULE>
+Line 4213 (Old File): </DATA-CONSTR-RULES>
+Line 4214 (Old File): </DATA-CONSTR>
+Line 4215 (Old File): <DATA-CONSTR >
+Line 4216 (Old File): <SHORT-NAME>DC_ActnOnErToMM</SHORT-NAME>
+Line 4217 (Old File): <DATA-CONSTR-RULES>
+Line 4218 (Old File): <DATA-CONSTR-RULE>
+Line 4219 (Old File): <PHYS-CONSTRS>
+Line 4220 (Old File): <LOWER-LIMIT>0</LOWER-LIMIT>
+Line 4221 (Old File): <UPPER-LIMIT>7</UPPER-LIMIT>
+Line 4222 (Old File): </PHYS-CONSTRS>
+Line 4223 (Old File): </DATA-CONSTR-RULE>
+Line 4224 (Old File): </DATA-CONSTR-RULES>
+Line 4225 (Old File): </DATA-CONSTR>
+Line 4226 (Old File): <DATA-CONSTR >
+Line 4227 (Old File): <SHORT-NAME>DC_ActnOnErToMM</SHORT-NAME>
+Line 4228 (Old File): <DATA-CONSTR-RULES>
+Line 4229 (Old File): <DATA-CONSTR-RULE>
+Line 4230 (Old File): <PHYS-CONSTRS>
+Line 4231 (Old File): <LOWER-LIMIT>0</LOWER-LIMIT>
+Line 4232 (Old File): <UPPER-LIMIT>7</UPPER-LIMIT>
+Line 4233 (Old File): </PHYS-CONSTRS>
+Line 4234 (Old File): </DATA-CONSTR-RULE>
+Line 4235 (Old File): </DATA-CONSTR-RULES>
+Line 4236 (Old File): </DATA-CONSTR>
+Line 4237 (Old File): <DATA-CONSTR >
+Line 4238 (Old File): <SHORT-NAME>DC_ActnOnErToMM</SHORT-NAME>
+Line 4239 (Old File): <DATA-CONSTR-RULES>
+Line 4240 (Old File): <DATA-CONSTR-RULE>
+Line 4241 (Old File): <PHYS-CONSTRS>
+Line 4242 (Old File): <LOWER-LIMIT>0</LOWER-LIMIT>
+Line 4243 (Old File): <UPPER-LIMIT>7</UPPER-LIMIT>
+Line 4244 (Old File): </PHYS-CONSTRS>
+Line 4245 (Old File): </DATA-CONSTR-RULE>
+Line 4246 (Old File): </DATA-CONSTR-RULES>
+Line 4247 (Old File): </DATA-CONSTR>
+Line 4248 (Old File): <DATA-CONSTR >
+Line 4249 (Old File): <SHORT-NAME>DC_ActnOnErToMM</SHORT-NAME>
+Line 4250 (Old File): <DATA-CONSTR-RULES>
+Line 4251 (Old File): <DATA-CONSTR-RULE>
+Line 4252 (Old File): <PHYS-CONSTRS>
+Line 4253 (Old File): <LOWER-LIMIT>0</LOWER-LIMIT>
+Line 4254 (Old File): <UPPER-LIMIT>7</UPPER-LIMIT>
+Line 4255 (Old File): </PHYS-CONSTRS>
+Line 4256 (Old File): </DATA-CONSTR-RULE>
+Line 4257 (Old File): </DATA-CONSTR-RULES>
+Line 4258 (Old File): </DATA-CONSTR>
+Line 4259 (Old File): <DATA-CONSTR >
+Line 4260 (Old File): <SHORT-NAME>DC_ActnOnErToMM</SHORT-NAME>
+Line 4261 (Old File): <DATA-CONSTR-RULES>
+Line 4262 (Old File): <DATA-CONSTR-RULE>
+Line 4263 (Old File): <PHYS-CONSTRS>
+Line 4264 (Old File): <LOWER-LIMIT>0</LOWER-LIMIT>
+Line 4265 (Old File): <UPPER-LIMIT>7</UPPER-LIMIT>
+Line 4266 (Old File): </PHYS-CONSTRS>
+Line 4267 (Old File): </DATA-CONSTR-RULE>
+Line 4268 (Old File): </DATA-CONSTR-RULES>
+Line 4269 (Old File): </DATA-CONSTR>
+Line 4270 (Old File): <DATA-CONSTR >
+Line 4287 (Old File): <SHORT-NAME>DTMS_Asw_swc</SHORT-NAME>
+Line 4169 (New File): <SHORT-NAME>DTMS_EA_swc</SHORT-NAME>
+-------------------------
+Line 4290 (Old File): <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-ARRAY-DATA-TYPE">/SharedElements/ApplicationDataTypes/Array/uint16</APPLICATION-DATA-TYPE-REF>
+Line 4172 (New File): <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-ARRAY-DATA-TYPE">/SharedElements/ApplicationDataTypes/Array/ADTS_APCRCDWkUp</APPLICATION-DATA-TYPE-REF>
+-------------------------
+Line 4291 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4173 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4294 (Old File): <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-ARRAY-DATA-TYPE">/SharedElements/ApplicationDataTypes/Array/ADTS_CHAdeMOStat</APPLICATION-DATA-TYPE-REF>
+Line 4176 (New File): <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-ARRAY-DATA-TYPE">/SharedElements/ApplicationDataTypes/Array/ADTS_APCRCDWkUpdas</APPLICATION-DATA-TYPE-REF>
+-------------------------
+Line 4295 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4177 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4298 (Old File): <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-ARRAY-DATA-TYPE">/SharedElements/ApplicationDataTypes/Array/ADTS_CrshSt</APPLICATION-DATA-TYPE-REF>
+Line 4180 (New File): <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-ARRAY-DATA-TYPE">/SharedElements/ApplicationDataTypes/Array/ADTS_APCRCDWkUp1</APPLICATION-DATA-TYPE-REF>
+-------------------------
+Line 4299 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4181 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4302 (Old File): <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-ARRAY-DATA-TYPE">/SharedElements/ApplicationDataTypes/Array/ADTS_CrshSt</APPLICATION-DATA-TYPE-REF>
+Line 4184 (New File): <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-ARRAY-DATA-TYPE">/SharedElements/ApplicationDataTypes/Array/ADTS_APCRCDWkUp1</APPLICATION-DATA-TYPE-REF>
+-------------------------
+Line 4303 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4185 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4307 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4189 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4311 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4193 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4315 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4197 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4319 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4201 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4323 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4205 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4327 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4209 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4331 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4213 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4335 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4217 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4243 (New File): <DATA-TYPE-MAP>
+-------------------------
+Line 4244 (New File): <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-ARRAY-DATA-TYPE">/SharedElements/ApplicationDataTypes/Array/RECORD</APPLICATION-DATA-TYPE-REF>
+-------------------------
+Line 4245 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/None</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4246 (New File): </DATA-TYPE-MAP>
+-------------------------
+Line 4247 (New File): <DATA-TYPE-MAP>
+-------------------------
+Line 4248 (New File): <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-ARRAY-DATA-TYPE">/SharedElements/ApplicationDataTypes/Array/RECORD</APPLICATION-DATA-TYPE-REF>
+-------------------------
+Line 4249 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/None</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4250 (New File): </DATA-TYPE-MAP>
+-------------------------
+Line 4378 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4268 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4389 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/boolean</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4279 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4400 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/boolean</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4290 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4411 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4301 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4425 (Old File): <ARRAY-SIZE>15</ARRAY-SIZE>
+Line 4315 (New File): <ARRAY-SIZE>156</ARRAY-SIZE>
+-------------------------
+Line 4430 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4320 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4444 (Old File): <ARRAY-SIZE>15</ARRAY-SIZE>
+Line 4334 (New File): <ARRAY-SIZE>157</ARRAY-SIZE>
+-------------------------
+Line 4449 (Old File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+Line 4339 (New File): <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/SharedElements/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+-------------------------
+Line 4462 (Old File): <BASE-TYPE-REF DEST="SW-BASE-TYPE">/AUTOSAR/AUTOSAR_Platform/BaseTypes/uint8</BASE-TYPE-REF>
+Line 4352 (New File): <BASE-TYPE-REF DEST="SW-BASE-TYPE">/AUTOSAR/AUTOSAR_Platform/BaseTypes/sint32</BASE-TYPE-REF>
+-------------------------
+Line 4480 (Old File): <SHORT-NAME>OPr1</SHORT-NAME>
+Line 4370 (New File): <SHORT-NAME>opr1</SHORT-NAME>
+-------------------------
+Line 4491 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_CrshSt</TYPE-TREF>
+Line 4381 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUp1</TYPE-TREF>
+-------------------------
+Line 4504 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_CrshSt</TYPE-TREF>
+Line 4394 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUp1</TYPE-TREF>
+-------------------------
+Line 4522 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_CrshSt</TYPE-TREF>
+Line 4412 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUp1</TYPE-TREF>
+-------------------------
+Line 4535 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_CrshSt</TYPE-TREF>
+Line 4425 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUp1</TYPE-TREF>
+-------------------------
+Line 4548 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_CrshSt</TYPE-TREF>
+Line 4438 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUp1</TYPE-TREF>
+-------------------------
+Line 4597 (Old File): <SHORT-NAME>RNd1</SHORT-NAME>
+Line 4598 (Old File): <IS-SERVICE>false</IS-SERVICE>
+Line 4599 (Old File): <NV-DATAS>
+Line 4600 (Old File): <VARIABLE-DATA-PROTOTYPE >
+Line 4601 (Old File): <SHORT-NAME>CS</SHORT-NAME>
+Line 4602 (Old File): <SW-DATA-DEF-PROPS>
+Line 4603 (Old File): <SW-DATA-DEF-PROPS-VARIANTS>
+Line 4604 (Old File): <SW-DATA-DEF-PROPS-CONDITIONAL>
+Line 4605 (Old File): <SW-CALIBRATION-ACCESS>READ-WRITE</SW-CALIBRATION-ACCESS>
+Line 4606 (Old File): <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+Line 4607 (Old File): </SW-DATA-DEF-PROPS-CONDITIONAL>
+Line 4608 (Old File): </SW-DATA-DEF-PROPS-VARIANTS>
+Line 4609 (Old File): </SW-DATA-DEF-PROPS>
+Line 4610 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_CrshSt</TYPE-TREF>
+Line 4611 (Old File): </VARIABLE-DATA-PROTOTYPE>
+Line 4612 (Old File): <VARIABLE-DATA-PROTOTYPE >
+Line 4613 (Old File): <SHORT-NAME>CS2</SHORT-NAME>
+Line 4614 (Old File): <SW-DATA-DEF-PROPS>
+Line 4615 (Old File): <SW-DATA-DEF-PROPS-VARIANTS>
+Line 4616 (Old File): <SW-DATA-DEF-PROPS-CONDITIONAL>
+Line 4617 (Old File): <SW-CALIBRATION-ACCESS>READ-WRITE</SW-CALIBRATION-ACCESS>
+Line 4618 (Old File): <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+Line 4619 (Old File): </SW-DATA-DEF-PROPS-CONDITIONAL>
+Line 4620 (Old File): </SW-DATA-DEF-PROPS-VARIANTS>
+Line 4621 (Old File): </SW-DATA-DEF-PROPS>
+Line 4622 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_CrshSt</TYPE-TREF>
+Line 4623 (Old File): </VARIABLE-DATA-PROTOTYPE>
+Line 4624 (Old File): <VARIABLE-DATA-PROTOTYPE >
+Line 4625 (Old File): <SHORT-NAME>CS3</SHORT-NAME>
+Line 4626 (Old File): <SW-DATA-DEF-PROPS>
+Line 4627 (Old File): <SW-DATA-DEF-PROPS-VARIANTS>
+Line 4628 (Old File): <SW-DATA-DEF-PROPS-CONDITIONAL>
+Line 4629 (Old File): <SW-CALIBRATION-ACCESS>READ-WRITE</SW-CALIBRATION-ACCESS>
+Line 4630 (Old File): <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+Line 4631 (Old File): </SW-DATA-DEF-PROPS-CONDITIONAL>
+Line 4632 (Old File): </SW-DATA-DEF-PROPS-VARIANTS>
+Line 4633 (Old File): </SW-DATA-DEF-PROPS>
+Line 4634 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_CrshSt</TYPE-TREF>
+Line 4635 (Old File): </VARIABLE-DATA-PROTOTYPE>
+Line 4636 (Old File): <VARIABLE-DATA-PROTOTYPE >
+Line 4637 (Old File): <SHORT-NAME>CS4</SHORT-NAME>
+Line 4638 (Old File): <SW-DATA-DEF-PROPS>
+Line 4639 (Old File): <SW-DATA-DEF-PROPS-VARIANTS>
+Line 4640 (Old File): <SW-DATA-DEF-PROPS-CONDITIONAL>
+Line 4641 (Old File): <SW-CALIBRATION-ACCESS>READ-WRITE</SW-CALIBRATION-ACCESS>
+Line 4642 (Old File): <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+Line 4643 (Old File): </SW-DATA-DEF-PROPS-CONDITIONAL>
+Line 4644 (Old File): </SW-DATA-DEF-PROPS-VARIANTS>
+Line 4645 (Old File): </SW-DATA-DEF-PROPS>
+Line 4646 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_CrshSt</TYPE-TREF>
+Line 4647 (Old File): </VARIABLE-DATA-PROTOTYPE>
+Line 4648 (Old File): <VARIABLE-DATA-PROTOTYPE >
+Line 4649 (Old File): <SHORT-NAME>CS5</SHORT-NAME>
+Line 4650 (Old File): <SW-DATA-DEF-PROPS>
+Line 4651 (Old File): <SW-DATA-DEF-PROPS-VARIANTS>
+Line 4652 (Old File): <SW-DATA-DEF-PROPS-CONDITIONAL>
+Line 4653 (Old File): <SW-CALIBRATION-ACCESS>READ-WRITE</SW-CALIBRATION-ACCESS>
+Line 4654 (Old File): <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+Line 4655 (Old File): </SW-DATA-DEF-PROPS-CONDITIONAL>
+Line 4656 (Old File): </SW-DATA-DEF-PROPS-VARIANTS>
+Line 4657 (Old File): </SW-DATA-DEF-PROPS>
+Line 4658 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_CrshSt</TYPE-TREF>
+Line 4659 (Old File): </VARIABLE-DATA-PROTOTYPE>
+Line 4660 (Old File): </NV-DATAS>
+Line 4661 (Old File): </NV-DATA-INTERFACE>
+Line 4662 (Old File): <NV-DATA-INTERFACE >
+Line 4667 (Old File): <SHORT-NAME>CHAdeMOS</SHORT-NAME>
+Line 4491 (New File): <SHORT-NAME>CHAdeMOS1</SHORT-NAME>
+-------------------------
+Line 4676 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_CHAdeMOStat</TYPE-TREF>
+Line 4500 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUp1</TYPE-TREF>
+-------------------------
+Line 4703 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_CrshSt</TYPE-TREF>
+Line 4527 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUp1</TYPE-TREF>
+-------------------------
+Line 4715 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_CrshSt</TYPE-TREF>
+Line 4539 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUp1</TYPE-TREF>
+-------------------------
+Line 4727 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_CrshSt</TYPE-TREF>
+Line 4551 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUp1</TYPE-TREF>
+-------------------------
+Line 4739 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_CrshSt</TYPE-TREF>
+Line 4563 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUp1</TYPE-TREF>
+-------------------------
+Line 4751 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_CrshSt</TYPE-TREF>
+Line 4575 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUp1</TYPE-TREF>
+-------------------------
+Line 4769 (Old File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_CHAdeMOStat</TYPE-TREF>
+Line 4593 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUp1</TYPE-TREF>
+-------------------------
+Line 4594 (New File): </VARIABLE-DATA-PROTOTYPE>
+-------------------------
+Line 4595 (New File): </DATA-ELEMENTS>
+-------------------------
+Line 4596 (New File): </SENDER-RECEIVER-INTERFACE>
+-------------------------
+Line 4597 (New File): <SENDER-RECEIVER-INTERFACE >
+-------------------------
+Line 4598 (New File): <SHORT-NAME>RSR12</SHORT-NAME>
+-------------------------
+Line 4599 (New File): <IS-SERVICE>false</IS-SERVICE>
+-------------------------
+Line 4600 (New File): <DATA-ELEMENTS>
+-------------------------
+Line 4601 (New File): <VARIABLE-DATA-PROTOTYPE >
+-------------------------
+Line 4602 (New File): <SHORT-NAME>CS6</SHORT-NAME>
+-------------------------
+Line 4603 (New File): <SW-DATA-DEF-PROPS>
+-------------------------
+Line 4604 (New File): <SW-DATA-DEF-PROPS-VARIANTS>
+-------------------------
+Line 4605 (New File): <SW-DATA-DEF-PROPS-CONDITIONAL>
+-------------------------
+Line 4606 (New File): <SW-CALIBRATION-ACCESS>READ-WRITE</SW-CALIBRATION-ACCESS>
+-------------------------
+Line 4607 (New File): <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+-------------------------
+Line 4608 (New File): </SW-DATA-DEF-PROPS-CONDITIONAL>
+-------------------------
+Line 4609 (New File): </SW-DATA-DEF-PROPS-VARIANTS>
+-------------------------
+Line 4610 (New File): </SW-DATA-DEF-PROPS>
+-------------------------
+Line 4611 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUp1</TYPE-TREF>
+-------------------------
+Line 4612 (New File): </VARIABLE-DATA-PROTOTYPE>
+-------------------------
+Line 4613 (New File): <VARIABLE-DATA-PROTOTYPE >
+-------------------------
+Line 4614 (New File): <SHORT-NAME>CS7</SHORT-NAME>
+-------------------------
+Line 4615 (New File): <SW-DATA-DEF-PROPS>
+-------------------------
+Line 4616 (New File): <SW-DATA-DEF-PROPS-VARIANTS>
+-------------------------
+Line 4617 (New File): <SW-DATA-DEF-PROPS-CONDITIONAL>
+-------------------------
+Line 4618 (New File): <SW-CALIBRATION-ACCESS>READ-WRITE</SW-CALIBRATION-ACCESS>
+-------------------------
+Line 4619 (New File): <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+-------------------------
+Line 4620 (New File): </SW-DATA-DEF-PROPS-CONDITIONAL>
+-------------------------
+Line 4621 (New File): </SW-DATA-DEF-PROPS-VARIANTS>
+-------------------------
+Line 4622 (New File): </SW-DATA-DEF-PROPS>
+-------------------------
+Line 4623 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUp1</TYPE-TREF>
+-------------------------
+Line 4624 (New File): </VARIABLE-DATA-PROTOTYPE>
+-------------------------
+Line 4625 (New File): <VARIABLE-DATA-PROTOTYPE >
+-------------------------
+Line 4626 (New File): <SHORT-NAME>CS8</SHORT-NAME>
+-------------------------
+Line 4627 (New File): <SW-DATA-DEF-PROPS>
+-------------------------
+Line 4628 (New File): <SW-DATA-DEF-PROPS-VARIANTS>
+-------------------------
+Line 4629 (New File): <SW-DATA-DEF-PROPS-CONDITIONAL>
+-------------------------
+Line 4630 (New File): <SW-CALIBRATION-ACCESS>READ-WRITE</SW-CALIBRATION-ACCESS>
+-------------------------
+Line 4631 (New File): <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+-------------------------
+Line 4632 (New File): </SW-DATA-DEF-PROPS-CONDITIONAL>
+-------------------------
+Line 4633 (New File): </SW-DATA-DEF-PROPS-VARIANTS>
+-------------------------
+Line 4634 (New File): </SW-DATA-DEF-PROPS>
+-------------------------
+Line 4635 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUp1</TYPE-TREF>
+-------------------------
+Line 4636 (New File): </VARIABLE-DATA-PROTOTYPE>
+-------------------------
+Line 4637 (New File): <VARIABLE-DATA-PROTOTYPE >
+-------------------------
+Line 4638 (New File): <SHORT-NAME>CS9</SHORT-NAME>
+-------------------------
+Line 4639 (New File): <SW-DATA-DEF-PROPS>
+-------------------------
+Line 4640 (New File): <SW-DATA-DEF-PROPS-VARIANTS>
+-------------------------
+Line 4641 (New File): <SW-DATA-DEF-PROPS-CONDITIONAL>
+-------------------------
+Line 4642 (New File): <SW-CALIBRATION-ACCESS>READ-WRITE</SW-CALIBRATION-ACCESS>
+-------------------------
+Line 4643 (New File): <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+-------------------------
+Line 4644 (New File): </SW-DATA-DEF-PROPS-CONDITIONAL>
+-------------------------
+Line 4645 (New File): </SW-DATA-DEF-PROPS-VARIANTS>
+-------------------------
+Line 4646 (New File): </SW-DATA-DEF-PROPS>
+-------------------------
+Line 4647 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUp1</TYPE-TREF>
+-------------------------
+Line 4648 (New File): </VARIABLE-DATA-PROTOTYPE>
+-------------------------
+Line 4649 (New File): <VARIABLE-DATA-PROTOTYPE >
+-------------------------
+Line 4650 (New File): <SHORT-NAME>CS10</SHORT-NAME>
+-------------------------
+Line 4651 (New File): <SW-DATA-DEF-PROPS>
+-------------------------
+Line 4652 (New File): <SW-DATA-DEF-PROPS-VARIANTS>
+-------------------------
+Line 4653 (New File): <SW-DATA-DEF-PROPS-CONDITIONAL>
+-------------------------
+Line 4654 (New File): <SW-CALIBRATION-ACCESS>READ-WRITE</SW-CALIBRATION-ACCESS>
+-------------------------
+Line 4655 (New File): <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+-------------------------
+Line 4656 (New File): </SW-DATA-DEF-PROPS-CONDITIONAL>
+-------------------------
+Line 4657 (New File): </SW-DATA-DEF-PROPS-VARIANTS>
+-------------------------
+Line 4658 (New File): </SW-DATA-DEF-PROPS>
+-------------------------
+Line 4659 (New File): <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/SharedElements/ApplicationDataTypes/Primitive/ADTS_APCRCDWkUp1</TYPE-TREF>
+-------------------------
+Line 4785 (Old File): <CSE-CODE>ek</CSE-CODE>
+Line 4675 (New File): <CSE-CODE>1</CSE-CODE>
+-------------------------
+Line 4786 (Old File): <CSE-CODE-FACTOR>don</CSE-CODE-FACTOR>
+Line 4676 (New File): <CSE-CODE-FACTOR>2</CSE-CODE-FACTOR>
+-------------------------
+Line 4792 (Old File): <CSE-CODE>tin</CSE-CODE>
+Line 4682 (New File): <CSE-CODE>456</CSE-CODE>
+-------------------------
+Line 4793 (Old File): <CSE-CODE-FACTOR>char</CSE-CODE-FACTOR>
+Line 4683 (New File): <CSE-CODE-FACTOR>4</CSE-CODE-FACTOR>
+-------------------------
+Line 4705 (New File): <ELEMENTS />
+-------------------------
+Line 4706 (New File): </AR-PACKAGE>
+-------------------------
+Line 4707 (New File): <AR-PACKAGE >
+-------------------------
+Line 4708 (New File): <SHORT-NAME>CddSWC</SHORT-NAME>
+-------------------------
+Line 4709 (New File): <ELEMENTS />
+-------------------------
+Line 4710 (New File): </AR-PACKAGE>
+-------------------------
+Line 4711 (New File): <AR-PACKAGE >
+-------------------------
+Line 4712 (New File): <SHORT-NAME>CompSWC</SHORT-NAME>
+-------------------------
+Line 4713 (New File): <ELEMENTS />
+-------------------------
+Line 4714 (New File): </AR-PACKAGE>
+-------------------------
+Line 4715 (New File): <AR-PACKAGE >
+-------------------------
+Line 4716 (New File): <SHORT-NAME>EcuAbSWC</SHORT-NAME>
+-------------------------
+Line 4816 (Old File): <APPLICATION-SW-COMPONENT-TYPE >
+Line 4718 (New File): <ECU-ABSTRACTION-SW-COMPONENT-TYPE >
+-------------------------
+Line 4817 (Old File): <SHORT-NAME>Asw_swc</SHORT-NAME>
+Line 4719 (New File): <SHORT-NAME>EA_swc</SHORT-NAME>
+-------------------------
+Line 4823 (Old File): <R-PORT-PROTOTYPE >
+Line 4824 (Old File): <SHORT-NAME>CD_CrshSt_R</SHORT-NAME>
+Line 4825 (Old File): <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/SharedElements/PortInterfaces/SenderReceiver/RSR1</REQUIRED-INTERFACE-TREF>
+Line 4826 (Old File): </R-PORT-PROTOTYPE>
+Line 4827 (Old File): <R-PORT-PROTOTYPE >
+Line 4828 (Old File): <SHORT-NAME>CD_CrshSt_R</SHORT-NAME>
+Line 4829 (Old File): <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/SharedElements/PortInterfaces/SenderReceiver/RSR1</REQUIRED-INTERFACE-TREF>
+Line 4830 (Old File): </R-PORT-PROTOTYPE>
+Line 4831 (Old File): <R-PORT-PROTOTYPE >
+Line 4832 (Old File): <SHORT-NAME>CD_CrshSt_R</SHORT-NAME>
+Line 4833 (Old File): <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/SharedElements/PortInterfaces/SenderReceiver/RSR1</REQUIRED-INTERFACE-TREF>
+Line 4834 (Old File): </R-PORT-PROTOTYPE>
+Line 4835 (Old File): <R-PORT-PROTOTYPE >
+Line 4836 (Old File): <SHORT-NAME>CD_CrshSt_R</SHORT-NAME>
+Line 4837 (Old File): <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/SharedElements/PortInterfaces/SenderReceiver/RSR1</REQUIRED-INTERFACE-TREF>
+Line 4838 (Old File): </R-PORT-PROTOTYPE>
+Line 4840 (Old File): <SHORT-NAME>CD_CrshSt_P</SHORT-NAME>
+Line 4726 (New File): <SHORT-NAME>CD_CrshSt_R1</SHORT-NAME>
+-------------------------
+Line 4844 (Old File): <SHORT-NAME>CD_CrshSt_R_nv</SHORT-NAME>
+Line 4730 (New File): <SHORT-NAME>CD_CrshSt_R2</SHORT-NAME>
+-------------------------
+Line 4845 (Old File): <REQUIRED-INTERFACE-TREF DEST="NV-DATA-INTERFACE">/SharedElements/PortInterfaces/NvData/RNd1</REQUIRED-INTERFACE-TREF>
+Line 4731 (New File): <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/SharedElements/PortInterfaces/SenderReceiver/RSR12</REQUIRED-INTERFACE-TREF>
+-------------------------
+Line 4846 (Old File): </R-PORT-PROTOTYPE>
+Line 4847 (Old File): <R-PORT-PROTOTYPE >
+Line 4848 (Old File): <SHORT-NAME>CD_CrshSt_R_nv</SHORT-NAME>
+Line 4849 (Old File): <REQUIRED-INTERFACE-TREF DEST="NV-DATA-INTERFACE">/SharedElements/PortInterfaces/NvData/RNd1</REQUIRED-INTERFACE-TREF>
+Line 4850 (Old File): </R-PORT-PROTOTYPE>
+Line 4851 (Old File): <R-PORT-PROTOTYPE >
+Line 4852 (Old File): <SHORT-NAME>CD_CrshSt_R_nv</SHORT-NAME>
+Line 4853 (Old File): <REQUIRED-INTERFACE-TREF DEST="NV-DATA-INTERFACE">/SharedElements/PortInterfaces/NvData/RNd1</REQUIRED-INTERFACE-TREF>
+Line 4854 (Old File): </R-PORT-PROTOTYPE>
+Line 4855 (Old File): <R-PORT-PROTOTYPE >
+Line 4856 (Old File): <SHORT-NAME>CD_CrshSt_R_nv</SHORT-NAME>
+Line 4857 (Old File): <REQUIRED-INTERFACE-TREF DEST="NV-DATA-INTERFACE">/SharedElements/PortInterfaces/NvData/RNd1</REQUIRED-INTERFACE-TREF>
+Line 4858 (Old File): </R-PORT-PROTOTYPE>
+Line 4859 (Old File): <R-PORT-PROTOTYPE >
+Line 4860 (Old File): <SHORT-NAME>CD_CrshSt_R_nv</SHORT-NAME>
+Line 4861 (Old File): <REQUIRED-INTERFACE-TREF DEST="NV-DATA-INTERFACE">/SharedElements/PortInterfaces/NvData/RNd1</REQUIRED-INTERFACE-TREF>
+Line 4864 (Old File): <SHORT-NAME>CD_CrshSt_P_nv</SHORT-NAME>
+Line 4734 (New File): <SHORT-NAME>CD_CrshSt_R5</SHORT-NAME>
+-------------------------
+Line 4868 (Old File): <SHORT-NAME>MSI_R_Port</SHORT-NAME>
+Line 4738 (New File): <SHORT-NAME>CD_CrshSt_R8</SHORT-NAME>
+-------------------------
+Line 4870 (Old File): </R-PORT-PROTOTYPE>
+Line 4871 (Old File): <R-PORT-PROTOTYPE >
+Line 4872 (Old File): <SHORT-NAME>MSI_R_Port</SHORT-NAME>
+Line 4873 (Old File): <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/SharedElements/PortInterfaces/ModeSwitch/MSI1</REQUIRED-INTERFACE-TREF>
+Line 4874 (Old File): </R-PORT-PROTOTYPE>
+Line 4875 (Old File): <R-PORT-PROTOTYPE >
+Line 4876 (Old File): <SHORT-NAME>MSI_R_Port</SHORT-NAME>
+Line 4877 (Old File): <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/SharedElements/PortInterfaces/ModeSwitch/MSI1</REQUIRED-INTERFACE-TREF>
+Line 4878 (Old File): </R-PORT-PROTOTYPE>
+Line 4879 (Old File): <R-PORT-PROTOTYPE >
+Line 4880 (Old File): <SHORT-NAME>MSI_R_Port</SHORT-NAME>
+Line 4881 (Old File): <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/SharedElements/PortInterfaces/ModeSwitch/MSI1</REQUIRED-INTERFACE-TREF>
+Line 4882 (Old File): </R-PORT-PROTOTYPE>
+Line 4883 (Old File): <R-PORT-PROTOTYPE >
+Line 4884 (Old File): <SHORT-NAME>MSI_R_Port</SHORT-NAME>
+Line 4885 (Old File): <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/SharedElements/PortInterfaces/ModeSwitch/MSI1</REQUIRED-INTERFACE-TREF>
+Line 4886 (Old File): </R-PORT-PROTOTYPE>
+Line 4887 (Old File): <R-PORT-PROTOTYPE >
+Line 4888 (Old File): <SHORT-NAME>CS_R_Port</SHORT-NAME>
+Line 4889 (Old File): <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/SharedElements/PortInterfaces/ClientServer/CS1</REQUIRED-INTERFACE-TREF>
+Line 4890 (Old File): </R-PORT-PROTOTYPE>
+Line 4891 (Old File): <R-PORT-PROTOTYPE >
+Line 4892 (Old File): <SHORT-NAME>CS_R_Port</SHORT-NAME>
+Line 4893 (Old File): <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/SharedElements/PortInterfaces/ClientServer/CS1</REQUIRED-INTERFACE-TREF>
+Line 4894 (Old File): </R-PORT-PROTOTYPE>
+Line 4895 (Old File): <R-PORT-PROTOTYPE >
+Line 4896 (Old File): <SHORT-NAME>CS_R_Port</SHORT-NAME>
+Line 4897 (Old File): <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/SharedElements/PortInterfaces/ClientServer/CS1</REQUIRED-INTERFACE-TREF>
+Line 4898 (Old File): </R-PORT-PROTOTYPE>
+Line 4899 (Old File): <R-PORT-PROTOTYPE >
+Line 4900 (Old File): <SHORT-NAME>CS_R_Port</SHORT-NAME>
+Line 4901 (Old File): <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/SharedElements/PortInterfaces/ClientServer/CS1</REQUIRED-INTERFACE-TREF>
+Line 4911 (Old File): <R-PORT-PROTOTYPE >
+Line 4912 (Old File): <SHORT-NAME>Trigger_R_Port</SHORT-NAME>
+Line 4913 (Old File): <REQUIRED-INTERFACE-TREF DEST="TRIGGER-INTERFACE">/SharedElements/PortInterfaces/Trigger/Trigger1</REQUIRED-INTERFACE-TREF>
+Line 4914 (Old File): </R-PORT-PROTOTYPE>
+Line 4915 (Old File): <R-PORT-PROTOTYPE >
+Line 4916 (Old File): <SHORT-NAME>Trigger_R_Port</SHORT-NAME>
+Line 4917 (Old File): <REQUIRED-INTERFACE-TREF DEST="TRIGGER-INTERFACE">/SharedElements/PortInterfaces/Trigger/Trigger1</REQUIRED-INTERFACE-TREF>
+Line 4918 (Old File): </R-PORT-PROTOTYPE>
+Line 4919 (Old File): <R-PORT-PROTOTYPE >
+Line 4920 (Old File): <SHORT-NAME>Trigger_R_Port</SHORT-NAME>
+Line 4921 (Old File): <REQUIRED-INTERFACE-TREF DEST="TRIGGER-INTERFACE">/SharedElements/PortInterfaces/Trigger/Trigger1</REQUIRED-INTERFACE-TREF>
+Line 4922 (Old File): </R-PORT-PROTOTYPE>
+Line 4926 (Old File): <SHORT-NAME>IB_Asw_swc</SHORT-NAME>
+Line 4752 (New File): <SHORT-NAME>IB_EA_swc</SHORT-NAME>
+-------------------------
+Line 4938 (Old File): <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/uint16</TYPE-TREF>
+Line 4764 (New File): <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/ADTS_APCRCDWkUp</TYPE-TREF>
+-------------------------
+Line 4948 (Old File): <DATA-TYPE-MAPPING-REF DEST="DATA-TYPE-MAPPING-SET">/SharedElements/DataTypemappingSets/DTMS_Asw_swc</DATA-TYPE-MAPPING-REF>
+Line 4774 (New File): <DATA-TYPE-MAPPING-REF DEST="DATA-TYPE-MAPPING-SET">/SharedElements/DataTypemappingSets/DTMS_EA_swc</DATA-TYPE-MAPPING-REF>
+-------------------------
+Line 4961 (Old File): <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/uint16</TYPE-TREF>
+Line 4787 (New File): <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/ADTS_APCRCDWkUp</TYPE-TREF>
+-------------------------
+Line 4981 (Old File): <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/uint16</TYPE-TREF>
+Line 4807 (New File): <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/ADTS_APCRCDWkUp</TYPE-TREF>
+-------------------------
+Line 4991 (Old File): <BACKGROUND-EVENT >
+Line 4817 (New File): <EXTERNAL-TRIGGER-OCCURRED-EVENT >
+-------------------------
+Line 4993 (Old File): <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SwComponentTypes/ApplSWC/Asw_swc/IB_Asw_swc/MdMgmt_Init</START-ON-EVENT-REF>
+Line 4819 (New File): <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SwComponentTypes/EcuAbSWC/EA_swc/IB_EA_swc/MdMgmt_Init</START-ON-EVENT-REF>
+-------------------------
+Line 4994 (Old File): </BACKGROUND-EVENT>
+Line 4820 (New File): <TRIGGER-IREF>
+-------------------------
+Line 4821 (New File): <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/Trigger_R_Port</CONTEXT-R-PORT-REF>
+-------------------------
+Line 4822 (New File): <TARGET-TRIGGER-REF DEST="TRIGGER">/SharedElements/PortInterfaces/Trigger/Trigger1/STANDARD</TARGET-TRIGGER-REF>
+-------------------------
+Line 4823 (New File): </TRIGGER-IREF>
+-------------------------
+Line 4824 (New File): </EXTERNAL-TRIGGER-OCCURRED-EVENT>
+-------------------------
+Line 4825 (New File): <DATA-RECEIVED-EVENT >
+-------------------------
+Line 4826 (New File): <SHORT-NAME>MdMgmt100ms</SHORT-NAME>
+-------------------------
+Line 4827 (New File): <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SwComponentTypes/EcuAbSWC/EA_swc/IB_EA_swc/hello</START-ON-EVENT-REF>
+-------------------------
+Line 4828 (New File): <DATA-IREF>
+-------------------------
+Line 4829 (New File): <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CD_CrshSt_R</CONTEXT-R-PORT-REF>
+-------------------------
+Line 4830 (New File): <TARGET-DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/SenderReceiver/RSR1/STANDARD</TARGET-DATA-ELEMENT-REF>
+-------------------------
+Line 4831 (New File): </DATA-IREF>
+-------------------------
+Line 4832 (New File): </DATA-RECEIVED-EVENT>
+-------------------------
+Line 4833 (New File): <TIMING-EVENT >
+-------------------------
+Line 4834 (New File): <SHORT-NAME>ashh_</SHORT-NAME>
+-------------------------
+Line 4835 (New File): <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SwComponentTypes/EcuAbSWC/EA_swc/IB_EA_swc/qwe</START-ON-EVENT-REF>
+-------------------------
+Line 4836 (New File): <PERIOD>0.45345</PERIOD>
+-------------------------
+Line 4837 (New File): </TIMING-EVENT>
+-------------------------
+Line 4997 (Old File): <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SwComponentTypes/ApplSWC/Asw_swc/IB_Asw_swc/MdMgmt_Init1</START-ON-EVENT-REF>
+Line 4840 (New File): <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SwComponentTypes/EcuAbSWC/EA_swc/IB_EA_swc/MdMgmt_Init1</START-ON-EVENT-REF>
+-------------------------
+Line 4998 (Old File): <PERIOD>0.1</PERIOD>
+Line 4841 (New File): <PERIOD>0.45345</PERIOD>
+-------------------------
+Line 5000 (Old File): <TIMING-EVENT >
+Line 4843 (New File): <BACKGROUND-EVENT >
+-------------------------
+Line 5002 (Old File): <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SwComponentTypes/ApplSWC/Asw_swc/IB_Asw_swc/Rnbl_MdMgmt</START-ON-EVENT-REF>
+Line 4845 (New File): <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SwComponentTypes/EcuAbSWC/EA_swc/IB_EA_swc/Rnbl_MdMgmt</START-ON-EVENT-REF>
+-------------------------
+Line 4846 (New File): </BACKGROUND-EVENT>
+-------------------------
+Line 5003 (Old File): <PERIOD>0.56</PERIOD>
+Line 5004 (Old File): </TIMING-EVENT>
+Line 5017 (Old File): <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/uint16</TYPE-TREF>
+Line 4859 (New File): <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/ADTS_APCRCDWkUp</TYPE-TREF>
+-------------------------
+Line 5026 (Old File): <HANDLE-TERMINATION-AND-RESTART>canBeTerminatedAndRestarted</HANDLE-TERMINATION-AND-RESTART>
+Line 4868 (New File): <HANDLE-TERMINATION-AND-RESTART>CAN-BE-TERMINATED</HANDLE-TERMINATION-AND-RESTART>
+-------------------------
+Line 5038 (Old File): <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/uint16</TYPE-TREF>
+Line 4880 (New File): <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/ADTS_APCRCDWkUp</TYPE-TREF>
+-------------------------
+Line 5053 (Old File): <SW-CALIBRATION-ACCESS>READ-WRITE</SW-CALIBRATION-ACCESS>
+Line 4895 (New File): <SW-CALIBRATION-ACCESS>READ</SW-CALIBRATION-ACCESS>
+-------------------------
+Line 5054 (Old File): <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+Line 4896 (New File): <SW-IMPL-POLICY>QUEUED</SW-IMPL-POLICY>
+-------------------------
+Line 5056 (Old File): </SW-DATA-DEF-PROPS-VARIANTS>
+Line 5057 (Old File): </SW-DATA-DEF-PROPS>
+Line 4898 (New File): </SW-DATA-DEF-PROPS-VARIANTS>
+-------------------------
+Line 4899 (New File): </SW-DATA-DEF-PROPS>
+-------------------------
+Line 5058 (Old File): <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/uint16</TYPE-TREF>
+Line 4900 (New File): <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/ADTS_APCRCDWkUp</TYPE-TREF>
+-------------------------
+Line 4917 (New File): <SHORT-NAME>hello</SHORT-NAME>
+-------------------------
+Line 4918 (New File): <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
+-------------------------
+Line 4919 (New File): <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+-------------------------
+Line 4920 (New File): <SYMBOL>new_rnbl_symbol</SYMBOL>
+-------------------------
+Line 4921 (New File): </RUNNABLE-ENTITY>
+-------------------------
+Line 4922 (New File): <RUNNABLE-ENTITY >
+-------------------------
+Line 4923 (New File): <SHORT-NAME>qwe</SHORT-NAME>
+-------------------------
+Line 4924 (New File): <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
+-------------------------
+Line 4925 (New File): <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+-------------------------
+Line 4926 (New File): <SYMBOL>MdMgmt_Init12</SYMBOL>
+-------------------------
+Line 4927 (New File): </RUNNABLE-ENTITY>
+-------------------------
+Line 4928 (New File): <RUNNABLE-ENTITY >
+-------------------------
+Line 5084 (Old File): <DATA-READ-ACCESSS />
+Line 5085 (Old File): <DATA-RECEIVE-POINT-BY-ARGUMENTS />
+Line 5086 (Old File): <DATA-RECEIVE-POINT-BY-VALUES />
+Line 4938 (New File): <DATA-RECEIVE-POINT-BY-VALUES>
+-------------------------
+Line 5087 (Old File): <DATA-READ-ACCESSS />
+Line 5088 (Old File): <DATA-RECEIVE-POINT-BY-ARGUMENTS />
+Line 5089 (Old File): <DATA-SEND-POINTS>
+Line 5091 (Old File): <SHORT-NAME>DSP_CD_CrshSt_P_CHAdeMOS</SHORT-NAME>
+Line 4940 (New File): <SHORT-NAME>DRP_CD_CrshSt_R_CS</SHORT-NAME>
+-------------------------
+Line 5094 (Old File): <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/CD_CrshSt_P</PORT-PROTOTYPE-REF>
+Line 4943 (New File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CD_CrshSt_R</PORT-PROTOTYPE-REF>
+-------------------------
+Line 5095 (Old File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/SenderReceiver/PSR1/CHAdeMOS</TARGET-DATA-PROTOTYPE-REF>
+Line 4944 (New File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/SenderReceiver/RSR1/CS</TARGET-DATA-PROTOTYPE-REF>
+-------------------------
+Line 5099 (Old File): </DATA-SEND-POINTS>
+Line 5100 (Old File): <DATA-READ-ACCESSS />
+Line 5101 (Old File): <DATA-RECEIVE-POINT-BY-ARGUMENTS />
+Line 5102 (Old File): <DATA-RECEIVE-POINT-BY-VALUES>
+Line 5107 (Old File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/CD_CrshSt_R</PORT-PROTOTYPE-REF>
+Line 4952 (New File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CD_CrshSt_R</PORT-PROTOTYPE-REF>
+-------------------------
+Line 5113 (Old File): <SHORT-NAME>DRP_CD_CrshSt_R_nv_CS3</SHORT-NAME>
+Line 4958 (New File): <SHORT-NAME>DRP_CD_CrshSt_R2_CS9</SHORT-NAME>
+-------------------------
+Line 5116 (Old File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/CD_CrshSt_R_nv</PORT-PROTOTYPE-REF>
+Line 4961 (New File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CD_CrshSt_R2</PORT-PROTOTYPE-REF>
+-------------------------
+Line 5117 (Old File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/NvData/RNd1/CS3</TARGET-DATA-PROTOTYPE-REF>
+Line 4962 (New File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/SenderReceiver/RSR12/CS9</TARGET-DATA-PROTOTYPE-REF>
+-------------------------
+Line 4963 (New File): </AUTOSAR-VARIABLE-IREF>
+-------------------------
+Line 4964 (New File): </ACCESSED-VARIABLE>
+-------------------------
+Line 4965 (New File): </VARIABLE-ACCESS>
+-------------------------
+Line 4966 (New File): <VARIABLE-ACCESS >
+-------------------------
+Line 4967 (New File): <SHORT-NAME>DRP_CD_CrshSt_R2_CS10</SHORT-NAME>
+-------------------------
+Line 4968 (New File): <ACCESSED-VARIABLE>
+-------------------------
+Line 4969 (New File): <AUTOSAR-VARIABLE-IREF>
+-------------------------
+Line 4970 (New File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CD_CrshSt_R2</PORT-PROTOTYPE-REF>
+-------------------------
+Line 4971 (New File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/SenderReceiver/RSR12/CS10</TARGET-DATA-PROTOTYPE-REF>
+-------------------------
+Line 5122 (Old File): <DATA-READ-ACCESSS>
+Line 5123 (Old File): <VARIABLE-ACCESS >
+Line 5124 (Old File): <SHORT-NAME>DRA_CD_CrshSt_R_CS</SHORT-NAME>
+Line 5125 (Old File): <ACCESSED-VARIABLE>
+Line 5126 (Old File): <AUTOSAR-VARIABLE-IREF>
+Line 5127 (Old File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/CD_CrshSt_R</PORT-PROTOTYPE-REF>
+Line 5128 (Old File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/SenderReceiver/RSR1/CS</TARGET-DATA-PROTOTYPE-REF>
+Line 5129 (Old File): </AUTOSAR-VARIABLE-IREF>
+Line 5130 (Old File): </ACCESSED-VARIABLE>
+Line 5131 (Old File): </VARIABLE-ACCESS>
+Line 5132 (Old File): <VARIABLE-ACCESS >
+Line 5133 (Old File): <SHORT-NAME>DRA_CD_CrshSt_R_CS4</SHORT-NAME>
+Line 5134 (Old File): <ACCESSED-VARIABLE>
+Line 5135 (Old File): <AUTOSAR-VARIABLE-IREF>
+Line 5136 (Old File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/CD_CrshSt_R</PORT-PROTOTYPE-REF>
+Line 5137 (Old File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/SenderReceiver/RSR1/CS4</TARGET-DATA-PROTOTYPE-REF>
+Line 5138 (Old File): </AUTOSAR-VARIABLE-IREF>
+Line 5139 (Old File): </ACCESSED-VARIABLE>
+Line 5140 (Old File): </VARIABLE-ACCESS>
+Line 5141 (Old File): <VARIABLE-ACCESS >
+Line 5142 (Old File): <SHORT-NAME>DRA_CD_CrshSt_R_nv_CS</SHORT-NAME>
+Line 5143 (Old File): <ACCESSED-VARIABLE>
+Line 5144 (Old File): <AUTOSAR-VARIABLE-IREF>
+Line 5145 (Old File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/CD_CrshSt_R_nv</PORT-PROTOTYPE-REF>
+Line 5146 (Old File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/NvData/RNd1/CS</TARGET-DATA-PROTOTYPE-REF>
+Line 5147 (Old File): </AUTOSAR-VARIABLE-IREF>
+Line 5148 (Old File): </ACCESSED-VARIABLE>
+Line 5149 (Old File): </VARIABLE-ACCESS>
+Line 5150 (Old File): <VARIABLE-ACCESS >
+Line 5151 (Old File): <SHORT-NAME>DRA_CD_CrshSt_R_nv_CS4</SHORT-NAME>
+Line 5152 (Old File): <ACCESSED-VARIABLE>
+Line 5153 (Old File): <AUTOSAR-VARIABLE-IREF>
+Line 5154 (Old File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/CD_CrshSt_R_nv</PORT-PROTOTYPE-REF>
+Line 5155 (Old File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/NvData/RNd1/CS4</TARGET-DATA-PROTOTYPE-REF>
+Line 5156 (Old File): </AUTOSAR-VARIABLE-IREF>
+Line 5157 (Old File): </ACCESSED-VARIABLE>
+Line 5158 (Old File): </VARIABLE-ACCESS>
+Line 5159 (Old File): </DATA-READ-ACCESSS>
+Line 5165 (Old File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/CD_CrshSt_R</PORT-PROTOTYPE-REF>
+Line 4981 (New File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CD_CrshSt_R</PORT-PROTOTYPE-REF>
+-------------------------
+Line 5174 (Old File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/CD_CrshSt_R</PORT-PROTOTYPE-REF>
+Line 4990 (New File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CD_CrshSt_R</PORT-PROTOTYPE-REF>
+-------------------------
+Line 5180 (Old File): <SHORT-NAME>DRP_CD_CrshSt_R_nv_CS2</SHORT-NAME>
+Line 4996 (New File): <SHORT-NAME>DRP_CD_CrshSt_R2_CS7</SHORT-NAME>
+-------------------------
+Line 5183 (Old File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/CD_CrshSt_R_nv</PORT-PROTOTYPE-REF>
+Line 4999 (New File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CD_CrshSt_R2</PORT-PROTOTYPE-REF>
+-------------------------
+Line 5184 (Old File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/NvData/RNd1/CS2</TARGET-DATA-PROTOTYPE-REF>
+Line 5000 (New File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/SenderReceiver/RSR12/CS7</TARGET-DATA-PROTOTYPE-REF>
+-------------------------
+Line 5189 (Old File): <SHORT-NAME>DRP_CD_CrshSt_R_nv_CS5</SHORT-NAME>
+Line 5005 (New File): <SHORT-NAME>DRP_CD_CrshSt_R2_CS8</SHORT-NAME>
+-------------------------
+Line 5192 (Old File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/CD_CrshSt_R_nv</PORT-PROTOTYPE-REF>
+Line 5008 (New File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CD_CrshSt_R2</PORT-PROTOTYPE-REF>
+-------------------------
+Line 5193 (Old File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/NvData/RNd1/CS5</TARGET-DATA-PROTOTYPE-REF>
+Line 5009 (New File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/SenderReceiver/RSR12/CS8</TARGET-DATA-PROTOTYPE-REF>
+-------------------------
+Line 5014 (New File): <DATA-READ-ACCESSS>
+-------------------------
+Line 5015 (New File): <VARIABLE-ACCESS >
+-------------------------
+Line 5016 (New File): <SHORT-NAME>DRA_CD_CrshSt_R_CS4</SHORT-NAME>
+-------------------------
+Line 5017 (New File): <ACCESSED-VARIABLE>
+-------------------------
+Line 5018 (New File): <AUTOSAR-VARIABLE-IREF>
+-------------------------
+Line 5019 (New File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CD_CrshSt_R</PORT-PROTOTYPE-REF>
+-------------------------
+Line 5020 (New File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/SenderReceiver/RSR1/CS4</TARGET-DATA-PROTOTYPE-REF>
+-------------------------
+Line 5021 (New File): </AUTOSAR-VARIABLE-IREF>
+-------------------------
+Line 5022 (New File): </ACCESSED-VARIABLE>
+-------------------------
+Line 5023 (New File): </VARIABLE-ACCESS>
+-------------------------
+Line 5024 (New File): <VARIABLE-ACCESS >
+-------------------------
+Line 5025 (New File): <SHORT-NAME>DRA_CD_CrshSt_R2_CS6</SHORT-NAME>
+-------------------------
+Line 5026 (New File): <ACCESSED-VARIABLE>
+-------------------------
+Line 5027 (New File): <AUTOSAR-VARIABLE-IREF>
+-------------------------
+Line 5028 (New File): <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CD_CrshSt_R2</PORT-PROTOTYPE-REF>
+-------------------------
+Line 5029 (New File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/SenderReceiver/RSR12/CS6</TARGET-DATA-PROTOTYPE-REF>
+-------------------------
+Line 5030 (New File): </AUTOSAR-VARIABLE-IREF>
+-------------------------
+Line 5031 (New File): </ACCESSED-VARIABLE>
+-------------------------
+Line 5032 (New File): </VARIABLE-ACCESS>
+-------------------------
+Line 5033 (New File): </DATA-READ-ACCESSS>
+-------------------------
+Line 5200 (Old File): <SHORT-NAME>DWA_CD_CrshSt_P_nv_CHAdeMOS</SHORT-NAME>
+Line 5036 (New File): <SHORT-NAME>DWA_CD_CrshSt_R1_CHAdeMOS</SHORT-NAME>
+-------------------------
+Line 5203 (Old File): <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/CD_CrshSt_P_nv</PORT-PROTOTYPE-REF>
+Line 5039 (New File): <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CD_CrshSt_R1</PORT-PROTOTYPE-REF>
+-------------------------
+Line 5204 (Old File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/SenderReceiver/PNd1/CHAdeMOS</TARGET-DATA-PROTOTYPE-REF>
+Line 5040 (New File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/SenderReceiver/PSR1/CHAdeMOS</TARGET-DATA-PROTOTYPE-REF>
+-------------------------
+Line 5045 (New File): <DATA-SEND-POINTS>
+-------------------------
+Line 5046 (New File): <VARIABLE-ACCESS >
+-------------------------
+Line 5047 (New File): <SHORT-NAME>DSP_CD_CrshSt_R5_CHAdeMOS1</SHORT-NAME>
+-------------------------
+Line 5048 (New File): <ACCESSED-VARIABLE>
+-------------------------
+Line 5049 (New File): <AUTOSAR-VARIABLE-IREF>
+-------------------------
+Line 5050 (New File): <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CD_CrshSt_R5</PORT-PROTOTYPE-REF>
+-------------------------
+Line 5051 (New File): <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SharedElements/PortInterfaces/SenderReceiver/PNd1/CHAdeMOS1</TARGET-DATA-PROTOTYPE-REF>
+-------------------------
+Line 5052 (New File): </AUTOSAR-VARIABLE-IREF>
+-------------------------
+Line 5053 (New File): </ACCESSED-VARIABLE>
+-------------------------
+Line 5054 (New File): </VARIABLE-ACCESS>
+-------------------------
+Line 5055 (New File): </DATA-SEND-POINTS>
+-------------------------
+Line 5210 (Old File): <MODE-SWITCH-POINTS />
+Line 5211 (Old File): <MODE-SWITCH-POINTS />
+Line 5212 (Old File): <MODE-SWITCH-POINTS />
+Line 5213 (Old File): <MODE-SWITCH-POINTS />
+Line 5214 (Old File): <SERVER-CALL-POINTS />
+Line 5215 (Old File): <SERVER-CALL-POINTS />
+Line 5216 (Old File): <SERVER-CALL-POINTS />
+Line 5217 (Old File): <SERVER-CALL-POINTS />
+Line 5220 (Old File): <SHORT-NAME>SSCP_CS_R_Port_OPr1</SHORT-NAME>
+Line 5059 (New File): <SHORT-NAME>SSCP_CS_R_Port_opr1</SHORT-NAME>
+-------------------------
+Line 5222 (Old File): <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/CS_R_Port</CONTEXT-R-PORT-REF>
+Line 5061 (New File): <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CS_R_Port</CONTEXT-R-PORT-REF>
+-------------------------
+Line 5223 (Old File): <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/SharedElements/PortInterfaces/ClientServer/CS1/OPr1</TARGET-REQUIRED-OPERATION-REF>
+Line 5062 (New File): <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/SharedElements/PortInterfaces/ClientServer/CS1/opr1</TARGET-REQUIRED-OPERATION-REF>
+-------------------------
+Line 5228 (Old File): <SHORT-NAME>SSCP_CS_R_Port_OPr1</SHORT-NAME>
+Line 5067 (New File): <SHORT-NAME>SSCP_CS_R_Port_opr1</SHORT-NAME>
+-------------------------
+Line 5230 (Old File): <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/CS_R_Port</CONTEXT-R-PORT-REF>
+Line 5069 (New File): <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CS_R_Port</CONTEXT-R-PORT-REF>
+-------------------------
+Line 5231 (Old File): <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/SharedElements/PortInterfaces/ClientServer/CS1/OPr1</TARGET-REQUIRED-OPERATION-REF>
+Line 5070 (New File): <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/SharedElements/PortInterfaces/ClientServer/CS1/opr1</TARGET-REQUIRED-OPERATION-REF>
+-------------------------
+Line 5238 (Old File): <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/CS_R_Port</CONTEXT-R-PORT-REF>
+Line 5077 (New File): <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CS_R_Port</CONTEXT-R-PORT-REF>
+-------------------------
+Line 5246 (Old File): <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/CS_R_Port</CONTEXT-R-PORT-REF>
+Line 5085 (New File): <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CS_R_Port</CONTEXT-R-PORT-REF>
+-------------------------
+Line 5254 (Old File): <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/CS_R_Port</CONTEXT-R-PORT-REF>
+Line 5093 (New File): <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/CS_R_Port</CONTEXT-R-PORT-REF>
+-------------------------
+Line 5264 (Old File): <LOCAL-PARAMETER-REF DEST="PARAMETER-DATA-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/IB_Asw_swc/PIP_test0</LOCAL-PARAMETER-REF>
+Line 5103 (New File): <LOCAL-PARAMETER-REF DEST="PARAMETER-DATA-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/IB_EA_swc/PIP_test0</LOCAL-PARAMETER-REF>
+-------------------------
+Line 5270 (Old File): <LOCAL-PARAMETER-REF DEST="PARAMETER-DATA-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/IB_Asw_swc/PIP_test1</LOCAL-PARAMETER-REF>
+Line 5109 (New File): <LOCAL-PARAMETER-REF DEST="PARAMETER-DATA-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/IB_EA_swc/PIP_test1</LOCAL-PARAMETER-REF>
+-------------------------
+Line 5276 (Old File): <LOCAL-PARAMETER-REF DEST="PARAMETER-DATA-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/IB_Asw_swc/PIP_test7</LOCAL-PARAMETER-REF>
+Line 5115 (New File): <LOCAL-PARAMETER-REF DEST="PARAMETER-DATA-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/IB_EA_swc/PIP_test7</LOCAL-PARAMETER-REF>
+-------------------------
+Line 5116 (New File): </ACCESSED-PARAMETER>
+-------------------------
+Line 5117 (New File): </PARAMETER-ACCESS>
+-------------------------
+Line 5118 (New File): <PARAMETER-ACCESS >
+-------------------------
+Line 5119 (New File): <SHORT-NAME>SCPVA_PIP_test8</SHORT-NAME>
+-------------------------
+Line 5120 (New File): <ACCESSED-PARAMETER>
+-------------------------
+Line 5121 (New File): <LOCAL-PARAMETER-REF DEST="PARAMETER-DATA-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/IB_EA_swc/PIP_test8</LOCAL-PARAMETER-REF>
+-------------------------
+Line 5284 (Old File): <LOCAL-VARIABLE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/IB_Asw_swc/PIP_test2</LOCAL-VARIABLE-REF>
+Line 5129 (New File): <LOCAL-VARIABLE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/IB_EA_swc/PIP_test2</LOCAL-VARIABLE-REF>
+-------------------------
+Line 5290 (Old File): <LOCAL-VARIABLE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/IB_Asw_swc/PIP_test3</LOCAL-VARIABLE-REF>
+Line 5135 (New File): <LOCAL-VARIABLE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/IB_EA_swc/PIP_test3</LOCAL-VARIABLE-REF>
+-------------------------
+Line 5299 (Old File): <LOCAL-VARIABLE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/IB_Asw_swc/PIP_test2</LOCAL-VARIABLE-REF>
+Line 5144 (New File): <LOCAL-VARIABLE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/IB_EA_swc/PIP_test2</LOCAL-VARIABLE-REF>
+-------------------------
+Line 5305 (Old File): <LOCAL-VARIABLE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SwComponentTypes/ApplSWC/Asw_swc/IB_Asw_swc/PIP_test3</LOCAL-VARIABLE-REF>
+Line 5150 (New File): <LOCAL-VARIABLE-REF DEST="VARIABLE-DATA-PROTOTYPE">/SwComponentTypes/EcuAbSWC/EA_swc/IB_EA_swc/PIP_test3</LOCAL-VARIABLE-REF>
+-------------------------
+Line 5322 (Old File): <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/uint16</TYPE-TREF>
+Line 5167 (New File): <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/ADTS_APCRCDWkUp</TYPE-TREF>
+-------------------------
+Line 5175 (New File): <PARAMETER-DATA-PROTOTYPE >
+-------------------------
+Line 5176 (New File): <SHORT-NAME>PIP_test8</SHORT-NAME>
+-------------------------
+Line 5177 (New File): <SW-DATA-DEF-PROPS>
+-------------------------
+Line 5178 (New File): <SW-DATA-DEF-PROPS-VARIANTS>
+-------------------------
+Line 5179 (New File): <SW-DATA-DEF-PROPS-CONDITIONAL>
+-------------------------
+Line 5180 (New File): <SW-CALIBRATION-ACCESS>READ-WRITE</SW-CALIBRATION-ACCESS>
+-------------------------
+Line 5181 (New File): <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+-------------------------
+Line 5182 (New File): </SW-DATA-DEF-PROPS-CONDITIONAL>
+-------------------------
+Line 5183 (New File): </SW-DATA-DEF-PROPS-VARIANTS>
+-------------------------
+Line 5184 (New File): </SW-DATA-DEF-PROPS>
+-------------------------
+Line 5185 (New File): <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/ADTS_APCRCDWkUp</TYPE-TREF>
+-------------------------
+Line 5186 (New File): <INIT-VALUE>
+-------------------------
+Line 5187 (New File): <NUMERICAL-VALUE-SPECIFICATION>
+-------------------------
+Line 5188 (New File): <SHORT-LABEL>Value</SHORT-LABEL>
+-------------------------
+Line 5189 (New File): <VALUE>130</VALUE>
+-------------------------
+Line 5190 (New File): </NUMERICAL-VALUE-SPECIFICATION>
+-------------------------
+Line 5191 (New File): </INIT-VALUE>
+-------------------------
+Line 5192 (New File): </PARAMETER-DATA-PROTOTYPE>
+-------------------------
+Line 5334 (Old File): </APPLICATION-SW-COMPONENT-TYPE>
+Line 5197 (New File): </ECU-ABSTRACTION-SW-COMPONENT-TYPE>
+-------------------------
+Line 5336 (Old File): </AR-PACKAGE>
+Line 5337 (Old File): <AR-PACKAGE >
+Line 5338 (Old File): <SHORT-NAME>CddSWC</SHORT-NAME>
+Line 5339 (Old File): <ELEMENTS />
+Line 5340 (Old File): </AR-PACKAGE>
+Line 5341 (Old File): <AR-PACKAGE >
+Line 5342 (Old File): <SHORT-NAME>CompSWC</SHORT-NAME>
+Line 5343 (Old File): <ELEMENTS />
+Line 5344 (Old File): </AR-PACKAGE>
+Line 5345 (Old File): <AR-PACKAGE >
+Line 5346 (Old File): <SHORT-NAME>EcuAbSWC</SHORT-NAME>

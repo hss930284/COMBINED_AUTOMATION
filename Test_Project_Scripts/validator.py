@@ -1,4 +1,4 @@
-#24/03/25 - 12:05 PM
+#24/03/25 - 13:42 PM
 import openpyxl
 
 import re
@@ -452,28 +452,54 @@ def validate_excel(file_path):
                 entries in other designated columns. Specific Column and Referential Integrity Requirements:
                         1. "ib_data" Sheet:
                                 * Column F: Values in this column must exist within column H of the "swc_info" sheet.
-                                * Column D: Values in this column must exist within column B of the "adt_primitive" sheet.
+                                * Column D: Values in this column must exist within column B of the "adt_primitive" sheet or
+                                            [24-03-25] : column C of the "adt_composite" sheet
+                                            [24-03-25] : or column B of the "idt" sheet.
                         2. "ports" Sheet:
                                 * Column I: Values in this column must exist within column H of the "swc_info" sheet.
-                                * Column H: Values in this column must exist within column B of the "adt_primitive" sheet.
+                                * Column H: Values in this column must exist within column B of the "adt_primitive" sheet or
+                                            [24-03-25] : column C of the "adt_composite" sheet
+                                            [24-03-25] : or column B of the "idt" sheet.
         """
-        references = {
-            ("ib_data", "F"): ("swc_info", "H"),
-            ("ib_data", "D"): ("adt_primitive", "B"),
-            ("ports", "I"): ("swc_info", "H"),
-            ("ports", "H"): ("adt_primitive", "B")
+        enum_list = {
+            "boolean", "ConstVoidPtr", "float32", "float64", "sint16", "sint16_least", "sint32",
+            "sint32_least", "sint64", "sint8", "sint8_least", "uint16", "uint16_least", "uint32",
+            "uint32_least", "uint64", "uint8", "uint8_least", "VoidPtr"
         }
-        for (sheet_name, col), (ref_sheet, ref_col) in references.items():
-            if sheet_name not in wb.sheetnames or ref_sheet not in wb.sheetnames:
+        
+        # Define references with new multiple sources
+        references = {
+            ("ib_data", "F"): [("swc_info", "H")],
+            ("ib_data", "D"): [("adt_primitive", "B"), ("adt_composite", "C"), ("idt", "C")],  # Updated
+            ("ports", "I"): [("swc_info", "H")],
+            ("ports", "H"): [("adt_primitive", "B"), ("adt_composite", "C"), ("idt", "C")]  # Updated
+        }
+        
+        for (sheet_name, col), ref_sheets in references.items():
+            if sheet_name not in wb.sheetnames:
                 continue
+        
             sheet = wb[sheet_name]
-            ref_values = {row[0] for row in wb[ref_sheet].iter_rows(min_row=2, min_col=ord(ref_col)-64, max_col=ord(ref_col)-64, values_only=True)}
+        
+            # Collect all valid reference values from multiple sheets
+            valid_values = set(enum_list) if (sheet_name, col) in [("ib_data", "D"), ("ports", "H")] else set()
+        
+            for ref_sheet, ref_col in ref_sheets:
+                if ref_sheet in wb.sheetnames:
+                    valid_values.update(
+                        row[0] for row in wb[ref_sheet].iter_rows(
+                            min_row=2, min_col=ord(ref_col)-64, max_col=ord(ref_col)-64, values_only=True
+                        ) if row[0] not in [None, ""]
+                    )
+        
+            # Validate values in the target column
             for row_idx, row in enumerate(sheet.iter_rows(
                     min_row=2, min_col=ord(col)-64, max_col=ord(col)-64, values_only=True), start=2):
                 value = row[0]
                 cell_ref = f"{col}{row_idx}"
-                if value not in ref_values:
-                    errors["Critical"].append(f"[{sheet_name}] Invalid reference at {cell_ref}: {value} (not in {ref_sheet}.{ref_col})")
+                
+                if value not in valid_values:
+                    errors["Critical"].append(f"[{sheet_name}] Invalid reference at {cell_ref}: {value} (Not in {', '.join(f'{s}.{c}' for s, c in ref_sheets)} or enum_list)")
 
         # Rule - 5
         # column_enum_mapping = {
@@ -676,11 +702,11 @@ def validate_excel(file_path):
             "idt": ["B", "C"]
         }
         
-        enum_list = [
-            "boolean", "ConstVoidPtr", "float32", "float64", "sint16", "sint16_least", "sint32",
-            "sint32_least", "sint64", "sint8", "sint8_least", "uint16", "uint16_least", "uint32",
-            "uint32_least", "uint64", "uint8", "uint8_least", "VoidPtr"
-        ]
+        # enum_list = [
+        #     "boolean", "ConstVoidPtr", "float32", "float64", "sint16", "sint16_least", "sint32",
+        #     "sint32_least", "sint64", "sint8", "sint8_least", "uint16", "uint16_least", "uint32",
+        #     "uint32_least", "uint64", "uint8", "uint8_least", "VoidPtr"
+        # ]
         
         # Extract column B values from adt_primitive
         adt_primitive_b_values = set()
@@ -753,14 +779,15 @@ def validate_excel(file_path):
                     #     if data.get("F") not in valid_idt_values:
                     #         errors["Critical"].append(f"[{sheet_name}] Column F must be from enum_list or idt (C column) when Column E is IDT, excluding itself at F{row_idx}: {data.get('F')}")
                 
-        # Print Errors if any
-        if errors["Critical"]:
-            print("\n".join(errors["Critical"]))
-        else:
-            print("✅ Rule 8 Validation Passed! No errors found.")
+        # # Print Errors if any
+        # if errors["Critical"]:
+        #     print("\n".join(errors["Critical"]))
+        # else:
+        #     print("✅ Rule 8 Validation Passed! No errors found.")
 
         # ✅ Runnable Access Rule for "ports" sheet (G column validation)
         """
+            Rule 9 - Runnable Access Rule
             G column value should be {dra, drpa, drpv) when corresponding D column value either SenderReceiverInterface or NvDataInterface and B column value ReceiverPort
             G column value should be {dsp , dwa) when corresponding D column value either SenderReceiverInterface or NvDataInterface and B column value SenderPort
         """
@@ -803,7 +830,7 @@ def validate_excel(file_path):
 
         # ✅ Merge Rule Validation
         """
-        merge rule
+            Rule 10 - merge rule
         merge is ALLOWABLE in the following worksheets as per description :
         
         "swc_info": B,C,D,E,F,G (for all columns : must be merged if there are more than 1 row present)
@@ -922,7 +949,7 @@ def validate_excel(file_path):
         # ✅ Data Type Reference Rule for "ib_data" (I column) & "ports" (H column)
 
         """
-        Data type refernce rule
+        Rule 11 - Data type refernce rule
         disclaimer : please check main file whether we ar reading/using I column value of ib_data sheet anywhere  and if used plese ping me
         
         implement this :
@@ -984,7 +1011,7 @@ def validate_excel(file_path):
                     )
                     
 
-        '''
+        '''Rule - 12
             Protection Rule:
                 User should not
                     Modify / add / delete Sheets
