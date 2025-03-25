@@ -621,10 +621,10 @@ def validate_excel(file_path):
         """   
         data_type_ranges = {
             "boolean": (0, 1),
-            "ConstVoidPtr": None,  # No range validation needed
-            "VoidPtr": None,  # No range validation needed
-            "float32": (-3.4e38, 3.4e38),  # IEEE 754 single-precision float range
-            "float64": (-1.8e308, 1.8e308),  # IEEE 754 double-precision float range
+            "ConstVoidPtr": None,
+            "VoidPtr": None,
+            "float32": (-3.4e38, 3.4e38),
+            "float64": (-1.8e308, 1.8e308),
             "sint8": (-128, 127),
             "sint8_least": (-128, 127),
             "sint16": (-32768, 32767),
@@ -640,31 +640,62 @@ def validate_excel(file_path):
             "uint32_least": (0, 4294967295),
             "uint64": (0, 18446744073709551615),
         }
-                        
-        sheet = wb["adt_primitive" ]
-    
-        # Find column indexes dynamically
-        col_cons = ord('I') - ord('A') + 1
-        col_min = ord('K') - ord('A') + 1
-        col_max = ord('L') - ord('A') + 1
-        col_data_type = ord('M') - ord('A') + 1
-    
-        for row_idx, row in enumerate(sheet.iter_rows(min_row=2, values_only=True), start=2):
-            const_name, min_value, max_value, data_type = row[col_cons - 1], row[col_min - 1], row[col_max - 1], row[col_data_type - 1]
-    
+        
+        # Read IDT mappings where Column B is 'PRIMITIVE'
+        idt_sheet = wb["idt"]
+        idt_data_types = {}
+        for row in idt_sheet.iter_rows(min_row=2, values_only=True):
+            if row[1] == "PRIMITIVE":  # Column B
+                idt_data_types[row[2]] = row[4]  # Column C as key, Column E as value
+        
+        # Read merged cells
+        adt_primitive_sheet = wb["adt_primitive"]
+        merged_ranges = {}
+        for merged_cell in adt_primitive_sheet.merged_cells.ranges:
+            first_cell = merged_cell.start_cell.coordinate
+            for cell in merged_cell.cells:
+                merged_ranges[cell] = first_cell
+        
+        # Column Index Mapping
+        col_cons = ord('I') - ord('A')
+        col_min = ord('K') - ord('A')
+        col_max = ord('L') - ord('A')
+        col_data_type = ord('M') - ord('A')
+        
+        # Iterate through rows
+        for row_idx, row in enumerate(adt_primitive_sheet.iter_rows(min_row=2), start=2):
+            const_name = row[col_cons].value
+            min_value = row[col_min].value
+            max_value = row[col_max].value
+            data_type_cell = row[col_data_type].coordinate
+            data_type = row[col_data_type].value
+            
+            # Handle merged cells
+            if data_type is None and data_type_cell in merged_ranges:
+                data_type = adt_primitive_sheet[merged_ranges[data_type_cell]].value
+            
+            # Determine min/max range
             if data_type in data_type_ranges:
                 min_allowed, max_allowed = data_type_ranges[data_type]
-    
-                # Validate min/max within allowed range*\
-                
-                if min_value is not None and max_value is not None:
-                    if not (min_allowed <= min_value <= max_allowed):
-                        errors["Critical"].append(f"Error in 'add_primitive' for Data Constraint: {const_name}, Cell K{row_idx}: Min value {min_value} out of range for {data_type}. Allowed: {min_allowed}-{max_allowed}")
-                    if not (min_allowed <= max_value <= max_allowed):
-                        errors["Critical"].append(f"Error in 'add_primitive' for Data Constraint: {const_name}, Cell L{row_idx}: Max value {max_value} out of range for {data_type}. Allowed: {min_allowed}-{max_allowed}")
-                    if min_value > max_value:
-                        errors["Critical"].append(f"Error in 'add_primitive' for Data Constraint: {const_name}, Row {row_idx}: Min value {min_value} should not be greater than Max value {max_value}")
-    
+            elif data_type in idt_data_types:
+                mapped_type = idt_data_types[data_type]
+                if mapped_type in data_type_ranges:
+                    min_allowed, max_allowed = data_type_ranges[mapped_type]
+                else:
+                    errors["Critical"].append(f"[adt_primitive] Unknown mapped type {mapped_type} for {data_type} at M{row_idx}")
+                    continue
+            else:
+                errors["Critical"].append(f"[adt_primitive] Unknown data type {data_type} at M{row_idx}")
+                continue
+            
+            # Validate min/max values
+            if min_value is not None and max_value is not None:
+                if not (min_allowed <= min_value <= max_allowed):
+                    errors["Critical"].append(f"[adt_primitive] Min value {min_value} (K{row_idx}) out of range for {data_type}. Allowed: {min_allowed}-{max_allowed}")
+                if not (min_allowed <= max_value <= max_allowed):
+                    errors["Critical"].append(f"[adt_primitive] Max value {max_value} (L{row_idx}) out of range for {data_type}. Allowed: {min_allowed}-{max_allowed}")
+                if min_value > max_value:
+                    errors["Critical"].append(f"[adt_primitive] Min value {min_value} (K{row_idx}) should not be greater than Max value {max_value} (L{row_idx})")
         """
             RULE - 8
                 if sheet name = "adt_composite"
