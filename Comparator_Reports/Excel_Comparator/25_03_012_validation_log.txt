@@ -1,0 +1,96 @@
+Sheet: ib_data, Cell: D1
+  - Original Value: ADTS_APCRCDWkUp
+  - Updated Value: uint8
+--------------------------------------------------
+Sheet: ib_data, Cell: E1
+  - Original Value: 123
+  - Updated Value: 256
+--------------------------------------------------
+Sheet: ib_data, Cell: E2
+  - Original Value: 124
+  - Updated Value: 96
+--------------------------------------------------
+Sheet: ib_data, Cell: D3
+  - Original Value: ADTS_APCRCDWkUp
+  - Updated Value: idt_array1
+--------------------------------------------------
+Sheet: ib_data, Cell: E3
+  - Original Value: 125
+  - Updated Value: 257
+--------------------------------------------------
+Sheet: ib_data, Cell: D4
+  - Original Value: ADTS_APCRCDWkUp
+  - Updated Value: idt_array2
+--------------------------------------------------
+Sheet: ib_data, Cell: E4
+  - Original Value: 126
+  - Updated Value: 257
+--------------------------------------------------
+Sheet: ib_data, Cell: D5
+  - Original Value: ADTS_APCRCDWkUp
+  - Updated Value: idt_primitive1
+--------------------------------------------------
+Sheet: ib_data, Cell: E5
+  - Original Value: 127
+  - Updated Value: 257
+--------------------------------------------------
+Sheet: ib_data, Cell: D6
+  - Original Value: ADTS_APCRCDWkUp
+  - Updated Value: struct_idt1
+--------------------------------------------------
+Sheet: ib_data, Cell: E6
+  - Original Value: 128
+  - Updated Value: 128, 3, -256, 256
+--------------------------------------------------
+Sheet: adt_primitive, Cell: L1
+  - Original Value: 96.0
+  - Updated Value: 256.0
+--------------------------------------------------
+Sheet: adt_primitive, Cell: M1
+  - Original Value: sint32
+  - Updated Value: uint8
+--------------------------------------------------
+Sheet: adt_primitive, Cell: L2
+  - Original Value: 1.0
+  - Updated Value: 100.0
+--------------------------------------------------
+Sheet: adt_primitive, Cell: M2
+  - Original Value: sint32
+  - Updated Value: sint16
+--------------------------------------------------
+Sheet: idt, Cell: E1
+  - Original Value: sint32
+  - Updated Value: uint8
+--------------------------------------------------
+Sheet: idt, Cell: E2
+  - Original Value: sint32
+  - Updated Value: uint8
+--------------------------------------------------
+Sheet: idt, Cell: E3
+  - Original Value: sint32
+  - Updated Value: uint8
+--------------------------------------------------
+Sheet: idt, Cell: E4
+  - Original Value: sint32
+  - Updated Value: uint8
+--------------------------------------------------
+Sheet: idt, Cell: E5
+  - Original Value: sint32
+  - Updated Value: uint8
+--------------------------------------------------
+Sheet: idt, Cell: E6
+  - Original Value: sint32
+  - Updated Value: uint8
+--------------------------------------------------
+Sheet: idt, Cell: E7
+  - Original Value: float32
+  - Updated Value: uint8
+--------------------------------------------------
+Sheet: idt, Cell: E8
+  - Original Value: sint32
+  - Updated Value: uint8
+--------------------------------------------------
+Sheet: idt, Cell: E9
+  - Original Value: sint32
+  - Updated Value: uint8
+--------------------------------------------------

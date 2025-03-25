@@ -1,0 +1,28 @@
+Sheet: ib_data, Cell: D1
+  - Original Value: ADTS_APCRCDWkUp
+  - Updated Value: uint8
+--------------------------------------------------
+Sheet: ib_data, Cell: E1
+  - Original Value: 123
+  - Updated Value: 256
+--------------------------------------------------
+Sheet: ib_data, Cell: E2
+  - Original Value: 124
+  - Updated Value: 100000
+--------------------------------------------------
+Sheet: ib_data, Cell: D3
+  - Original Value: ADTS_APCRCDWkUp
+  - Updated Value: ADTS_APCRCDWkUpdas
+--------------------------------------------------
+Sheet: adt_primitive, Cell: M1
+  - Original Value: sint32
+  - Updated Value: uint8
+--------------------------------------------------
+Sheet: adt_primitive, Cell: L2
+  - Original Value: 1.0
+  - Updated Value: 100.0
+--------------------------------------------------
+Sheet: adt_primitive, Cell: M2
+  - Original Value: sint32
+  - Updated Value: sint16
+--------------------------------------------------

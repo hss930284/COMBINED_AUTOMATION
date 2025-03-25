@@ -1103,15 +1103,16 @@ def validate_excel(file_path):
 
 
         '''
-        # Load relevant sheets
+        # Fetch sheets
         ib_data_sheet = wb["ib_data"]
+        adt_primitive_sheet = wb["adt_primitive"]
         idt_sheet = wb["idt"]
         
-        # Dictionary to store resolved merged cell values
-        merged_cell_values = {}
+        # Function to handle merged cells and propagate values downward
+        def extract_merged_cells(sheet):
+            merged_cell_values = {}
+            merged_ranges = {}  # Store range info for merged cells
         
-        # Function to extract merged cell values
-        def process_merged_cells(sheet):
             for merged_range in sheet.merged_cells.ranges:
                 min_col, min_row, max_col, max_row = merged_range.bounds
                 top_left_value = sheet.cell(row=min_row, column=min_col).value
@@ -1119,29 +1120,111 @@ def validate_excel(file_path):
                     for col in range(min_col, max_col + 1):
                         cell_ref = f"{get_column_letter(col)}{row}"
                         merged_cell_values[cell_ref] = top_left_value
+                        merged_ranges[cell_ref] = max_row - min_row + 1  # Store number of merged rows
         
-        # Process merged cells for ib_data
-        process_merged_cells(ib_data_sheet)
+            return merged_cell_values, merged_ranges
         
-        # Function to get cell value (handling merged cells)
-        def get_cell_value(sheet, row, col):
+        # Function to get cell values considering merged cells
+        def get_cell_value(sheet, row, col, merged_values):
             cell_ref = f"{get_column_letter(col)}{row}"
-            return merged_cell_values.get(cell_ref, sheet.cell(row=row, column=col).value)
+            return merged_values.get(cell_ref, sheet.cell(row=row, column=col).value)
         
-        # Iterate through ib_data rows
-        for row_idx in range(2, ib_data_sheet.max_row + 1):  # Assuming headers are in row 1
-            data_type = get_cell_value(ib_data_sheet, row_idx, 4)  # Column D (4th column)
-            value = get_cell_value(ib_data_sheet, row_idx, 5)  # Column E (5th column)
+        # Extract merged cell values
+        merged_ib_data, _ = extract_merged_cells(ib_data_sheet)
+        merged_adt_primitive, _ = extract_merged_cells(adt_primitive_sheet)
+        merged_idt, merged_idt_ranges = extract_merged_cells(idt_sheet)
         
+        # Fetch values from adt_primitive
+        adt_primitive_ranges = {}
+        for row_idx in range(2, adt_primitive_sheet.max_row + 1):
+            adt_type = get_cell_value(adt_primitive_sheet, row_idx, 2, merged_adt_primitive)  # Column B
+            min_val = get_cell_value(adt_primitive_sheet, row_idx, 11, merged_adt_primitive)  # Column K
+            max_val = get_cell_value(adt_primitive_sheet, row_idx, 12, merged_adt_primitive)  # Column L
+            if adt_type and min_val is not None and max_val is not None:
+                try:
+                    adt_primitive_ranges[adt_type] = (int(min_val), int(max_val))
+                except ValueError:
+                    pass  # Ignore invalid numeric values
+        
+        # Fetch IDT mappings
+        idt_mappings = {}
+        idt_ranges = {}
+        for row_idx in range(2, idt_sheet.max_row + 1):
+            idt_type = get_cell_value(idt_sheet, row_idx, 3, merged_idt)  # Column C
+            category = get_cell_value(idt_sheet, row_idx, 2, merged_idt)  # Column B
+            ref_type = get_cell_value(idt_sheet, row_idx, 5, merged_idt)  # Column E
+            if idt_type:
+                idt_mappings[idt_type] = (category, ref_type)
+                idt_ranges[idt_type] = merged_idt_ranges.get(f"C{row_idx}", 1)  # Store merged row count
+        
+        # Iterate through ib_data and validate values
+        row_idx = 2
+        while row_idx <= ib_data_sheet.max_row:
+            data_type = get_cell_value(ib_data_sheet, row_idx, 4, merged_ib_data)  # Column D
+            value = get_cell_value(ib_data_sheet, row_idx, 5, merged_ib_data)  # Column E
+        
+            if value is None:
+                row_idx += 1
+                continue
+        
+            # Convert value to int or a list if it's a RECORD type
+            values_to_check = []
+            if isinstance(value, str) and "," in value:
+                values_to_check = [v.strip() for v in value.split(",")]  # Split and strip spaces
+            else:
+                values_to_check = [value]  # Treat as single numeric value
+            
+            # Convert values to integers safely
+            try:
+                values_to_check = [int(v) if isinstance(v, str) else v for v in values_to_check]
+            except ValueError:
+                errors.append(f"[ib_data] Invalid numeric value '{value}' in E{row_idx}")
+                row_idx += 1
+                continue
+        
+            min_allowed, max_allowed = None, None
+        
+            # Check in data_type_ranges
             if data_type in data_type_ranges:
                 min_allowed, max_allowed = data_type_ranges[data_type]
-                if value is not None:
-                    try:
-                        value = int(value)
-                        if not (min_allowed <= value <= max_allowed):
-                            errors["Critical"].append(f"[ib_data] Value {value} (E{row_idx}) out of range for {data_type}. Allowed: {min_allowed}-{max_allowed}")
-                    except ValueError:
-                        errors["Critical"].append(f"[ib_data] Invalid numeric value '{value}' in E{row_idx}")
+        
+            # Check in adt_primitive
+            elif data_type in adt_primitive_ranges:
+                min_allowed, max_allowed = adt_primitive_ranges[data_type]
+        
+            # Check in idt
+            elif data_type in idt_mappings:
+                category, ref_type = idt_mappings[data_type]
+        
+                if category in ["PRIMITIVE", "ARRAY_FIXED", "ARRAY_VARIABLE"]:
+                    if ref_type in data_type_ranges:
+                        min_allowed, max_allowed = data_type_ranges[ref_type]
+        
+                elif category == "RECORD":
+                    record_rows = idt_ranges.get(data_type, 1)  # Number of merged rows in Column B
+                    idt_start_row = row_idx
+                    idt_end_row = idt_start_row + record_rows - 1
+        
+                    if len(values_to_check) != record_rows:
+                        errors["Critical"].append(f"[ib_data] RECORD mismatch in E{row_idx}: Expected {record_rows} values but found {len(values_to_check)}")
+                    else:
+                        for idx, val in enumerate(values_to_check):
+                            idt_value = get_cell_value(idt_sheet, idt_start_row + idx, 5, merged_idt)  # Column E
+                            if idt_value in data_type_ranges:
+                                min_allowed, max_allowed = data_type_ranges[idt_value]
+                                if not (min_allowed <= val <= max_allowed):
+                                    errors["Critical"].append(f"[ib_data] Value {val} (E{row_idx}) out of range for {idt_value}. Allowed: {min_allowed}-{max_allowed}")
+        
+            # Validate non-RECORD values
+            if category != "RECORD":
+                for val in values_to_check:
+                    if min_allowed is not None and max_allowed is not None:
+                        if not (min_allowed <= val <= max_allowed):
+                            errors["Critical"].append(f"[ib_data] Value {val} (E{row_idx}) out of range for {data_type}. Allowed: {min_allowed}-{max_allowed}")
+        
+            row_idx += 1
+ 
+
     except Exception as e:
         errors["Critical"].append(f"Error reading Excel file: {str(e)}")
     return errors
