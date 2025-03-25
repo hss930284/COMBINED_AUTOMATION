@@ -718,7 +718,7 @@ def validate_excel(file_path):
                     errors["Critical"].append(f"[adt_primitive] Max value {max_value} (L{row_idx}) out of range for {data_type}. Allowed: {min_allowed}-{max_allowed}")
                 if min_value > max_value:
                     errors["Critical"].append(f"[adt_primitive] Min value {min_value} (K{row_idx}) should not be greater than Max value {max_value} (L{row_idx})")
-                    
+
         """
             RULE - 8
                 if sheet name = "adt_composite"
@@ -1096,6 +1096,52 @@ def validate_excel(file_path):
                         f"❌ Column header mismatch in '{sheet_name}' at {chr(65 + col_idx)}1: Expected '{orig_col}', Found '{edited_col}'"
                     )
 
+
+
+        '''
+            Rule - 13 - Init Value Rule
+
+
+        '''
+        # Load relevant sheets
+        ib_data_sheet = wb["ib_data"]
+        idt_sheet = wb["idt"]
+        
+        # Dictionary to store resolved merged cell values
+        merged_cell_values = {}
+        
+        # Function to extract merged cell values
+        def process_merged_cells(sheet):
+            for merged_range in sheet.merged_cells.ranges:
+                min_col, min_row, max_col, max_row = merged_range.bounds
+                top_left_value = sheet.cell(row=min_row, column=min_col).value
+                for row in range(min_row, max_row + 1):
+                    for col in range(min_col, max_col + 1):
+                        cell_ref = f"{get_column_letter(col)}{row}"
+                        merged_cell_values[cell_ref] = top_left_value
+        
+        # Process merged cells for ib_data
+        process_merged_cells(ib_data_sheet)
+        
+        # Function to get cell value (handling merged cells)
+        def get_cell_value(sheet, row, col):
+            cell_ref = f"{get_column_letter(col)}{row}"
+            return merged_cell_values.get(cell_ref, sheet.cell(row=row, column=col).value)
+        
+        # Iterate through ib_data rows
+        for row_idx in range(2, ib_data_sheet.max_row + 1):  # Assuming headers are in row 1
+            data_type = get_cell_value(ib_data_sheet, row_idx, 4)  # Column D (4th column)
+            value = get_cell_value(ib_data_sheet, row_idx, 5)  # Column E (5th column)
+        
+            if data_type in data_type_ranges:
+                min_allowed, max_allowed = data_type_ranges[data_type]
+                if value is not None:
+                    try:
+                        value = int(value)
+                        if not (min_allowed <= value <= max_allowed):
+                            errors["Critical"].append(f"[ib_data] Value {value} (E{row_idx}) out of range for {data_type}. Allowed: {min_allowed}-{max_allowed}")
+                    except ValueError:
+                        errors["Critical"].append(f"[ib_data] Invalid numeric value '{value}' in E{row_idx}")
     except Exception as e:
         errors["Critical"].append(f"Error reading Excel file: {str(e)}")
     return errors
