@@ -650,11 +650,28 @@ def validate_excel(file_path):
         
         # Read merged cells
         adt_primitive_sheet = wb["adt_primitive"]
-        merged_ranges = {}
-        for merged_cell in adt_primitive_sheet.merged_cells.ranges:
-            first_cell = merged_cell.start_cell.coordinate
-            for cell in merged_cell.cells:
-                merged_ranges[cell] = first_cell
+        # Dictionary to store resolved merged cell values
+        merged_cell_values = {}
+        
+        # Process merged cells without modifying the sheet
+        for merged_range in adt_primitive_sheet.merged_cells.ranges:
+            min_col, min_row, max_col, max_row = merged_range.bounds
+            top_left_value = adt_primitive_sheet.cell(row=min_row, column=min_col).value  # Get actual value
+            
+            for row in range(min_row, max_row + 1):
+                for col in range(min_col, max_col + 1):
+                    cell_ref = f"{get_column_letter(col)}{row}"  # Convert to cell reference like 'M4'
+                    merged_cell_values[cell_ref] = top_left_value  # Store value in dictionary
+        
+        # Function to safely retrieve a cell value, handling merged cells
+        def get_cell_value(sheet, row, col):
+            cell_ref = f"{get_column_letter(col)}{row}"
+            return merged_cell_values.get(cell_ref, sheet.cell(row=row, column=col).value)
+        
+        # Example: Read column M correctly
+        for row in range(4, adt_primitive_sheet.max_row + 1):  # Adjust range as needed
+            mapped_data_type = get_cell_value(adt_primitive_sheet, row, 13)  # Column M (13th column)
+            print(f"Row {row}: Mapped Data Type -> {mapped_data_type}")
         
         # Column Index Mapping
         col_cons = ord('I') - ord('A')
@@ -669,11 +686,12 @@ def validate_excel(file_path):
             max_value = row[col_max].value
             data_type_cell = row[col_data_type].coordinate
             data_type = row[col_data_type].value
+            print(f"data_type1: {data_type}")
             
             # Handle merged cells
             if data_type is None and data_type_cell in merged_ranges:
                 data_type = adt_primitive_sheet[merged_ranges[data_type_cell]].value
-            
+                print(f"data_type2: {data_type}")
             # Determine min/max range
             if data_type in data_type_ranges:
                 min_allowed, max_allowed = data_type_ranges[data_type]
