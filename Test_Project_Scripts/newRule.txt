@@ -1,0 +1,26 @@
+modify predefined rule : 
+DC min max is based on the platorm idt
+but, what if it is not the platorm idt, i.e. from custom idt (prmitive custom idt)
+if M column of adt_primitive containing the value from C column of IDT , then look for corresponding IDT which is in E column of idt sheet and based on that decide min max
+ 
+Rule no next 
+init value rule _
+ 
+init value should be within its DC range
+ 
+J column of ports and E column of ib_data value should be within its DC range
+how to see the DC range 
+1. for E column of ib_data
+corresponding D column value 
+	a. platorm idt (uint8 - 0 to 255)
+	b. custom idt - type primitive then direct look into E column of idt sheet and decide min max based on that
+					type ARRAY_VARIABLE or ARRAY_FIXED then direct look into E column of idt sheet and decide min max based on that
+					type RECORD then check each value separated by comma and its limit respectively based on its corresponding E column of idt sheet and decide min max based on that
+	c.primitive ADT - look into corresponding K and L comumn of adt_primitive for min max value 
+	D. composite ADT - RECORD - then check each value separated by comma and its data type that is F column value of composite sheet 
+									if 	APDT - look into corresponding K and L comumn of adt_primitive for min max value 
+										ARDT - round and round 
+										AADT - look below for the logic
+						ARRAY - prmitive - look into corresponding K and L comumn of adt_primitive for min max value 
+								record -round and round
+								array - round and round	

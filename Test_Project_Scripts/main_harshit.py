@@ -1,6 +1,5 @@
-# Sushant 24/03/2025 12 : 00 noon
-# saurabh 24/03/2025 02 : 00 PM
-
+# Harshit 24/03/2025 17 : 04 PM
+# Sushant 24/03/2025 01 : 00 PM
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #               # ####################### ++++++++++++ ---------- __________ SECTION :  import required Initial Modules and definitions __________ ----------  ++++++++++++  ####################### #               #
@@ -206,31 +205,31 @@ def CreateSwcs():
 
 def my_application_function():
 
-    # ARXML structure
-    #   Appl SWC
-    #       Short Name
-    #       Ports
-    #           R port
-    #               short name
-    #               required interface
-    #           P port
-    #               short name
-    #               provided interface
-    #       IB
-    #           uuid
-    #           short name
-    #           constant memo
-    #           DTMS
-    #           Statis memo
-    #           AR type PIM
-    #           Events
-    #           Ex IRV
-    #           handleTerminationAndRestart
-    #           Imp IRV
-    #           per instance param
-    #           runnables
-    #           shared param
-    #           SupportsMultipleInstantiation
+# ARXML structure
+#   Appl SWC
+#       Short Name
+#       Ports
+#           R port
+#               short name
+#               required interface
+#           P port
+#               short name
+#               provided interface
+#       IB
+#           uuid
+#           short name
+#           constant memo
+#           DTMS
+#           Statis memo
+#           AR type PIM
+#           Events
+#           Ex IRV
+#           handleTerminationAndRestart
+#           Imp IRV
+#           per instance param
+#           runnables
+#           shared param
+#           SupportsMultipleInstantiation
     
 
     # Declare global variables to be used within this function
@@ -261,11 +260,7 @@ def my_application_function():
       
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ConstantMemory':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.ConstantMemory_PDP(b, dt_string, dt_dest, d, f, g)  
+                arelements_def.ConstantMemory_PDP(b, c, d, f, g)   
         
     else:
         print("ConstantMemorys are not present for this component")
@@ -274,7 +269,7 @@ def my_application_function():
         # Read columns B & M from adt_primitive,  and columns B & H from adt_composite to get DTMS details
         adtp, cp, dp, ep, fp, gp, hp, ip, jp, kp, lp, idtp = excel_reader.read_columns(adt_primitive, 'B', 'M')
 
-        adtc, dc, ec, fc, idtc = excel_reader.read_columns(adt_composite, 'C', 'G')
+        adtc, cc, dc, ec, fc, gc, hc, idtc = excel_reader.read_columns(adt_composite, 'B', 'I')
         
         DataTypemappingSets_folder_elements = arxml_structure.get_variable('DataTypemappingSets_folder_elements')
         
@@ -285,31 +280,14 @@ def my_application_function():
         unique_data = list(dict.fromkeys(zipped_data))  # Remove duplicates
 
         for a,b in unique_data:
-
-            dt_location_a,dt_dest_a=data_type_adt(a)
-
-            dt_string_a=f'{dt_location_a}{a}'
-            
-            dt_location_b,dt_dest_b=data_type_idt(b)
-
-            dt_string_b=f'{dt_location_b}{b}'
-
-            arelements_def.data_type_map(dt_string_a, dt_dest_a, dt_string_b, dt_dest_b)
+            arelements_def.data_type_map(a,b)
 
         # Zipping and removing duplicates while maintaining order
         zipped_data1 = list(zip(adtc,idtc))
         unique_data1 = list(dict.fromkeys(zipped_data1))  # Remove duplicates
 
         for a,b in unique_data1:
-
-            dt_location_a,dt_dest_a=data_type_adt(a)
-
-            dt_string_a=f'{dt_location_a}{a}'
-            
-            dt_location_b,dt_dest_b=data_type_idt(b)
-
-            dt_string_b=f'{dt_location_b}{b}'
-            arelements_def.data_type_map(dt_string_a,dt_dest_a,dt_string_b,dt_dest_b)
+            arelements_def.data_type_map(a,b)
 
     createDTMS()
 
@@ -322,12 +300,7 @@ def my_application_function():
       
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'StaticMemory':
-
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.StaticMemory_VDP(b, dt_string,dt_dest, d, f, g)   
+                arelements_def.StaticMemory_VDP(b, c, d, f, g)   
         
     else:
         print("StaticMemorys are not present for this component")
@@ -338,10 +311,7 @@ def my_application_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ArTypedPerInstanceMemory':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                arelements_def.ArTypedPerInstanceMemory_VDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.ArTypedPerInstanceMemory_VDP(b, c, d, f, g)   
         
     else:
         print("ArTypedPerInstanceMemorys are not present for this component")
@@ -349,6 +319,8 @@ def my_application_function():
     #createRTEEvents()
 
     rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo = excel_reader.read_columns(swc_info, 'H', 'N')
+
+    print(rnblname)
 
     arelements_def.RTE_Event()
 
@@ -486,12 +458,7 @@ def my_application_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ExplicitInterRunnableVariable':
-                
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.ExplicitInterRunnableVariable_VDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.ExplicitInterRunnableVariable_VDP(b, c, d, f, g)   
         
     else:
         print("ExplicitInterRunnableVariable are not present for this component")
@@ -508,11 +475,7 @@ def my_application_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ImplicitInterRunnableVariables':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                
-                arelements_def.ImplicitInterRunnableVariable_VDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.ImplicitInterRunnableVariable_VDP(b, c, d, f, g)   
         
     else:
         print("ImplicitInterRunnableVariables are not present for this component")
@@ -523,10 +486,7 @@ def my_application_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'PerInstanceParameter':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                arelements_def.PerInstanceParameter_PDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.PerInstanceParameter_PDP(b, c, d, f, g)   
         
     else:
         print("PerInstanceParameter are not present for this component")
@@ -536,6 +496,7 @@ def my_application_function():
     arelements_def.create_Runnable()
 
     processed_types = set()
+    print(processed_types)
 
     for a,b,c,d,e,f,g in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo):
 
@@ -547,6 +508,7 @@ def my_application_function():
         if a in processed_types:
             continue
         processed_types.add(a) 
+        print(processed_types)
 
         # Check the type of RTE event and call the corresponding function
 
@@ -708,7 +670,7 @@ def my_application_function():
                     ifname = z
                     break
 
-            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname, f, ifname, g)#pport, If_name, DE,
+            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, DE,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -743,7 +705,7 @@ def my_application_function():
                     ifname = z
                     break
 
-            arelements_def.Runnable_DWCE(a,currentfolder, CurrentSWC_shortname, f, ifname, g)#pport, If_name, DE
+            arelements_def.Runnable_DWCE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, DE
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -1010,11 +972,7 @@ def my_application_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'SharedParameter':
-
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-                arelements_def.SharedParameter_PDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.SharedParameter_PDP(b, c, d, f, g)   
         
     else:
         print("SharedParameter are not present for this component")
@@ -1055,11 +1013,7 @@ def my_complex_device_driver_function():
       
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ConstantMemory':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.ConstantMemory_PDP(b, dt_string, dt_dest, d, f, g)  
+                arelements_def.ConstantMemory_PDP(b, c, d, f, g)   
         
     else:
         print("ConstantMemorys are not present for this component")
@@ -1068,46 +1022,17 @@ def my_complex_device_driver_function():
         # Read columns B & M from adt_primitive,  and columns B & H from adt_composite to get DTMS details
         adtp, cp, dp, ep, fp, gp, hp, ip, jp, kp, lp, idtp = excel_reader.read_columns(adt_primitive, 'B', 'M')
 
-        adtc, dc, ec, fc, idtc = excel_reader.read_columns(adt_composite, 'C', 'G')
-
-
-
-
+        adtc, cc, dc, ec, fc, gc, hc, idtc = excel_reader.read_columns(adt_composite, 'B', 'I')
         
         DataTypemappingSets_folder_elements = arxml_structure.get_variable('DataTypemappingSets_folder_elements')
         
         arelements_def.DataTypeMappingSet(DataTypemappingSets_folder_elements,CurrentSWC_shortname)
 
-        # Zipping and removing duplicates while maintaining order
-        zipped_data = list(zip(adtp,idtp))
-        unique_data = list(dict.fromkeys(zipped_data))  # Remove duplicates
+        for a,b in zip(adtp,idtp):
+            arelements_def.data_type_map(a,b)
 
-        for a,b in unique_data:
-
-            dt_location_a,dt_dest_a=data_type_adt(a)
-
-            dt_string_a=f'{dt_location_a}{a}'
-            
-            dt_location_b,dt_dest_b=data_type_idt(b)
-
-            dt_string_b=f'{dt_location_b}{b}'
-
-            arelements_def.data_type_map(dt_string_a, dt_dest_a, dt_string_b, dt_dest_b)
-
-        # Zipping and removing duplicates while maintaining order
-        zipped_data1 = list(zip(adtc,idtc))
-        unique_data1 = list(dict.fromkeys(zipped_data1))  # Remove duplicates
-
-        for a,b in unique_data1:
-
-            dt_location_a,dt_dest_a=data_type_adt(a)
-
-            dt_string_a=f'{dt_location_a}{a}'
-            
-            dt_location_b,dt_dest_b=data_type_idt(b)
-
-            dt_string_b=f'{dt_location_b}{b}'
-            arelements_def.data_type_map(dt_string_a,dt_dest_a,dt_string_b,dt_dest_b)
+        for a,b in zip(adtc,idtc):
+            arelements_def.data_type_map(a,b)
 
     createDTMS()
 
@@ -1120,12 +1045,7 @@ def my_complex_device_driver_function():
       
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'StaticMemory':
-
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.StaticMemory_VDP(b, dt_string,dt_dest, d, f, g)   
+                arelements_def.StaticMemory_VDP(b, c, d, f, g)   
         
     else:
         print("StaticMemorys are not present for this component")
@@ -1136,23 +1056,22 @@ def my_complex_device_driver_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ArTypedPerInstanceMemory':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                arelements_def.ArTypedPerInstanceMemory_VDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.ArTypedPerInstanceMemory_VDP(b, c, d, f, g)   
         
     else:
         print("ArTypedPerInstanceMemorys are not present for this component")
 
     #createRTEEvents()
 
-    rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo = excel_reader.read_columns(swc_info, 'H', 'N')
+    rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo = excel_reader.read_columns(swc_info, 'H', 'M')
+
+    # print(rnblname)
 
     arelements_def.RTE_Event()
 
     processed_types = set()
 
-    for a,b,c,d,e,f,g in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo):
+    for a,b,c,d,e,f in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo):
 
         if a in processed_types:
             continue
@@ -1192,7 +1111,7 @@ def my_complex_device_driver_function():
             arelements_def.DataSendCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
             #pport, DE
             
-        elif e == 'DataWriteCompletedEvent':
+        elif e == 'DataWriteCompletedEvent':f, 
             # Handle data write completed event with additional information
             arelements_def.DataWriteCompletedEvent(d, a, currentfolder, CurrentSWC_shortname, f, g) 
             #pport, DE
@@ -1232,7 +1151,7 @@ def my_complex_device_driver_function():
                 if y == f:
                     ifname = z
                     break
-            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g ) 
+            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g  ) 
             
             
         elif e == 'SwcModeManagerErrorEvent':
@@ -1267,7 +1186,7 @@ def my_complex_device_driver_function():
                     ifname = b
                     modegroup = c
                     break
-            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, modegroup, g ) 
+            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, modegroup, g) 
             
             
         elif e == 'TransformerHardErrorEvent':
@@ -1284,12 +1203,7 @@ def my_complex_device_driver_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ExplicitInterRunnableVariable':
-                
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.ExplicitInterRunnableVariable_VDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.ExplicitInterRunnableVariable_VDP(b, c, d, f, g)   
         
     else:
         print("ExplicitInterRunnableVariable are not present for this component")
@@ -1306,11 +1220,7 @@ def my_complex_device_driver_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ImplicitInterRunnableVariables':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                
-                arelements_def.ImplicitInterRunnableVariable_VDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.ImplicitInterRunnableVariable_VDP(b, c, d, f, g)   
         
     else:
         print("ImplicitInterRunnableVariables are not present for this component")
@@ -1321,10 +1231,7 @@ def my_complex_device_driver_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'PerInstanceParameter':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                arelements_def.PerInstanceParameter_PDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.PerInstanceParameter_PDP(b, c, d, f, g)   
         
     else:
         print("PerInstanceParameter are not present for this component")
@@ -1335,7 +1242,7 @@ def my_complex_device_driver_function():
 
     processed_types = set()
 
-    for a,b,c,d,e,f,g in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo):
+    for a,b,c,d,e in zip(rnblname, rs, cic, rteeventname, rteeventtype):
 
         if b is None or (isinstance(b, str) and not b.strip()):
             b = a
@@ -1351,16 +1258,7 @@ def my_complex_device_driver_function():
         if e == 'AsynchronousServerCallReturnsEvent':
             # Handle asynchronous server call return event
 
-            portname, it, ifname, modegroup = excel_reader.read_columns(ports, 'C', 'F')
-            zipped_data = list(zip(portname,ifname,modegroup))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for a, b,c in unique_data:
-                if a == f:
-                    ifname = b
-                    modegroup = c
-                    break
-
-            arelements_def.Runnable_ASCRE(a,currentfolder, CurrentSWC_shortname,f,ifname,g) #rport, If_name, operation
+            arelements_def.Runnable_ASCRE(a,currentfolder, CurrentSWC_shortname) #rport, If_name, operation
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -1498,15 +1396,8 @@ def my_complex_device_driver_function():
 
         elif e == 'DataSendCompletedEvent':
             # Handle data send completed event with additional information
-            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
-            zipped_data = list(zip(portname,ifname))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for y, z in unique_data:
-                if y == f:
-                    ifname = z
-                    break
 
-            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname, f, ifname, g)#pport, If_name, DE,
+            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname, f,ifname,g)#pport, If_name, DE,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -1533,15 +1424,8 @@ def my_complex_device_driver_function():
 
         elif e == 'DataWriteCompletedEvent':
             # Handle data write completed event with additional information
-            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
-            zipped_data = list(zip(portname,ifname))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for y, z in unique_data:
-                if y == f:
-                    ifname = z
-                    break
 
-            arelements_def.Runnable_DWCE(a,currentfolder, CurrentSWC_shortname, f, ifname, g)#pport, If_name, DE
+            arelements_def.Runnable_DWCE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, DE,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -1625,15 +1509,7 @@ def my_complex_device_driver_function():
         elif e == 'ModeSwitchedAckEvent':
             # Handle mode switched acknowledgment event with additional information
 
-            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
-            zipped_data = list(zip(portname,ifname))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for y, z in unique_data:
-                if y == f:
-                    ifname = z
-                    break
-
-            arelements_def.Runnable_MSAE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, modegroup
+            arelements_def.Runnable_MSAE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, modegroup,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -1808,11 +1684,7 @@ def my_complex_device_driver_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'SharedParameter':
-
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-                arelements_def.SharedParameter_PDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.SharedParameter_PDP(b, c, d, f, g)   
         
     else:
         print("SharedParameter are not present for this component")
@@ -1853,11 +1725,7 @@ def my_ecu_abstraction_function():
       
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ConstantMemory':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.ConstantMemory_PDP(b, dt_string, dt_dest, d, f, g)  
+                arelements_def.ConstantMemory_PDP(b, c, d, f, g)   
         
     else:
         print("ConstantMemorys are not present for this component")
@@ -1866,42 +1734,17 @@ def my_ecu_abstraction_function():
         # Read columns B & M from adt_primitive,  and columns B & H from adt_composite to get DTMS details
         adtp, cp, dp, ep, fp, gp, hp, ip, jp, kp, lp, idtp = excel_reader.read_columns(adt_primitive, 'B', 'M')
 
-        adtc, dc, ec, fc, idtc = excel_reader.read_columns(adt_composite, 'C', 'G')
+        adtc, cc, dc, ec, fc, gc, hc, idtc = excel_reader.read_columns(adt_composite, 'B', 'I')
         
         DataTypemappingSets_folder_elements = arxml_structure.get_variable('DataTypemappingSets_folder_elements')
         
         arelements_def.DataTypeMappingSet(DataTypemappingSets_folder_elements,CurrentSWC_shortname)
 
-        # Zipping and removing duplicates while maintaining order
-        zipped_data = list(zip(adtp,idtp))
-        unique_data = list(dict.fromkeys(zipped_data))  # Remove duplicates
+        for a,b in zip(adtp,idtp):
+            arelements_def.data_type_map(a,b)
 
-        for a,b in unique_data:
-
-            dt_location_a,dt_dest_a=data_type_adt(a)
-
-            dt_string_a=f'{dt_location_a}{a}'
-            
-            dt_location_b,dt_dest_b=data_type_idt(b)
-
-            dt_string_b=f'{dt_location_b}{b}'
-
-            arelements_def.data_type_map(dt_string_a, dt_dest_a, dt_string_b, dt_dest_b)
-
-        # Zipping and removing duplicates while maintaining order
-        zipped_data1 = list(zip(adtc,idtc))
-        unique_data1 = list(dict.fromkeys(zipped_data1))  # Remove duplicates
-
-        for a,b in unique_data1:
-
-            dt_location_a,dt_dest_a=data_type_adt(a)
-
-            dt_string_a=f'{dt_location_a}{a}'
-            
-            dt_location_b,dt_dest_b=data_type_idt(b)
-
-            dt_string_b=f'{dt_location_b}{b}'
-            arelements_def.data_type_map(dt_string_a,dt_dest_a,dt_string_b,dt_dest_b)
+        for a,b in zip(adtc,idtc):
+            arelements_def.data_type_map(a,b)
 
     createDTMS()
 
@@ -1914,11 +1757,7 @@ def my_ecu_abstraction_function():
       
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'StaticMemory':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.StaticMemory_VDP(b, dt_string,dt_dest, d, f, g)   
+                arelements_def.StaticMemory_VDP(b, c, d, f, g)   
         
     else:
         print("StaticMemorys are not present for this component")
@@ -1929,23 +1768,22 @@ def my_ecu_abstraction_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ArTypedPerInstanceMemory':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                arelements_def.ArTypedPerInstanceMemory_VDP(b, dt_string,dt_dest, d, f, g)   
+                arelements_def.ArTypedPerInstanceMemory_VDP(b, c, d, f, g)   
         
     else:
         print("ArTypedPerInstanceMemorys are not present for this component")
 
     #createRTEEvents()
 
-    rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo = excel_reader.read_columns(swc_info, 'H', 'N')
+    rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo = excel_reader.read_columns(swc_info, 'H', 'M')
+
+    # print(rnblname)
 
     arelements_def.RTE_Event()
 
     processed_types = set()
 
-    for a,b,c,d,e,f,g in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo):
+    for a,b,c,d,e,f in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo):
 
         if a in processed_types:
             continue
@@ -2025,7 +1863,7 @@ def my_ecu_abstraction_function():
                 if y == f:
                     ifname = z
                     break
-            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g ) 
+            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g  ) 
             
             
         elif e == 'SwcModeManagerErrorEvent':
@@ -2077,12 +1915,7 @@ def my_ecu_abstraction_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ExplicitInterRunnableVariable':
-                
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.ExplicitInterRunnableVariable_VDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.ExplicitInterRunnableVariable_VDP(b, c, d, f, g)   
         
     else:
         print("ExplicitInterRunnableVariable are not present for this component")
@@ -2099,11 +1932,7 @@ def my_ecu_abstraction_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ImplicitInterRunnableVariables':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                
-                arelements_def.ImplicitInterRunnableVariable_VDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.ImplicitInterRunnableVariable_VDP(b, c, d, f, g)   
         
     else:
         print("ImplicitInterRunnableVariables are not present for this component")
@@ -2114,10 +1943,7 @@ def my_ecu_abstraction_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'PerInstanceParameter':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                arelements_def.PerInstanceParameter_PDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.PerInstanceParameter_PDP(b, c, d, f, g)   
         
     else:
         print("PerInstanceParameter are not present for this component")
@@ -2128,7 +1954,7 @@ def my_ecu_abstraction_function():
 
     processed_types = set()
 
-    for a,b,c,d,e,f,g in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo):
+    for a,b,c,d,e in zip(rnblname, rs, cic, rteeventname, rteeventtype):
 
         if b is None or (isinstance(b, str) and not b.strip()):
             b = a
@@ -2144,16 +1970,7 @@ def my_ecu_abstraction_function():
         if e == 'AsynchronousServerCallReturnsEvent':
             # Handle asynchronous server call return event
 
-            portname, it, ifname, modegroup = excel_reader.read_columns(ports, 'C', 'F')
-            zipped_data = list(zip(portname,ifname,modegroup))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for a, b,c in unique_data:
-                if a == f:
-                    ifname = b
-                    modegroup = c
-                    break
-
-            arelements_def.Runnable_ASCRE(a,currentfolder, CurrentSWC_shortname,f,ifname,g) #rport, If_name, operation
+            arelements_def.Runnable_ASCRE(a,currentfolder, CurrentSWC_shortname) #rport, If_name, operation
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -2291,15 +2108,8 @@ def my_ecu_abstraction_function():
 
         elif e == 'DataSendCompletedEvent':
             # Handle data send completed event with additional information
-            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
-            zipped_data = list(zip(portname,ifname))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for y, z in unique_data:
-                if y == f:
-                    ifname = z
-                    break
 
-            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname, f, ifname, g)#pport, If_name, DE,
+            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, DE,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -2326,15 +2136,8 @@ def my_ecu_abstraction_function():
 
         elif e == 'DataWriteCompletedEvent':
             # Handle data write completed event with additional information
-            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
-            zipped_data = list(zip(portname,ifname))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for y, z in unique_data:
-                if y == f:
-                    ifname = z
-                    break
 
-            arelements_def.Runnable_DWCE(a,currentfolder, CurrentSWC_shortname, f, ifname, g)#pport, If_name, DE
+            arelements_def.Runnable_DWCE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, DE,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -2418,15 +2221,7 @@ def my_ecu_abstraction_function():
         elif e == 'ModeSwitchedAckEvent':
             # Handle mode switched acknowledgment event with additional information
 
-            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
-            zipped_data = list(zip(portname,ifname))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for y, z in unique_data:
-                if y == f:
-                    ifname = z
-                    break
-
-            arelements_def.Runnable_MSAE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, modegroup
+            arelements_def.Runnable_MSAE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, modegroup,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -2601,11 +2396,7 @@ def my_ecu_abstraction_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'SharedParameter':
-
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-                arelements_def.SharedParameter_PDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.SharedParameter_PDP(b, c, d, f, g)   
         
     else:
         print("SharedParameter are not present for this component")
@@ -2615,7 +2406,6 @@ def my_ecu_abstraction_function():
     SupportsMultipleInstantiation = swc_info['G2'].value
 
     arelements_def.supports_multiple_instantiation(SupportsMultipleInstantiation)
-
 
 def my_nv_block_function():
     print('my_nv_block_function : will create later')
@@ -2653,11 +2443,7 @@ def my_sensor_actuator_function():
       
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ConstantMemory':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.ConstantMemory_PDP(b, dt_string, dt_dest, d, f, g)  
+                arelements_def.ConstantMemory_PDP(b, c, d, f, g)   
         
     else:
         print("ConstantMemorys are not present for this component")
@@ -2666,42 +2452,17 @@ def my_sensor_actuator_function():
         # Read columns B & M from adt_primitive,  and columns B & H from adt_composite to get DTMS details
         adtp, cp, dp, ep, fp, gp, hp, ip, jp, kp, lp, idtp = excel_reader.read_columns(adt_primitive, 'B', 'M')
 
-        adtc, dc, ec, fc, idtc = excel_reader.read_columns(adt_composite, 'C', 'G')
+        adtc, cc, dc, ec, fc, gc, hc, idtc = excel_reader.read_columns(adt_composite, 'B', 'I')
         
         DataTypemappingSets_folder_elements = arxml_structure.get_variable('DataTypemappingSets_folder_elements')
         
         arelements_def.DataTypeMappingSet(DataTypemappingSets_folder_elements,CurrentSWC_shortname)
 
-        # Zipping and removing duplicates while maintaining order
-        zipped_data = list(zip(adtp,idtp))
-        unique_data = list(dict.fromkeys(zipped_data))  # Remove duplicates
+        for a,b in zip(adtp,idtp):
+            arelements_def.data_type_map(a,b)
 
-        for a,b in unique_data:
-
-            dt_location_a,dt_dest_a=data_type_adt(a)
-
-            dt_string_a=f'{dt_location_a}{a}'
-            
-            dt_location_b,dt_dest_b=data_type_idt(b)
-
-            dt_string_b=f'{dt_location_b}{b}'
-
-            arelements_def.data_type_map(dt_string_a, dt_dest_a, dt_string_b, dt_dest_b)
-
-        # Zipping and removing duplicates while maintaining order
-        zipped_data1 = list(zip(adtc,idtc))
-        unique_data1 = list(dict.fromkeys(zipped_data1))  # Remove duplicates
-
-        for a,b in unique_data1:
-
-            dt_location_a,dt_dest_a=data_type_adt(a)
-
-            dt_string_a=f'{dt_location_a}{a}'
-            
-            dt_location_b,dt_dest_b=data_type_idt(b)
-
-            dt_string_b=f'{dt_location_b}{b}'
-            arelements_def.data_type_map(dt_string_a,dt_dest_a,dt_string_b,dt_dest_b)
+        for a,b in zip(adtc,idtc):
+            arelements_def.data_type_map(a,b)
 
     createDTMS()
 
@@ -2714,12 +2475,7 @@ def my_sensor_actuator_function():
       
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'StaticMemory':
-
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.StaticMemory_VDP(b, dt_string,dt_dest, d, f, g)   
+                arelements_def.StaticMemory_VDP(b, c, d, f, g)   
         
     else:
         print("StaticMemorys are not present for this component")
@@ -2730,23 +2486,22 @@ def my_sensor_actuator_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ArTypedPerInstanceMemory':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                arelements_def.ArTypedPerInstanceMemory_VDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.ArTypedPerInstanceMemory_VDP(b, c, d, f, g)   
         
     else:
         print("ArTypedPerInstanceMemorys are not present for this component")
 
     #createRTEEvents()
 
-    rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo = excel_reader.read_columns(swc_info, 'H', 'N')
+    rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo = excel_reader.read_columns(swc_info, 'H', 'M')
+
+    # print(rnblname)
 
     arelements_def.RTE_Event()
 
     processed_types = set()
 
-    for a,b,c,d,e,f,g in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo):
+    for a,b,c,d,e,f in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo):
 
         if a in processed_types:
             continue
@@ -2826,7 +2581,7 @@ def my_sensor_actuator_function():
                 if y == f:
                     ifname = z
                     break
-            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g ) 
+            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g  ) 
             
             
         elif e == 'SwcModeManagerErrorEvent':
@@ -2861,7 +2616,7 @@ def my_sensor_actuator_function():
                     ifname = b
                     modegroup = c
                     break
-            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, modegroup, g ) 
+            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, modegroup, g) 
             
             
         elif e == 'TransformerHardErrorEvent':
@@ -2878,12 +2633,7 @@ def my_sensor_actuator_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ExplicitInterRunnableVariable':
-                
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.ExplicitInterRunnableVariable_VDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.ExplicitInterRunnableVariable_VDP(b, c, d, f, g)   
         
     else:
         print("ExplicitInterRunnableVariable are not present for this component")
@@ -2900,11 +2650,7 @@ def my_sensor_actuator_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ImplicitInterRunnableVariables':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                
-                arelements_def.ImplicitInterRunnableVariable_VDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.ImplicitInterRunnableVariable_VDP(b, c, d, f, g)   
         
     else:
         print("ImplicitInterRunnableVariables are not present for this component")
@@ -2915,10 +2661,7 @@ def my_sensor_actuator_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'PerInstanceParameter':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                arelements_def.PerInstanceParameter_PDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.PerInstanceParameter_PDP(b, c, d, f, g)   
         
     else:
         print("PerInstanceParameter are not present for this component")
@@ -2929,7 +2672,7 @@ def my_sensor_actuator_function():
 
     processed_types = set()
 
-    for a,b,c,d,e,f,g in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo):
+    for a,b,c,d,e in zip(rnblname, rs, cic, rteeventname, rteeventtype):
 
         if b is None or (isinstance(b, str) and not b.strip()):
             b = a
@@ -2945,16 +2688,7 @@ def my_sensor_actuator_function():
         if e == 'AsynchronousServerCallReturnsEvent':
             # Handle asynchronous server call return event
 
-            portname, it, ifname, modegroup = excel_reader.read_columns(ports, 'C', 'F')
-            zipped_data = list(zip(portname,ifname,modegroup))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for a, b,c in unique_data:
-                if a == f:
-                    ifname = b
-                    modegroup = c
-                    break
-
-            arelements_def.Runnable_ASCRE(a,currentfolder, CurrentSWC_shortname,f,ifname,g) #rport, If_name, operation
+            arelements_def.Runnable_ASCRE(a,currentfolder, CurrentSWC_shortname) #rport, If_name, operation
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -3092,15 +2826,8 @@ def my_sensor_actuator_function():
 
         elif e == 'DataSendCompletedEvent':
             # Handle data send completed event with additional information
-            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
-            zipped_data = list(zip(portname,ifname))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for y, z in unique_data:
-                if y == f:
-                    ifname = z
-                    break
 
-            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname, f, ifname, g)#pport, If_name, DE,
+            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, DE,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -3127,15 +2854,8 @@ def my_sensor_actuator_function():
 
         elif e == 'DataWriteCompletedEvent':
             # Handle data write completed event with additional information
-            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
-            zipped_data = list(zip(portname,ifname))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for y, z in unique_data:
-                if y == f:
-                    ifname = z
-                    break
 
-            arelements_def.Runnable_DWCE(a,currentfolder, CurrentSWC_shortname, f, ifname, g)#pport, If_name, DE
+            arelements_def.Runnable_DWCE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, DE,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -3219,15 +2939,7 @@ def my_sensor_actuator_function():
         elif e == 'ModeSwitchedAckEvent':
             # Handle mode switched acknowledgment event with additional information
 
-            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
-            zipped_data = list(zip(portname,ifname))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for y, z in unique_data:
-                if y == f:
-                    ifname = z
-                    break
-
-            arelements_def.Runnable_MSAE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, modegroup
+            arelements_def.Runnable_MSAE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, modegroup,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -3402,11 +3114,7 @@ def my_sensor_actuator_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'SharedParameter':
-
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-                arelements_def.SharedParameter_PDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.SharedParameter_PDP(b, c, d, f, g)   
         
     else:
         print("SharedParameter are not present for this component")
@@ -3416,7 +3124,6 @@ def my_sensor_actuator_function():
     SupportsMultipleInstantiation = swc_info['G2'].value
 
     arelements_def.supports_multiple_instantiation(SupportsMultipleInstantiation)
-
 
 def my_service_proxy_function():
 
@@ -3448,11 +3155,7 @@ def my_service_proxy_function():
       
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ConstantMemory':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.ConstantMemory_PDP(b, dt_string, dt_dest, d, f, g)  
+                arelements_def.ConstantMemory_PDP(b, c, d, f, g)   
         
     else:
         print("ConstantMemorys are not present for this component")
@@ -3461,42 +3164,17 @@ def my_service_proxy_function():
         # Read columns B & M from adt_primitive,  and columns B & H from adt_composite to get DTMS details
         adtp, cp, dp, ep, fp, gp, hp, ip, jp, kp, lp, idtp = excel_reader.read_columns(adt_primitive, 'B', 'M')
 
-        adtc, dc, ec, fc, idtc = excel_reader.read_columns(adt_composite, 'C', 'G')
+        adtc, cc, dc, ec, fc, gc, hc, idtc = excel_reader.read_columns(adt_composite, 'B', 'I')
         
         DataTypemappingSets_folder_elements = arxml_structure.get_variable('DataTypemappingSets_folder_elements')
         
         arelements_def.DataTypeMappingSet(DataTypemappingSets_folder_elements,CurrentSWC_shortname)
 
-        # Zipping and removing duplicates while maintaining order
-        zipped_data = list(zip(adtp,idtp))
-        unique_data = list(dict.fromkeys(zipped_data))  # Remove duplicates
+        for a,b in zip(adtp,idtp):
+            arelements_def.data_type_map(a,b)
 
-        for a,b in unique_data:
-
-            dt_location_a,dt_dest_a=data_type_adt(a)
-
-            dt_string_a=f'{dt_location_a}{a}'
-            
-            dt_location_b,dt_dest_b=data_type_idt(b)
-
-            dt_string_b=f'{dt_location_b}{b}'
-
-            arelements_def.data_type_map(dt_string_a, dt_dest_a, dt_string_b, dt_dest_b)
-
-        # Zipping and removing duplicates while maintaining order
-        zipped_data1 = list(zip(adtc,idtc))
-        unique_data1 = list(dict.fromkeys(zipped_data1))  # Remove duplicates
-
-        for a,b in unique_data1:
-
-            dt_location_a,dt_dest_a=data_type_adt(a)
-
-            dt_string_a=f'{dt_location_a}{a}'
-            
-            dt_location_b,dt_dest_b=data_type_idt(b)
-
-            dt_string_b=f'{dt_location_b}{b}'
-            arelements_def.data_type_map(dt_string_a,dt_dest_a,dt_string_b,dt_dest_b)
+        for a,b in zip(adtc,idtc):
+            arelements_def.data_type_map(a,b)
 
     createDTMS()
 
@@ -3509,12 +3187,7 @@ def my_service_proxy_function():
       
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'StaticMemory':
-
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.StaticMemory_VDP(b, dt_string,dt_dest, d, f, g)    
+                arelements_def.StaticMemory_VDP(b, c, d, f, g)   
         
     else:
         print("StaticMemorys are not present for this component")
@@ -3525,23 +3198,22 @@ def my_service_proxy_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ArTypedPerInstanceMemory':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                arelements_def.ArTypedPerInstanceMemory_VDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.ArTypedPerInstanceMemory_VDP(b, c, d, f, g)   
         
     else:
         print("ArTypedPerInstanceMemorys are not present for this component")
 
     #createRTEEvents()
 
-    rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo = excel_reader.read_columns(swc_info, 'H', 'N')
+    rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo = excel_reader.read_columns(swc_info, 'H', 'M')
+
+    # print(rnblname)
 
     arelements_def.RTE_Event()
 
     processed_types = set()
 
-    for a,b,c,d,e,f,g in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo):
+    for a,b,c,d,e,f in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo):
 
         if a in processed_types:
             continue
@@ -3621,7 +3293,7 @@ def my_service_proxy_function():
                 if y == f:
                     ifname = z
                     break
-            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g ) 
+            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g  ) 
             
             
         elif e == 'SwcModeManagerErrorEvent':
@@ -3656,7 +3328,7 @@ def my_service_proxy_function():
                     ifname = b
                     modegroup = c
                     break
-            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, modegroup, g ) 
+            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, modegroup, g) 
             
             
         elif e == 'TransformerHardErrorEvent':
@@ -3673,12 +3345,7 @@ def my_service_proxy_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ExplicitInterRunnableVariable':
-                
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.ExplicitInterRunnableVariable_VDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.ExplicitInterRunnableVariable_VDP(b, c, d, f, g)   
         
     else:
         print("ExplicitInterRunnableVariable are not present for this component")
@@ -3695,11 +3362,7 @@ def my_service_proxy_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ImplicitInterRunnableVariables':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                
-                arelements_def.ImplicitInterRunnableVariable_VDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.ImplicitInterRunnableVariable_VDP(b, c, d, f, g)   
         
     else:
         print("ImplicitInterRunnableVariables are not present for this component")
@@ -3710,10 +3373,7 @@ def my_service_proxy_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'PerInstanceParameter':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                arelements_def.PerInstanceParameter_PDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.PerInstanceParameter_PDP(b, c, d, f, g)   
         
     else:
         print("PerInstanceParameter are not present for this component")
@@ -3724,7 +3384,7 @@ def my_service_proxy_function():
 
     processed_types = set()
 
-    for a,b,c,d,e,f,g in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo):
+    for a,b,c,d,e in zip(rnblname, rs, cic, rteeventname, rteeventtype):
 
         if b is None or (isinstance(b, str) and not b.strip()):
             b = a
@@ -3740,16 +3400,7 @@ def my_service_proxy_function():
         if e == 'AsynchronousServerCallReturnsEvent':
             # Handle asynchronous server call return event
 
-            portname, it, ifname, modegroup = excel_reader.read_columns(ports, 'C', 'F')
-            zipped_data = list(zip(portname,ifname,modegroup))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for a, b,c in unique_data:
-                if a == f:
-                    ifname = b
-                    modegroup = c
-                    break
-
-            arelements_def.Runnable_ASCRE(a,currentfolder, CurrentSWC_shortname,f,ifname,g) #rport, If_name, operation
+            arelements_def.Runnable_ASCRE(a,currentfolder, CurrentSWC_shortname) #rport, If_name, operation
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -3887,15 +3538,8 @@ def my_service_proxy_function():
 
         elif e == 'DataSendCompletedEvent':
             # Handle data send completed event with additional information
-            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
-            zipped_data = list(zip(portname,ifname))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for y, z in unique_data:
-                if y == f:
-                    ifname = z
-                    break
 
-            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname, f, ifname, g)#pport, If_name, DE,
+            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, DE,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -3922,15 +3566,8 @@ def my_service_proxy_function():
 
         elif e == 'DataWriteCompletedEvent':
             # Handle data write completed event with additional information
-            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
-            zipped_data = list(zip(portname,ifname))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for y, z in unique_data:
-                if y == f:
-                    ifname = z
-                    break
 
-            arelements_def.Runnable_DWCE(a,currentfolder, CurrentSWC_shortname, f, ifname, g)#pport, If_name, DE
+            arelements_def.Runnable_DWCE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, DE,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -4014,15 +3651,7 @@ def my_service_proxy_function():
         elif e == 'ModeSwitchedAckEvent':
             # Handle mode switched acknowledgment event with additional information
 
-            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
-            zipped_data = list(zip(portname,ifname))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for y, z in unique_data:
-                if y == f:
-                    ifname = z
-                    break
-
-            arelements_def.Runnable_MSAE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, modegroup
+            arelements_def.Runnable_MSAE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, modegroup,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -4197,11 +3826,7 @@ def my_service_proxy_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'SharedParameter':
-
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-                arelements_def.SharedParameter_PDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.SharedParameter_PDP(b, c, d, f, g)   
         
     else:
         print("SharedParameter are not present for this component")
@@ -4211,7 +3836,6 @@ def my_service_proxy_function():
     SupportsMultipleInstantiation = swc_info['G2'].value
 
     arelements_def.supports_multiple_instantiation(SupportsMultipleInstantiation)
-
 
 def my_service_function():
 
@@ -4243,11 +3867,7 @@ def my_service_function():
       
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ConstantMemory':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.ConstantMemory_PDP(b, dt_string, dt_dest, d, f, g)  
+                arelements_def.ConstantMemory_PDP(b, c, d, f, g)   
         
     else:
         print("ConstantMemorys are not present for this component")
@@ -4256,42 +3876,17 @@ def my_service_function():
         # Read columns B & M from adt_primitive,  and columns B & H from adt_composite to get DTMS details
         adtp, cp, dp, ep, fp, gp, hp, ip, jp, kp, lp, idtp = excel_reader.read_columns(adt_primitive, 'B', 'M')
 
-        adtc, dc, ec, fc, idtc = excel_reader.read_columns(adt_composite, 'C', 'G')
+        adtc, cc, dc, ec, fc, gc, hc, idtc = excel_reader.read_columns(adt_composite, 'B', 'I')
         
         DataTypemappingSets_folder_elements = arxml_structure.get_variable('DataTypemappingSets_folder_elements')
         
         arelements_def.DataTypeMappingSet(DataTypemappingSets_folder_elements,CurrentSWC_shortname)
 
-        # Zipping and removing duplicates while maintaining order
-        zipped_data = list(zip(adtp,idtp))
-        unique_data = list(dict.fromkeys(zipped_data))  # Remove duplicates
+        for a,b in zip(adtp,idtp):
+            arelements_def.data_type_map(a,b)
 
-        for a,b in unique_data:
-
-            dt_location_a,dt_dest_a=data_type_adt(a)
-
-            dt_string_a=f'{dt_location_a}{a}'
-            
-            dt_location_b,dt_dest_b=data_type_idt(b)
-
-            dt_string_b=f'{dt_location_b}{b}'
-
-            arelements_def.data_type_map(dt_string_a, dt_dest_a, dt_string_b, dt_dest_b)
-
-        # Zipping and removing duplicates while maintaining order
-        zipped_data1 = list(zip(adtc,idtc))
-        unique_data1 = list(dict.fromkeys(zipped_data1))  # Remove duplicates
-
-        for a,b in unique_data1:
-
-            dt_location_a,dt_dest_a=data_type_adt(a)
-
-            dt_string_a=f'{dt_location_a}{a}'
-            
-            dt_location_b,dt_dest_b=data_type_idt(b)
-
-            dt_string_b=f'{dt_location_b}{b}'
-            arelements_def.data_type_map(dt_string_a,dt_dest_a,dt_string_b,dt_dest_b)
+        for a,b in zip(adtc,idtc):
+            arelements_def.data_type_map(a,b)
 
     createDTMS()
 
@@ -4304,12 +3899,7 @@ def my_service_function():
       
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'StaticMemory':
-
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.StaticMemory_VDP(b, dt_string,dt_dest, d, f, g)   
+                arelements_def.StaticMemory_VDP(b, c, d, f, g)   
         
     else:
         print("StaticMemorys are not present for this component")
@@ -4320,23 +3910,22 @@ def my_service_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ArTypedPerInstanceMemory':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                arelements_def.ArTypedPerInstanceMemory_VDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.ArTypedPerInstanceMemory_VDP(b, c, d, f, g)   
         
     else:
         print("ArTypedPerInstanceMemorys are not present for this component")
 
     #createRTEEvents()
 
-    rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo = excel_reader.read_columns(swc_info, 'H', 'N')
+    rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo = excel_reader.read_columns(swc_info, 'H', 'M')
+
+    # print(rnblname)
 
     arelements_def.RTE_Event()
 
     processed_types = set()
 
-    for a,b,c,d,e,f,g in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo):
+    for a,b,c,d,e,f in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo):
 
         if a in processed_types:
             continue
@@ -4416,7 +4005,7 @@ def my_service_function():
                 if y == f:
                     ifname = z
                     break
-            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g ) 
+            arelements_def.OperationInvokedEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, g  ) 
             
             
         elif e == 'SwcModeManagerErrorEvent':
@@ -4446,12 +4035,12 @@ def my_service_function():
             portname, it, ifname, modegroup = excel_reader.read_columns(ports, 'C', 'F')
             zipped_data = list(zip(portname,ifname,modegroup))
             unique_data = list(dict.fromkeys(zipped_data))
-            for a, b,c in unique_data:
-                if a == f:
-                    ifname = b
-                    modegroup = c
+            for x, y, z in unique_data:
+                if x == f:
+                    ifname = y
+                    modegroup = z
                     break
-            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, modegroup, g ) 
+            arelements_def.SwcModeSwitchEvent(d, a, currentfolder, CurrentSWC_shortname, f, ifname, modegroup, g) 
             
             
         elif e == 'TransformerHardErrorEvent':
@@ -4468,12 +4057,7 @@ def my_service_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ExplicitInterRunnableVariable':
-                
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-
-                arelements_def.ExplicitInterRunnableVariable_VDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.ExplicitInterRunnableVariable_VDP(b, c, d, f, g)   
         
     else:
         print("ExplicitInterRunnableVariable are not present for this component")
@@ -4490,11 +4074,7 @@ def my_service_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'ImplicitInterRunnableVariables':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                
-                arelements_def.ImplicitInterRunnableVariable_VDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.ImplicitInterRunnableVariable_VDP(b, c, d, f, g)   
         
     else:
         print("ImplicitInterRunnableVariables are not present for this component")
@@ -4505,10 +4085,7 @@ def my_service_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'PerInstanceParameter':
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'                
-                arelements_def.PerInstanceParameter_PDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.PerInstanceParameter_PDP(b, c, d, f, g)   
         
     else:
         print("PerInstanceParameter are not present for this component")
@@ -4519,7 +4096,7 @@ def my_service_function():
 
     processed_types = set()
 
-    for a,b,c,d,e,f,g in zip(rnblname, rs, cic, rteeventname, rteeventtype, rteeventinfo, rteeventsubinfo):
+    for a,b,c,d,e in zip(rnblname, rs, cic, rteeventname, rteeventtype):
 
         if b is None or (isinstance(b, str) and not b.strip()):
             b = a
@@ -4535,16 +4112,7 @@ def my_service_function():
         if e == 'AsynchronousServerCallReturnsEvent':
             # Handle asynchronous server call return event
 
-            portname, it, ifname, modegroup = excel_reader.read_columns(ports, 'C', 'F')
-            zipped_data = list(zip(portname,ifname,modegroup))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for a, b,c in unique_data:
-                if a == f:
-                    ifname = b
-                    modegroup = c
-                    break
-
-            arelements_def.Runnable_ASCRE(a,currentfolder, CurrentSWC_shortname,f,ifname,g) #rport, If_name, operation
+            arelements_def.Runnable_ASCRE(a,currentfolder, CurrentSWC_shortname) #rport, If_name, operation
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -4682,15 +4250,8 @@ def my_service_function():
 
         elif e == 'DataSendCompletedEvent':
             # Handle data send completed event with additional information
-            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
-            zipped_data = list(zip(portname,ifname))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for y, z in unique_data:
-                if y == f:
-                    ifname = z
-                    break
 
-            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname, f, ifname, g)#pport, If_name, DE,
+            arelements_def.Runnable_DSCE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, DE,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -4717,15 +4278,8 @@ def my_service_function():
 
         elif e == 'DataWriteCompletedEvent':
             # Handle data write completed event with additional information
-            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
-            zipped_data = list(zip(portname,ifname))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for y, z in unique_data:
-                if y == f:
-                    ifname = z
-                    break
 
-            arelements_def.Runnable_DWCE(a,currentfolder, CurrentSWC_shortname, f, ifname, g)#pport, If_name, DE
+            arelements_def.Runnable_DWCE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, DE,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -4809,15 +4363,7 @@ def my_service_function():
         elif e == 'ModeSwitchedAckEvent':
             # Handle mode switched acknowledgment event with additional information
 
-            portname, it, ifname = excel_reader.read_columns(ports, 'C', 'E')
-            zipped_data = list(zip(portname,ifname))
-            unique_data = list(dict.fromkeys(zipped_data))
-            for y, z in unique_data:
-                if y == f:
-                    ifname = z
-                    break
-
-            arelements_def.Runnable_MSAE(a,currentfolder, CurrentSWC_shortname,f,ifname,g)#pport, If_name, modegroup
+            arelements_def.Runnable_MSAE(a,currentfolder, CurrentSWC_shortname)#pport, If_name, modegroup,
 
             m = excel_reader.read_columns(ib_data, 'F', 'F') or []  # Ensure m is at least an empty list
             n = excel_reader.read_columns(ports, 'I', 'I') or []  # Ensure n is at least an empty list
@@ -4992,11 +4538,7 @@ def my_service_function():
     
         for a,b,c,d,e,f,g in zip(IBVariableType, IBVariableName, ApplicationDataTypeName,Initvalue, AccessingRunnable, SwCalibrationAccess, SwImplementationPolicy):
             if a == 'SharedParameter':
-
-                dt_location,dt_dest=data_type_string(c)
-
-                dt_string=f'{dt_location}{c}'
-                arelements_def.SharedParameter_PDP(b, dt_string, dt_dest, d, f, g)   
+                arelements_def.SharedParameter_PDP(b, c, d, f, g)   
         
     else:
         print("SharedParameter are not present for this component")
@@ -5006,6 +4548,8 @@ def my_service_function():
     SupportsMultipleInstantiation = swc_info['G2'].value
 
     arelements_def.supports_multiple_instantiation(SupportsMultipleInstantiation)
+
+
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #               # ####################### =============== %%%%%%%%% ++++++++++++ ---------- __________ SECTION :  runnable data access __________ ----------  ++++++++++++ %%%%%%%%% =============== ####################### #               #
@@ -5182,13 +4726,9 @@ def rnblaccess(Currentrnbl):
     
     for row in sender_port_data:
         print(row)
-        
-    prev_opr = []
     
     # Iterate over filtered data for ReceiverPort
     for _, port_name, interface_type, interface_name, data_element, argument in receiver_port_data:
-        
-        
        
         if interface_type == "SenderReceiverInterface" :
            
@@ -5223,16 +4763,8 @@ def rnblaccess(Currentrnbl):
             arelements_def.CPA_RPort_prm_Parameter(currentfolder, CurrentSWC_shortname, port_name, interface_name, data_element)
         
         elif interface_type == "ClientServerInterface":
-            
-            if data_element in prev_opr : 
-                
-                pass
-            
-            else : 
-                prev_opr.append(data_element)
-                
-                print(f"[DEBUG] Calling arelements_def.SSCP_RPort_CS_Operation({currentfolder}, {CurrentSWC_shortname}, {port_name}, {interface_name}, {data_element})")
-                arelements_def.SSCP_RPort_CS_Operation(currentfolder, CurrentSWC_shortname, port_name, interface_name, data_element)
+            print(f"[DEBUG] Calling arelements_def.SSCP_RPort_CS_Operation({currentfolder}, {CurrentSWC_shortname}, {port_name}, {interface_name}, {data_element})")
+            arelements_def.SSCP_RPort_CS_Operation(currentfolder, CurrentSWC_shortname, port_name, interface_name, data_element)
         
         else :
             print(f"[DEBUG] Invalid {interface_type} and port type for data access")
@@ -5545,12 +5077,7 @@ def SenderReceiverInterface(currentIF_name, DataElements, Arguments, current_Adt
 
         # Loop through data elements and their corresponding ADTs, and create VDPs
         for itsDE, itsAdt in zip(DataElements, current_Adt):
-            
-            dt_location,dt_dest=data_type_string(itsAdt)
-
-            dt_string=f'{dt_location}{itsAdt}'
-
-            arelements_def.SenderReceiverInterface_VDP(itsDE, dt_string,dt_dest)
+            arelements_def.SenderReceiverInterface_VDP(itsDE, itsAdt)
     
     except Exception as e:
         print(f"Error creating SenderReceiverInterface for {currentIF_name}: {e}")
@@ -5579,12 +5106,7 @@ def NvDataInterface(currentIF_name, DataElements, Arguments, current_Adt):
 
         # Loop through data elements and their corresponding ADTs, and create VDPs
         for itsDE, itsAdt in zip(DataElements, current_Adt):
-            
-            dt_location,dt_dest=data_type_string(itsAdt)
-
-            dt_string=f'{dt_location}{itsAdt}'
-
-            arelements_def.NvDataInterface_VDP(itsDE, dt_string,dt_dest)
+            arelements_def.NvDataInterface_VDP(itsDE, itsAdt)
     
     except Exception as e:
         print(f"Error creating NvDataInterface for {currentIF_name}: {e}")
@@ -5613,12 +5135,7 @@ def ParameterInterface(currentIF_name, DataElements, Arguments, current_Adt):
 
         # Loop through data elements and their corresponding ADTs, and create VDPs
         for itsDE, itsAdt in zip(DataElements, current_Adt):
-            
-            dt_location,dt_dest=data_type_string(itsAdt)
-
-            dt_string=f'{dt_location}{itsAdt}'
-
-            arelements_def.ParameterInterface_VDP(itsDE, dt_string,dt_dest)
+            arelements_def.ParameterInterface_VDP(itsDE, itsAdt)
     
     except Exception as e:
         print(f"Error creating ParameterInterface for {currentIF_name}: {e}")
@@ -5686,13 +5203,7 @@ def ClientServerInterface(currentIF_name, DataElements, Arguments, current_Adt):
             arelements_def.ClientServerInterface_Args()  # Called once per operation
             # Iterate over all `itsArg` and `itsAdt` associated with the same `Operation_shortname`
             for _, itsArg, itsAdt in group:
-                
-                dt_location,dt_dest=data_type_string(itsAdt)
-
-                dt_string=f'{dt_location}{itsAdt}'
-
-
-                arelements_def.ClientServerInterface_Arg(itsArg, dt_string,dt_dest)  # Called for each argument
+                arelements_def.ClientServerInterface_Arg(itsArg, itsAdt)  # Called for each argument
     except Exception as e:
         print(f"Error creating ClientServerInterface for {currentIF_name}: {e}")
 
@@ -6060,13 +5571,8 @@ def createcomposite():
                for elem in record_elements:
                    if len(elem) == 3:
                        elem_c, elem_d, elem_e = elem
-
-                       dt_location,dt_dest=data_type_string(elem_e)
-
-                       dt_string=f'{dt_location}{elem_e}'
-                       
                        print(f"Adding Record Element: {elem_c}, Type: {elem_d}, DataType: {elem_e}")
-                       arelements_def.ApplicationRecordDataType_elements(elem_c, elem_d, dt_string)
+                       arelements_def.ApplicationRecordDataType_elements(elem_c, elem_d, elem_e)
                    else:
                        print(f"Skipping malformed record element: {elem}")  # If something is incorrect
                record_elements = []  
@@ -6080,14 +5586,12 @@ def createcomposite():
            print("Detected ARRAY category.")
            Array_folder_elements = arxml_structure.get_variable('Array_folder_elements')
            if (b, c, d, e) not in record_elements:
-               dt_location,dt_dest=data_type_string(e)
-               dt_string=f'{dt_location}{e}'
                if d == 'VARIABLE':
                    print(f"Creating ApplicationArrayDataType_Variable for {b}")
-                   arelements_def.ApplicationArrayDataType_Variable(Array_folder_elements, b, dt_string,dt_dest, c)
+                   arelements_def.ApplicationArrayDataType_Variable(Array_folder_elements, b, e, c)
                elif d == 'FIXED':
                    print(f"Creating ApplicationArrayDataType_Fixed for {b}")
-                   arelements_def.ApplicationArrayDataType_Fixed(Array_folder_elements, b, dt_string,dt_dest, c)
+                   arelements_def.ApplicationArrayDataType_Fixed(Array_folder_elements, b, e, c)
                else:
                    print(f"Invalid array category '{d}' for '{b}'. Expected 'VARIABLE' or 'FIXED'.")
                record_elements.append((b, c, d, e))
@@ -6103,10 +5607,8 @@ def createcomposite():
        for elem in record_elements:
            if len(elem) == 3:
                elem_c, elem_d, elem_e = elem
-               dt_location,dt_dest=data_type_string(elem_e)
-               dt_string=f'{dt_location}{elem_e}'
                print(f"Adding final Record Element: {elem_c}, Type: {elem_d}, DataType: {elem_e}")
-               arelements_def.ApplicationRecordDataType_elements(elem_c, elem_d, dt_string)
+               arelements_def.ApplicationRecordDataType_elements(elem_c, elem_d, elem_e)
            else:
                print(f"Skipping malformed record element: {elem}")
    print("Processing completed.")
@@ -6130,13 +5632,6 @@ def createcustomIDT():
        idt_shortname = IDT_shortname[i]
        idt_element_shortname = IRDT_element_shortname[i]
        idt_data_type = data_type[i]
-
-       dt_location,dt_dest=data_type_string(idt_data_type)
-       
-       dt_string=f'{dt_location}{idt_data_type}'
-
-
-
        print(f"[DEBUG] Processing index {i}: Type={idt_type}, Shortname={idt_shortname}, Element={idt_element_shortname}, DataType={idt_data_type}")
        if idt_type == 'ARRAY_FIXED':
            # Process any pending RECORD before handling ARRAY_FIXED
@@ -6149,7 +5644,8 @@ def createcustomIDT():
                record_shortname = None
                record_elements.clear()
            print(f"[DEBUG] Creating ARRAY_FIXED: {idt_shortname}, {idt_element_shortname}, {idt_data_type}")
-           arelements_def.ImplementationDataType_ArrayFixed(ImplementationDataTypes_folder_elements, idt_shortname, idt_element_shortname, dt_string)
+           arelements_def.ImplementationDataType_ArrayFixed(ImplementationDataTypes_folder_elements,
+                                                             idt_shortname, idt_element_shortname, idt_data_type)
        elif idt_type == 'ARRAY_VARIABLE':
            # Process any pending RECORD before handling ARRAY_VARIABLE
            if record_shortname:
@@ -6161,7 +5657,8 @@ def createcustomIDT():
                record_shortname = None
                record_elements.clear()
            print(f"[DEBUG] Creating ARRAY_VARIABLE: {idt_shortname}, {idt_element_shortname}, {idt_data_type}")
-           arelements_def.ImplementationDataType_ArrayVariable(ImplementationDataTypes_folder_elements,idt_shortname, idt_element_shortname, dt_string)
+           arelements_def.ImplementationDataType_ArrayVariable(ImplementationDataTypes_folder_elements,
+                                                                idt_shortname, idt_element_shortname, idt_data_type)
        elif idt_type == 'PRIMITIVE':
            # Process any pending RECORD before handling PRIMITIVE
            if record_shortname:
@@ -6199,139 +5696,8 @@ def createcustomIDT():
            arelements_def.ImplementationDataType_Record_elements(element_shortname, element_data_type)
    print("[DEBUG] Finished processing all IDT entries")
 
-#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
-#               # ####################### =============== %%%%%%%%% ++++++++++++ ---------- __________ SECTION :  data type reference __________ ----------  ++++++++++++ %%%%%%%%% =============== ####################### #               #
-#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 
-def data_type_string(value):
-    # Condition 1: Data from B column of adt_primitive sheet
-    apdt = excel_reader.read_columns(adt_primitive, 'B','B')
-
-    # Ensure m and n are lists (in case the function returns None or something unexpected)
-    if not isinstance(apdt, list):
-        apdt = list(apdt)  
-
-
-    # Flatten m and n if they contain nested lists
-    apdt = [item for sublist in apdt for item in sublist] if any(isinstance(i, list) for i in apdt) else apdt
-
-
-    print(apdt)
-
-    # Condition 4: Data from C column of idt sheet
-    idtc = excel_reader.read_columns(idt,'C','C')
-    # Ensure m and n are lists (in case the function returns None or something unexpected)
-    if not isinstance(idtc, list):
-        idtc = list(idtc)  
-
-
-    # Flatten m and n if they contain nested lists
-    idtc = [item for sublist in idtc for item in sublist] if any(isinstance(i, list) for i in idtc) else idtc
-
-    # Condition 5: Data is in predefined idtp array
-    idtp = {
-        "boolean", "ConstVoidPtr", "float32", "float64", "sint16", "sint16_least",
-        "sint32", "sint32_least", "sint64", "sint8", "sint8_least", "uint16",
-        "uint16_least", "uint32", "uint32_least", "uint64", "uint8", "uint8_least", "VoidPtr"
-        }
-    # Read columns B and C from adt_composite for conditions 2 & 3
-    adtc_type, adtc_values = excel_reader.read_columns(adt_composite, 'B', 'C')
-
-        # Ensure m and n are lists (in case the function returns None or something unexpected)
-    if not isinstance(adtc_type, list):
-        adtc_type = list(adtc_type) 
-    if not isinstance(adtc_values, list):
-        adtc_values = list(adtc_values)
-
-    # Flatten m and n if they contain nested lists
-    adtc_type = [item for sublist in adtc_type for item in sublist] if any(isinstance(i, list) for i in adtc_type) else adtc_type
-    adtc_values = [item for sublist in adtc_values for item in sublist] if any(isinstance(i, list) for i in adtc_values) else adtc_values
-
-    if value in apdt:
-        return "/SharedElements/ApplicationDataTypes/Primitive/","APPLICATION-PRIMITIVE-DATA-TYPE"
-    elif value in idtc:
-        return "/SharedElements/ImplementationDataTypes/","IMPLEMENTATION-DATA-TYPE"
-    elif value in idtp:
-        return "/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/","IMPLEMENTATION-DATA-TYPE"
-    else:
-        # Check conditions 2 & 3 together using zip
-        for type_value, c_value in zip(adtc_type, adtc_values):
-            if value == c_value:
-                if type_value == "RECORD":
-                    return "/SharedElements/ApplicationDataTypes/Record/","APPLICATION-RECORD-DATA-TYPE"
-                elif type_value == "ARRAY":
-                    return "/SharedElements/ApplicationDataTypes/Array/","APPLICATION-ARRAY-DATA-TYPE"
-    # Default case
-    return "Unknown Type","Unknown Dest"
-
-def data_type_adt(value):
-    # Condition 1: Data from B column of adt_primitive sheet
-    apdt = excel_reader.read_columns(adt_primitive, 'B', 'B')
-    # Ensure m and n are lists (in case the function returns None or something unexpected)
-    if not isinstance(apdt, list):
-        apdt = list(apdt)  
-
-
-    # Flatten m and n if they contain nested lists
-    apdt = [item for sublist in apdt for item in sublist] if any(isinstance(i, list) for i in apdt) else apdt   
-
-    # Read columns B and C from adt_composite for conditions 2 & 3
-    adtc_type, adtc_values = excel_reader.read_columns(adt_composite, 'B', 'C')
-
-        # Ensure m and n are lists (in case the function returns None or something unexpected)
-    if not isinstance(adtc_type, list):
-        adtc_type = list(adtc_type) 
-    if not isinstance(adtc_values, list):
-        adtc_values = list(adtc_values)
-
-    # Flatten m and n if they contain nested lists
-    adtc_type = [item for sublist in adtc_type for item in sublist] if any(isinstance(i, list) for i in adtc_type) else adtc_type
-    adtc_values = [item for sublist in adtc_values for item in sublist] if any(isinstance(i, list) for i in adtc_values) else adtc_values
-
-    if value in apdt:
-        return "/SharedElements/ApplicationDataTypes/Primitive/","APPLICATION-PRIMITIVE-DATA-TYPE"
-    elif value in adtc_values:
-        index = adtc_values.index(value)
-        corresponding_type = adtc_type[index]
-        if corresponding_type == "RECORD":
-            return "/SharedElements/ApplicationDataTypes/Record/", "APPLICATION-RECORD-DATA-TYPE"
-        elif corresponding_type == "ARRAY":
-            return "/SharedElements/ApplicationDataTypes/Array/", "APPLICATION-ARRAY-DATA-TYPE"
-        else:            
-            return "Unknown adt ccc Type","Unknown ccc Dest"
-                
-    # Default case
-    return "Unknown adt Type","Unknown Dest"
-
-def data_type_idt(value):
-   
-
-    # Condition 5: Data is in predefined idtp array
-    idtp = {
-        "boolean", "ConstVoidPtr", "float32", "float64", "sint16", "sint16_least",
-        "sint32", "sint32_least", "sint64", "sint8", "sint8_least", "uint16",
-        "uint16_least", "uint32", "uint32_least", "uint64", "uint8", "uint8_least", "VoidPtr"
-        }
-    # Condition 4: Data from C column of idt sheet
-    idtc = excel_reader.read_columns(idt,'C','C')
-
-    # Ensure m and n are lists (in case the function returns None or something unexpected)
-    if not isinstance(idtc, list):
-        idtc = list(idtc)  
-
-    # Flatten m and n if they contain nested lists
-    idtc = [item for sublist in idtc for item in sublist] if any(isinstance(i, list) for i in idtc) else idtc
-
-    
-        
-    if value in idtc:
-        return "/SharedElements/ImplementationDataTypes/","IMPLEMENTATION-DATA-TYPE"
-    elif value in idtp:
-        return "/AUTOSAR/AUTOSAR_Platform/ImplementationDataTypes/","IMPLEMENTATION-DATA-TYPE"
-    else:
-    # Default case
-        return "Unknown idt Type","Unknown Dest"
 
 
 
@@ -6342,6 +5708,7 @@ def data_type_idt(value):
 
 def Main():
     # Execute the main sequence of functions for project setup
+
     CreateSwcs()           # Create software components
     createcompumethod()    # Create computation methods
     createDC()             # Create data constraints
@@ -6361,12 +5728,21 @@ def Main():
         # Add indentation
         indent(root2)
 
-        # Write the XML declaration with double quotes
-        with open("output_402_24-03-013.arxml", "wb") as f:
+        from excel_utils import Excelfile_name
+        
+        print("The latest Excel file name is:", Excelfile_name)
+        Arxml_directory = r"C:\Users\hss930284\Tata Technologies\MBSE Team - SAARCONN - SAARCONN\Eliminating_SystemDesk\tests\Harshit_arelements_validation_24_03\COMBINED_AUTOMATION\Intermidiate_Outputs\Generated_ARXML"
+       
+        os.makedirs(Arxml_directory, exist_ok=True)
+        
+        arxml_file_path = os.path.join(Arxml_directory, f"{Excelfile_name}.arxml")
+        
+        with open(arxml_file_path, "wb") as f:
+        
             f.write(b'<?xml version="1.0" encoding="utf-8"?>\n')
             tree.write(f, encoding="utf-8", xml_declaration=False)
 
-        print("Successfully created with proper indentation and XML declaration.")
+        print(f"Successfully created with proper indentation and XML declaration.")
 
     except FileNotFoundError as e:
         print(f"Error: {e}. Please enter a valid ARXML file path.")
