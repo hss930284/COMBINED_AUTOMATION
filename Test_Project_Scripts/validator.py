@@ -648,28 +648,29 @@ def validate_excel(file_path):
             if row[1] == "PRIMITIVE":  # Column B
                 idt_data_types[row[2]] = row[4]  # Column C as key, Column E as value
         
-        # Read merged cells
+        # Read merged cells from "adt_primitive"
         adt_primitive_sheet = wb["adt_primitive"]
-        # Dictionary to store resolved merged cell values
         merged_cell_values = {}
+        merged_ranges = {}
         
-        # Process merged cells without modifying the sheet
+        # Store merged cell values before iterating rows
         for merged_range in adt_primitive_sheet.merged_cells.ranges:
             min_col, min_row, max_col, max_row = merged_range.bounds
-            top_left_value = adt_primitive_sheet.cell(row=min_row, column=min_col).value  # Get actual value
+            top_left_value = adt_primitive_sheet.cell(row=min_row, column=min_col).value  # Get the actual value
             
             for row in range(min_row, max_row + 1):
                 for col in range(min_col, max_col + 1):
                     cell_ref = f"{get_column_letter(col)}{row}"  # Convert to cell reference like 'M4'
-                    merged_cell_values[cell_ref] = top_left_value  # Store value in dictionary
+                    merged_cell_values[cell_ref] = top_left_value  # Store merged cell values
+                    merged_ranges[cell_ref] = f"{get_column_letter(min_col)}{min_row}"  # Store reference
         
-        # Function to safely retrieve a cell value, handling merged cells
+        # Function to get cell value while handling merged cells
         def get_cell_value(sheet, row, col):
             cell_ref = f"{get_column_letter(col)}{row}"
             return merged_cell_values.get(cell_ref, sheet.cell(row=row, column=col).value)
         
         # Example: Read column M correctly
-        for row in range(4, adt_primitive_sheet.max_row + 1):  # Adjust range as needed
+        for row in range(4, adt_primitive_sheet.max_row + 1):
             mapped_data_type = get_cell_value(adt_primitive_sheet, row, 13)  # Column M (13th column)
             print(f"Row {row}: Mapped Data Type -> {mapped_data_type}")
         
@@ -684,15 +685,18 @@ def validate_excel(file_path):
             const_name = row[col_cons].value
             min_value = row[col_min].value
             max_value = row[col_max].value
-            data_type_cell = row[col_data_type].coordinate
+            data_type_cell = f"{get_column_letter(col_data_type + 1)}{row_idx}"
             data_type = row[col_data_type].value
-            print(f"data_type1: {data_type}")
-            
-            # Handle merged cells
-            if data_type is None and data_type_cell in merged_ranges:
-                data_type = adt_primitive_sheet[merged_ranges[data_type_cell]].value
-                print(f"data_type2: {data_type}")
-            # Determine min/max range
+        
+            # Handle merged cells properly
+            if data_type is None:
+                if data_type_cell in merged_cell_values:
+                    data_type = merged_cell_values[data_type_cell]
+                    print(f"Fixed merged cell at {data_type_cell}, Data Type -> {data_type}")
+        
+            print(f"Row {row_idx}: Data Type -> {data_type}")
+        
+            # Check if data type is valid
             if data_type in data_type_ranges:
                 min_allowed, max_allowed = data_type_ranges[data_type]
             elif data_type in idt_data_types:
@@ -705,7 +709,7 @@ def validate_excel(file_path):
             else:
                 errors["Critical"].append(f"[adt_primitive] Unknown data type {data_type} at M{row_idx}")
                 continue
-            
+        
             # Validate min/max values
             if min_value is not None and max_value is not None:
                 if not (min_allowed <= min_value <= max_allowed):
@@ -714,6 +718,7 @@ def validate_excel(file_path):
                     errors["Critical"].append(f"[adt_primitive] Max value {max_value} (L{row_idx}) out of range for {data_type}. Allowed: {min_allowed}-{max_allowed}")
                 if min_value > max_value:
                     errors["Critical"].append(f"[adt_primitive] Min value {min_value} (K{row_idx}) should not be greater than Max value {max_value} (L{row_idx})")
+                    
         """
             RULE - 8
                 if sheet name = "adt_composite"
